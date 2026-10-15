@@ -1,6 +1,7 @@
 'use client';
 
 import React, { Suspense } from 'react';
+import { Loader2 } from 'lucide-react';
 import { BottomNavigation } from './BottomNavigation';
 import { Toast } from '../ui/Toast';
 import { SubscriptionBottomSheet } from '../subscription/SubscriptionBottomSheet';
@@ -25,7 +26,7 @@ export function AppShell({ children }: AppShellProps) {
           <Suspense
             fallback={
               <div className="flex-1 flex items-center justify-center p-8 text-[#4B0B7A]">
-                <div className="w-8 h-8 border-3 border-[#4B0B7A] border-t-transparent rounded-full animate-spin" />
+                <Loader2 className="w-8 h-8 text-[#4B0B7A] animate-spin" />
               </div>
             }
           >

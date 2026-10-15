@@ -10,6 +10,7 @@ import {
   ArrowRight,
   ArrowLeft,
   Sparkles,
+  Loader2,
 } from 'lucide-react';
 import { HumoraLogo } from '../../../components/brand/HumoraLogo';
 import { useHumora } from '../../../lib/context/HumoraContext';
@@ -220,7 +221,7 @@ export default function RegisterPage() {
             className="w-full py-3.5 px-6 rounded-2xl bg-[#4B0B7A] hover:bg-[#38065C] active:scale-98 text-white font-bold text-sm shadow-md shadow-[#4B0B7A]/20 flex items-center justify-center gap-2 transition-all mt-3 disabled:opacity-70"
           >
             {isLoading ? (
-              <div className="w-5 h-5 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+              <Loader2 className="w-5 h-5 animate-spin text-white" />
             ) : (
               <>
                 <span>Buat Akun HUMORA</span>

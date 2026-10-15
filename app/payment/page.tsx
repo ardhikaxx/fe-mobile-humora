@@ -11,6 +11,7 @@ import {
   Check,
   AlertCircle,
   Target,
+  Loader2,
 } from 'lucide-react';
 import { AppHeader } from '../../components/layout/AppHeader';
 import { ConfirmationModal } from '../../components/ui/ConfirmationModal';
@@ -311,7 +312,7 @@ export default function CheckoutPage() {
           className="w-full py-4 px-6 rounded-2xl bg-[#4B0B7A] hover:bg-[#38065C] active:scale-98 text-white font-bold text-sm sm:text-base shadow-md shadow-[#4B0B7A]/20 flex items-center justify-center gap-2 transition-all disabled:opacity-70"
         >
           {isProcessing ? (
-            <div className="w-5 h-5 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+            <Loader2 className="w-5 h-5 animate-spin" />
           ) : (
             <span>Bayar Sekarang ({formatRupiah(totalAmount)})</span>
           )}
