@@ -8,7 +8,6 @@ import {
   Sparkles,
   ChevronDown,
   ChevronUp,
-  Share2,
 } from 'lucide-react';
 import { AppHeader } from '../../../components/layout/AppHeader';
 import { SERIES_LIST } from '../../../lib/data/seriesData';
@@ -21,7 +20,7 @@ interface SeriesDetailClientProps {
 
 export default function SeriesDetailClient({ slug }: SeriesDetailClientProps) {
   const router = useRouter();
-  const { history, openSubscriptionSheet, canAccessEpisode, showToast } = useHumora();
+  const { history, openSubscriptionSheet, canAccessEpisode } = useHumora();
   const [isSynopsisExpanded, setIsSynopsisExpanded] = useState(false);
 
   const series = SERIES_LIST.find((s) => s.slug === slug) || SERIES_LIST[0];
@@ -55,21 +54,8 @@ export default function SeriesDetailClient({ slug }: SeriesDetailClientProps) {
         title={series.title}
         showBack
         withTopSpacer={false}
-        rightAction={
-          <button
-            onClick={() => {
-              if (typeof navigator !== 'undefined' && navigator.share) {
-                navigator.share({ title: series.title, url: window.location.href }).catch(() => {});
-              } else {
-                showToast('Tautan series disalin!');
-              }
-            }}
-            className="w-8 h-8 rounded-full flex items-center justify-center text-[#24172B] hover:bg-[#F6F1F8] active:scale-95 transition-all"
-            aria-label="Bagikan"
-          >
-            <Share2 className="w-4 h-4" />
-          </button>
-        }
+        showProfile={false}
+        showNotification={false}
       />
 
       {/* Top Banner / Backdrop (Full Behind Floating Header) */}

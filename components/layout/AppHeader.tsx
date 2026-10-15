@@ -51,8 +51,8 @@ export function AppHeader({
   const isSeriesDetail = pathname?.startsWith('/series/');
   const displayName = user?.name ? user.name.split(' ')[0] : 'Tamu';
 
-  const shouldShowProfile = showProfile !== undefined ? showProfile : (!isSearch && !isProfile && !isHistory);
-  const shouldShowNotification = showNotification !== undefined ? showNotification : (!isSearch && !isProfile && !isHistory);
+  const shouldShowProfile = showProfile !== undefined ? showProfile : (!isSearch && !isProfile && !isHistory && !isSeriesDetail);
+  const shouldShowNotification = showNotification !== undefined ? showNotification : (!isSearch && !isProfile && !isHistory && !isSeriesDetail);
   const shouldHaveTopSpacer = withTopSpacer !== undefined ? withTopSpacer : !isSeriesDetail;
 
   return (
