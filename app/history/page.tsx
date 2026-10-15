@@ -69,7 +69,7 @@ export default function HistoryPage() {
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-12">
+    <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-28">
       <AppHeader
         title="Riwayat Tontonan"
         rightAction={

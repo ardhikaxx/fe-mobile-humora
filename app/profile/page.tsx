@@ -39,7 +39,7 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-12">
+    <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-28">
       <AppHeader title="Profil Saya" />
 
       <div className="px-5 pt-3">

@@ -46,36 +46,32 @@ export function BottomNavigation() {
   ];
 
   return (
-    <nav className="sticky bottom-0 z-30 w-full bg-[#FFFDF7]/95 backdrop-blur-md border-t border-[#EEE8F0] px-3 pt-2 pb-3 safe-pb">
-      <div className="flex items-center justify-around max-w-md mx-auto">
+    <nav className="fixed bottom-5 inset-x-0 z-40 flex justify-center pointer-events-none px-4 select-none safe-pb">
+      {/* Floating Capsule Pill Container */}
+      <div className="pointer-events-auto bg-[#21052F]/95 backdrop-blur-2xl border border-white/15 shadow-[0_12px_36px_rgba(33,5,47,0.35)] rounded-full p-1.5 flex items-center justify-around w-full max-w-[360px] transition-all">
         {navItems.map((item) => {
           const Icon = item.icon;
           return (
             <Link
               key={item.href}
               href={item.href}
-              className={`flex flex-col items-center justify-center flex-1 py-1 group transition-all duration-150 ${
-                item.isActive ? 'text-[#4B0B7A]' : 'text-[#786F7D] hover:text-[#24172B]'
+              aria-label={item.label}
+              className={`flex items-center gap-1.5 rounded-full transition-all duration-300 active:scale-92 ${
+                item.isActive
+                  ? 'bg-[#FFD52E] text-[#21052F] px-4 py-2 font-black shadow-md shadow-black/20'
+                  : 'text-white/70 hover:text-white px-3 py-2 hover:bg-white/10'
               }`}
             >
-              <div
-                className={`relative px-4 py-1 rounded-full transition-all duration-200 ${
-                  item.isActive ? 'bg-[#FFD52E]' : 'bg-transparent group-hover:bg-[#F6F1F8]'
+              <Icon
+                className={`w-5 h-5 transition-transform duration-200 ${
+                  item.isActive ? 'stroke-[2.6] scale-105' : 'stroke-[1.8]'
                 }`}
-              >
-                <Icon
-                  className={`w-5 h-5 transition-transform duration-150 ${
-                    item.isActive ? 'stroke-[2.5] scale-110 text-[#21052F]' : 'stroke-[1.8]'
-                  }`}
-                />
-              </div>
-              <span
-                className={`text-[11px] mt-0.5 tracking-tight font-medium transition-all ${
-                  item.isActive ? 'font-bold text-[#21052F]' : 'text-[#786F7D]'
-                }`}
-              >
-                {item.label}
-              </span>
+              />
+              {item.isActive && (
+                <span className="text-xs font-black tracking-tight animate-fade-in whitespace-nowrap">
+                  {item.label}
+                </span>
+              )}
             </Link>
           );
         })}
