@@ -50,48 +50,38 @@ export default function SearchPage() {
 
   return (
     <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-24">
-      {/* App Header */}
-      <AppHeader
-        title="Pencarian"
-        showProfile={false}
-        showNotification={false}
-      />
+      {/* Modern Floating Search Bar Header */}
+      <AppHeader>
+        <div className="flex items-center gap-2.5 w-full px-1">
+          <SearchIcon className="w-4.5 h-4.5 text-[#7028B8] stroke-[2.2] shrink-0" />
+          <input
+            type="text"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            placeholder="Cari series, judul, atau genre..."
+            className="flex-1 bg-transparent text-sm sm:text-base font-medium text-[#24172B] placeholder:text-[#A39CA9] focus:outline-none select-text"
+          />
+          {keyword && (
+            <button
+              type="button"
+              onClick={() => setKeyword('')}
+              className="w-6 h-6 rounded-full bg-[#EEE8F0] hover:bg-[#E2DBE7] flex items-center justify-center text-[#786F7D] hover:text-[#24172B] shrink-0 active:scale-95 transition-all"
+              aria-label="Hapus kata kunci"
+            >
+              <X className="w-3.5 h-3.5 stroke-[2.5]" />
+            </button>
+          )}
+        </div>
+      </AppHeader>
 
       <div className="px-5 pt-3">
         {/* Title */}
         <h2 className="text-xl font-black text-[#24172B] tracking-tight">
           Cari cerita favoritmu
         </h2>
-        <p className="text-xs text-[#786F7D] mt-0.5 mb-3">
+        <p className="text-xs text-[#786F7D] mt-0.5 mb-2">
           Temukan ratusan episode penuh canda dan kisah manis
         </p>
-
-        {/* Search Input Box */}
-        <div className="relative w-full">
-          <div className="absolute inset-y-0 left-3.5 flex items-center pointer-events-none text-[#786F7D]">
-            <SearchIcon className="w-4 h-4" />
-          </div>
-
-          <input
-            type="text"
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
-            placeholder="Cari series, judul, atau genre..."
-            className="w-full pl-10 pr-10 py-3.5 bg-white rounded-2xl border border-[#EEE8F0] shadow-xs text-sm text-[#24172B] placeholder:text-[#A39CA9] focus:outline-none focus:border-[#7028B8] focus:ring-2 focus:ring-[#7028B8]/20 transition-all"
-          />
-
-          {keyword && (
-            <button
-              onClick={() => setKeyword('')}
-              className="absolute inset-y-0 right-3 flex items-center text-[#786F7D] hover:text-[#24172B]"
-              aria-label="Hapus kata kunci"
-            >
-              <div className="w-5 h-5 rounded-full bg-[#EEE8F0] flex items-center justify-center">
-                <X className="w-3 h-3" />
-              </div>
-            </button>
-          )}
-        </div>
 
         {/* Popular Genre Filter Chips */}
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-3">

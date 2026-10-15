@@ -15,6 +15,7 @@ interface AppHeaderProps {
   rightAction?: React.ReactNode;
   showProfile?: boolean;
   showNotification?: boolean;
+  children?: React.ReactNode;
 }
 
 export function AppHeader({
@@ -25,6 +26,7 @@ export function AppHeader({
   rightAction,
   showProfile,
   showNotification,
+  children,
 }: AppHeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -54,8 +56,30 @@ export function AppHeader({
       <div className="w-full h-16 sm:h-[68px] shrink-0 pointer-events-none" aria-hidden="true" />
 
       {/* Modern Floating Capsule Header Bar */}
-      <header className="fixed top-2.5 sm:top-3 inset-x-0 z-40 flex justify-center pointer-events-none px-3 select-none pt-[calc(env(safe-area-inset-top,0px))]">
+      <header className="fixed top-2.5 sm:top-3 inset-x-0 z-40 flex justify-center pointer-events-none px-3 pt-[calc(env(safe-area-inset-top,0px))]">
         <div className="pointer-events-auto bg-white/95 backdrop-blur-md border border-[#EEE8F0] shadow-[0_2px_8px_rgba(0,0,0,0.04)] rounded-full px-3.5 sm:px-4 py-2 flex items-center justify-between w-[95%] max-w-[410px] min-h-[52px] transition-all">
+          {children ? (
+            <div className="flex items-center gap-2.5 w-full">
+              {showBack && (
+                <button
+                  onClick={handleBack}
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-[#24172B] hover:bg-[#F6F1F8] active:scale-95 transition-all shrink-0 select-none"
+                  aria-label="Kembali"
+                >
+                  <ArrowLeft className="w-4.5 h-4.5 stroke-[2.3]" />
+                </button>
+              )}
+              <div className="flex-1 flex items-center min-w-0">
+                {children}
+              </div>
+              {rightAction && (
+                <div className="shrink-0 flex items-center">
+                  {rightAction}
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
           {/* LEFT SIDE */}
           {isHome ? (
             /* Layout Beranda: Foto profil di sebelah paling kiri diikuti dengan Hai, Nama pengguna */
@@ -163,6 +187,8 @@ export function AppHeader({
               </>
             )}
           </div>
+            </>
+          )}
         </div>
       </header>
     </>
