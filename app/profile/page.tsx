@@ -18,6 +18,7 @@ import {
   CheckCircle2,
   RotateCcw,
   Play,
+  X,
 } from 'lucide-react';
 import { AppHeader } from '../../components/layout/AppHeader';
 import { ConfirmationModal } from '../../components/ui/ConfirmationModal';
@@ -31,6 +32,10 @@ export default function ProfilePage() {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
+  const [autoPlayNext, setAutoPlayNext] = useState(true);
+  const [dataSaver, setDataSaver] = useState(false);
+  const [pushNotifs, setPushNotifs] = useState(true);
 
   const daysRemaining = getDaysRemaining(subscription.endDate);
 
@@ -46,6 +51,15 @@ export default function ProfilePage() {
         title="Profil Saya"
         showProfile={false}
         showNotification={false}
+        rightAction={
+          <button
+            onClick={() => setIsSettingsModalOpen(true)}
+            className="w-8 h-8 rounded-full flex items-center justify-center text-[#24172B] hover:bg-[#F6F1F8] active:scale-95 transition-all"
+            aria-label="Pengaturan Akun"
+          >
+            <Settings className="w-4.5 h-4.5 text-[#4B0B7A]" />
+          </button>
+        }
       />
 
       <div className="px-5 pt-3">
@@ -286,7 +300,7 @@ export default function ProfilePage() {
 
           {/* Pengaturan Akun */}
           <button
-            onClick={() => showToast('Pengaturan preferensi akun telah disimulasikan.')}
+            onClick={() => setIsSettingsModalOpen(true)}
             className="w-full flex items-center justify-between p-3.5 sm:p-4 hover:bg-[#F6F1F8] transition-colors text-left"
           >
             <div className="flex items-center gap-3">
@@ -453,6 +467,101 @@ export default function ProfilePage() {
         onConfirm={handleLogoutConfirm}
         onCancel={() => setIsLogoutModalOpen(false)}
       />
+
+      {/* Settings Modal */}
+      {isSettingsModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in select-none">
+          <div className="bg-white rounded-3xl p-5 sm:p-6 max-w-sm w-full shadow-xl border border-[#EEE8F0]">
+            <div className="flex items-center justify-between pb-3 border-b border-[#EEE8F0] mb-4">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-xl bg-[#F6F1F8] flex items-center justify-center text-[#4B0B7A]">
+                  <Settings className="w-4.5 h-4.5" />
+                </div>
+                <h3 className="text-base font-bold text-[#24172B]">Pengaturan Akun</h3>
+              </div>
+              <button
+                onClick={() => setIsSettingsModalOpen(false)}
+                className="w-7 h-7 rounded-full bg-[#F6F1F8] flex items-center justify-center text-[#786F7D] hover:text-[#24172B] active:scale-95 transition-all"
+                aria-label="Tutup"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="space-y-3.5 text-xs">
+              <div className="flex items-center justify-between py-1">
+                <div>
+                  <span className="font-bold text-[#24172B] block">Putar Otomatis Episode</span>
+                  <span className="text-[11px] text-[#786F7D]">Lanjut otomatis ke episode berikutnya</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setAutoPlayNext(!autoPlayNext)}
+                  className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors ${
+                    autoPlayNext ? 'bg-[#7028B8] justify-end' : 'bg-gray-200 justify-start'
+                  }`}
+                >
+                  <div className="w-4 h-4 rounded-full bg-white shadow-xs" />
+                </button>
+              </div>
+
+              <div className="flex items-center justify-between py-1">
+                <div>
+                  <span className="font-bold text-[#24172B] block">Mode Hemat Kuota</span>
+                  <span className="text-[11px] text-[#786F7D]">Streaming kualitas standar (480p)</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setDataSaver(!dataSaver)}
+                  className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors ${
+                    dataSaver ? 'bg-[#7028B8] justify-end' : 'bg-gray-200 justify-start'
+                  }`}
+                >
+                  <div className="w-4 h-4 rounded-full bg-white shadow-xs" />
+                </button>
+              </div>
+
+              <div className="flex items-center justify-between py-1">
+                <div>
+                  <span className="font-bold text-[#24172B] block">Notifikasi Series Baru</span>
+                  <span className="text-[11px] text-[#786F7D]">Info rilis episode & series terbaru</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setPushNotifs(!pushNotifs)}
+                  className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors ${
+                    pushNotifs ? 'bg-[#7028B8] justify-end' : 'bg-gray-200 justify-start'
+                  }`}
+                >
+                  <div className="w-4 h-4 rounded-full bg-white shadow-xs" />
+                </button>
+              </div>
+
+              <div className="pt-2 border-t border-[#EEE8F0]">
+                <button
+                  onClick={() => {
+                    showToast('Cache streaming berhasil dibersihkan.');
+                    setIsSettingsModalOpen(false);
+                  }}
+                  className="w-full py-2.5 rounded-xl border border-[#EEE8F0] hover:bg-[#F6F1F8] text-[#7028B8] font-bold text-xs transition-all active:scale-95"
+                >
+                  Bersihkan Cache Streaming
+                </button>
+              </div>
+            </div>
+
+            <button
+              onClick={() => {
+                showToast('Pengaturan preferensi tersimpan.');
+                setIsSettingsModalOpen(false);
+              }}
+              className="mt-4 w-full py-2.5 rounded-xl bg-[#4B0B7A] text-white font-bold text-xs active:scale-95 transition-all shadow-xs"
+            >
+              Simpan Pengaturan
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* About Modal */}
       {isAboutModalOpen && (
