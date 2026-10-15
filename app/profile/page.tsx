@@ -49,7 +49,7 @@ export default function ProfilePage() {
         {user ? (
           <div className="p-4 bg-white rounded-3xl border border-[#EEE8F0] shadow-xs flex items-center justify-between mb-4">
             <div className="flex items-center gap-3.5">
-              <div className="w-14 h-14 rounded-2xl overflow-hidden border-2 border-[#FFD52E] bg-[#F6F1F8] shrink-0">
+              <div className="w-14 h-14 rounded-2xl overflow-hidden border border-[#EEE8F0] bg-[#F6F1F8] shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={user.avatarUrl}

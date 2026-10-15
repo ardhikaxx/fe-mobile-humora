@@ -55,7 +55,7 @@ export function AppHeader({
               className="flex items-center gap-2.5 min-w-0 active:scale-97 transition-all group"
               aria-label="Profil Saya"
             >
-              <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-[#FFD52E] flex items-center justify-center bg-[#F6F1F8] shrink-0 group-hover:ring-2 group-hover:ring-[#7028B8]/30 transition-all">
+              <div className="w-8 h-8 rounded-full overflow-hidden border border-[#EEE8F0] flex items-center justify-center bg-[#F6F1F8] shrink-0 group-hover:ring-2 group-hover:ring-[#7028B8]/30 transition-all">
                 {user?.avatarUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -131,7 +131,7 @@ export function AppHeader({
 
                 <Link
                   href="/profile"
-                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border-2 border-[#FFD52E] flex items-center justify-center bg-[#F6F1F8] hover:ring-2 hover:ring-[#7028B8]/30 transition-all active:scale-95"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border border-[#EEE8F0] flex items-center justify-center bg-[#F6F1F8] hover:ring-2 hover:ring-[#7028B8]/30 transition-all active:scale-95"
                   aria-label="Profil"
                 >
                   {user?.avatarUrl ? (
