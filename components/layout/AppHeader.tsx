@@ -16,6 +16,7 @@ interface AppHeaderProps {
   showProfile?: boolean;
   showNotification?: boolean;
   children?: React.ReactNode;
+  withTopSpacer?: boolean;
 }
 
 export function AppHeader({
@@ -27,6 +28,7 @@ export function AppHeader({
   showProfile,
   showNotification,
   children,
+  withTopSpacer,
 }: AppHeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -46,15 +48,19 @@ export function AppHeader({
   const isSearch = pathname === '/search';
   const isProfile = pathname === '/profile' || pathname?.startsWith('/profile');
   const isHistory = pathname === '/history';
+  const isSeriesDetail = pathname?.startsWith('/series/');
   const displayName = user?.name ? user.name.split(' ')[0] : 'Tamu';
 
   const shouldShowProfile = showProfile !== undefined ? showProfile : (!isSearch && !isProfile && !isHistory);
   const shouldShowNotification = showNotification !== undefined ? showNotification : (!isSearch && !isProfile && !isHistory);
+  const shouldHaveTopSpacer = withTopSpacer !== undefined ? withTopSpacer : !isSeriesDetail;
 
   return (
     <>
       {/* Top spacer to ensure page content starts naturally below the floating header */}
-      <div className="w-full h-16 sm:h-[68px] shrink-0 pointer-events-none" aria-hidden="true" />
+      {shouldHaveTopSpacer && (
+        <div className="w-full h-16 sm:h-[68px] shrink-0 pointer-events-none" aria-hidden="true" />
+      )}
 
       {/* Modern Floating Capsule Header Bar */}
       <header className="fixed top-2.5 sm:top-3 inset-x-0 z-40 flex justify-center pointer-events-none px-3 pt-[calc(env(safe-area-inset-top,0px))]">

@@ -54,6 +54,7 @@ export default function SeriesDetailClient({ slug }: SeriesDetailClientProps) {
       <AppHeader
         title={series.title}
         showBack
+        withTopSpacer={false}
         rightAction={
           <button
             onClick={() => {
@@ -63,7 +64,7 @@ export default function SeriesDetailClient({ slug }: SeriesDetailClientProps) {
                 showToast('Tautan series disalin!');
               }
             }}
-            className="w-8 h-8 rounded-full flex items-center justify-center text-[#4B0B7A] hover:bg-[#F6F1F8] active:scale-95 transition-all"
+            className="w-8 h-8 rounded-full flex items-center justify-center text-[#24172B] hover:bg-[#F6F1F8] active:scale-95 transition-all"
             aria-label="Bagikan"
           >
             <Share2 className="w-4 h-4" />
@@ -71,8 +72,8 @@ export default function SeriesDetailClient({ slug }: SeriesDetailClientProps) {
         }
       />
 
-      {/* Top Banner / Backdrop */}
-      <div className="relative w-full aspect-16/10 sm:aspect-16/9 bg-[#21052F] overflow-hidden">
+      {/* Top Banner / Backdrop (Full Behind Floating Header) */}
+      <div className="relative w-full aspect-16/11 sm:aspect-16/9 min-h-[300px] sm:min-h-[360px] bg-[#21052F] overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={series.cover}
@@ -81,11 +82,11 @@ export default function SeriesDetailClient({ slug }: SeriesDetailClientProps) {
         />
 
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#FFFDF7] via-[#21052F]/40 to-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#FFFDF7] via-[#21052F]/30 to-black/60" />
 
         {/* Badges on Banner */}
-        <div className="absolute top-4 right-4 flex items-center gap-1.5 z-20">
-          <span className="bg-[#21865B] text-white text-[10px] font-black px-2 py-0.5 rounded-md shadow-xs">
+        <div className="absolute top-[72px] sm:top-20 right-4 flex items-center gap-1.5 z-20">
+          <span className="bg-[#21865B] text-white text-[10px] font-black px-2.5 py-1 rounded-md shadow-xs backdrop-blur-xs">
             2 Episode Gratis
           </span>
         </div>
