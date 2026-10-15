@@ -76,7 +76,7 @@ export function AppHeader({
                 )}
               </div>
 
-              <span className="text-xs sm:text-sm font-bold text-[#24172B] tracking-tight truncate max-w-[200px] sm:max-w-[240px]">
+              <span className="text-sm sm:text-base font-bold text-[#24172B] tracking-tight truncate max-w-[200px] sm:max-w-[240px]">
                 Hai, {displayName}
               </span>
             </Link>
@@ -100,7 +100,7 @@ export function AppHeader({
               )}
 
               {title && (
-                <h1 className="text-xs sm:text-sm font-bold text-[#24172B] tracking-tight truncate max-w-[210px] sm:max-w-[240px]">
+                <h1 className="text-sm sm:text-base font-bold text-[#24172B] tracking-tight truncate max-w-[210px] sm:max-w-[240px]">
                   {title}
                 </h1>
               )}
