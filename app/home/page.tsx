@@ -23,7 +23,7 @@ export default function HomePage() {
   const continueWatchingItems = history.filter((h) => !h.completed);
 
   return (
-    <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-36 sm:pb-40">
+    <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-24">
       {/* Mobile App Header */}
       <AppHeader />
 

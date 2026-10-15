@@ -48,7 +48,7 @@ export default function SeriesDetailClient({ slug }: SeriesDetailClientProps) {
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-36 sm:pb-40">
+    <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-24">
       {/* Top Banner / Backdrop with Floating Back Button */}
       <div className="relative w-full aspect-16/10 sm:aspect-16/9 bg-[#21052F] overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}

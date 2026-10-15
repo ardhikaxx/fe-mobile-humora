@@ -49,7 +49,7 @@ export default function SearchPage() {
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-36 sm:pb-40">
+    <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-24">
       {/* App Header */}
       <AppHeader title="Pencarian" />
 
