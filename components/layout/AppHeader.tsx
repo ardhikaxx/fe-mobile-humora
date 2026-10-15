@@ -42,10 +42,11 @@ export function AppHeader({
 
   const isHome = pathname === '/home';
   const isSearch = pathname === '/search';
+  const isProfile = pathname === '/profile' || pathname?.startsWith('/profile');
   const displayName = user?.name ? user.name.split(' ')[0] : 'Tamu';
 
-  const shouldShowProfile = showProfile !== undefined ? showProfile : !isSearch;
-  const shouldShowNotification = showNotification !== undefined ? showNotification : !isSearch;
+  const shouldShowProfile = showProfile !== undefined ? showProfile : (!isSearch && !isProfile);
+  const shouldShowNotification = showNotification !== undefined ? showNotification : (!isSearch && !isProfile);
 
   return (
     <>

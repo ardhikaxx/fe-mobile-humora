@@ -42,7 +42,11 @@ export default function ProfilePage() {
 
   return (
     <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-24">
-      <AppHeader title="Profil Saya" />
+      <AppHeader
+        title="Profil Saya"
+        showProfile={false}
+        showNotification={false}
+      />
 
       <div className="px-5 pt-3">
         {/* User Info Header Card */}
