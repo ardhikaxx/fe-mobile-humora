@@ -42,7 +42,7 @@ export function AppHeader({
 
       {/* Modern Floating Capsule Header Bar */}
       <header className="fixed top-2.5 sm:top-3 inset-x-0 z-40 flex justify-center pointer-events-none px-3 select-none pt-[calc(env(safe-area-inset-top,0px))]">
-        <div className="pointer-events-auto bg-white/95 backdrop-blur-md border border-[#EEE8F0] shadow-[0_10px_30px_rgba(33,5,47,0.08),0_2px_8px_rgba(0,0,0,0.04)] rounded-full px-3.5 sm:px-4 py-2 flex items-center justify-between w-[95%] max-w-[410px] min-h-[52px] transition-all">
+        <div className="pointer-events-auto bg-white/95 backdrop-blur-md border border-[#EEE8F0] shadow-[0_2px_8px_rgba(0,0,0,0.04)] rounded-full px-3.5 sm:px-4 py-2 flex items-center justify-between w-[95%] max-w-[410px] min-h-[52px] transition-all">
           <div className="flex items-center gap-2.5 min-w-0">
             {showBack && (
               <button

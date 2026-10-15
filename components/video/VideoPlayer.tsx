@@ -212,7 +212,7 @@ export function VideoPlayer({
       >
         {/* Top Bar: Floating Capsule Pill */}
         <div className="flex justify-center w-full">
-          <div className="bg-black/50 backdrop-blur-md border border-white/15 shadow-lg rounded-full px-3 py-1.5 flex items-center justify-between w-full max-w-[390px] text-white">
+          <div className="bg-black/50 backdrop-blur-md border border-white/15 shadow-sm rounded-full px-3 py-1.5 flex items-center justify-between w-full max-w-[390px] text-white">
             <button
               onClick={(e) => {
                 e.stopPropagation();
