@@ -8,7 +8,7 @@ import { HumoraLogo } from '../brand/HumoraLogo';
 import { useHumora } from '../../lib/context/HumoraContext';
 
 interface AppHeaderProps {
-  title?: string;
+  title?: React.ReactNode;
   showBack?: boolean;
   onBack?: () => void;
   showLogo?: boolean;
@@ -45,10 +45,11 @@ export function AppHeader({
   const isHome = pathname === '/home';
   const isSearch = pathname === '/search';
   const isProfile = pathname === '/profile' || pathname?.startsWith('/profile');
+  const isHistory = pathname === '/history';
   const displayName = user?.name ? user.name.split(' ')[0] : 'Tamu';
 
-  const shouldShowProfile = showProfile !== undefined ? showProfile : (!isSearch && !isProfile);
-  const shouldShowNotification = showNotification !== undefined ? showNotification : (!isSearch && !isProfile);
+  const shouldShowProfile = showProfile !== undefined ? showProfile : (!isSearch && !isProfile && !isHistory);
+  const shouldShowNotification = showNotification !== undefined ? showNotification : (!isSearch && !isProfile && !isHistory);
 
   return (
     <>
@@ -125,9 +126,13 @@ export function AppHeader({
               )}
 
               {title && (
-                <h1 className="text-sm sm:text-base font-bold text-[#24172B] tracking-tight truncate max-w-[210px] sm:max-w-[240px]">
-                  {title}
-                </h1>
+                typeof title === 'string' ? (
+                  <h1 className="text-sm sm:text-base font-bold text-[#24172B] tracking-tight truncate max-w-[210px] sm:max-w-[240px]">
+                    {title}
+                  </h1>
+                ) : (
+                  title
+                )
               )}
             </div>
           )}

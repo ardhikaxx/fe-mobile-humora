@@ -71,14 +71,29 @@ export default function HistoryPage() {
   return (
     <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-24">
       <AppHeader
-        title="Riwayat Tontonan"
+        title={
+          <div className="flex items-center gap-2 min-w-0">
+            <h1 className="text-sm sm:text-base font-bold text-[#24172B] tracking-tight truncate">
+              Riwayat Tontonan
+            </h1>
+            {history.length > 0 && (
+              <span className="bg-[#F6F1F8] text-[#7028B8] text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-full shrink-0">
+                {history.length}
+              </span>
+            )}
+          </div>
+        }
+        showProfile={false}
+        showNotification={false}
         rightAction={
           history.length > 0 ? (
             <button
               onClick={() => setIsClearAllModalOpen(true)}
-              className="text-xs font-semibold text-red-600 hover:text-red-700 p-1"
+              className="w-8 h-8 rounded-full flex items-center justify-center text-[#D94152] hover:bg-[#FDF2F4] active:scale-95 transition-all"
+              aria-label="Hapus Semua Riwayat"
+              title="Hapus Semua Riwayat"
             >
-              Hapus Semua
+              <Trash2 className="w-4.5 h-4.5" />
             </button>
           ) : undefined
         }
