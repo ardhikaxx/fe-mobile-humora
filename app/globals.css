@@ -127,3 +127,12 @@ body {
 .safe-pt {
   padding-top: max(12px, env(safe-area-inset-top));
 }
+
+/* Hide Next.js dev tools indicator button and overlay */
+nextjs-portal,
+[data-nextjs-dev-tools-button],
+[data-nextjs-indicator],
+[data-nextjs-dev-tools] {
+  display: none !important;
+}
+
