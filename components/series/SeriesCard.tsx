@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Star, Sparkles, Play } from 'lucide-react';
+import { Star, Play } from 'lucide-react';
 import { Series } from '../../lib/types';
 
 interface SeriesCardProps {
@@ -13,81 +13,74 @@ interface SeriesCardProps {
 
 export function SeriesCard({
   series,
-  width = 'w-[148px] sm:w-[160px]',
+  width = 'w-[155px] sm:w-[170px]',
   badgeType,
 }: SeriesCardProps) {
   const [imageError, setImageError] = useState(false);
 
+  const isNew = badgeType === 'new' || series.isNew;
+  const isPremium = badgeType === 'premium';
+
   return (
     <Link
       href={`/series/${series.slug}`}
-      className={`group flex flex-col shrink-0 ${width} select-none transition-all duration-200 active:scale-97`}
+      className={`group relative ${width} aspect-[3/4] rounded-[24px] overflow-hidden bg-[#21052F] border border-[#EEE8F0] shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between p-3.5 select-none shrink-0 active:scale-[0.98]`}
     >
-      {/* Poster Image Container (2:3 aspect ratio) */}
-      <div className="relative aspect-2/3 w-full rounded-2xl overflow-hidden bg-[#21052F] shadow-sm group-hover:shadow-md transition-all duration-200 border border-[#EEE8F0]">
-        {!imageError ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={series.poster}
-            alt={series.title}
-            onError={() => setImageError(true)}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            loading="lazy"
-          />
+      {/* Background Poster Image */}
+      {!imageError ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={series.poster}
+          alt={series.title}
+          onError={() => setImageError(true)}
+          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-600 ease-out"
+          loading="lazy"
+        />
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-b from-[#4B0B7A] to-[#21052F] flex flex-col items-center justify-center p-3 text-center text-white">
+          <Play className="w-6 h-6 fill-current text-[#FFD52E] mb-1" />
+          <span className="text-xs font-bold line-clamp-2">{series.title}</span>
+        </div>
+      )}
+
+      {/* Ambient Gradient Overlays for Clear Readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent pointer-events-none" />
+
+      {/* Top Badges Row */}
+      <div className="relative z-10 flex items-center justify-between w-full">
+        {isNew ? (
+          <span className="bg-[#FFD52E] text-[#21052F] text-[10px] font-black px-2.5 py-1 rounded-lg shadow-xs tracking-wide">
+            BARU
+          </span>
+        ) : isPremium ? (
+          <span className="bg-[#7028B8] text-white text-[10px] font-black px-2.5 py-1 rounded-lg shadow-xs tracking-wide">
+            VIP
+          </span>
         ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center p-3 bg-gradient-to-b from-[#4B0B7A] to-[#21052F] text-center text-white">
-            <div className="w-9 h-9 rounded-full bg-[#FFD52E] flex items-center justify-center mb-2 text-[#21052F]">
-              <Play className="w-4 h-4 fill-current ml-0.5" />
-            </div>
-            <span className="text-xs font-bold line-clamp-2 leading-tight">
-              {series.title}
-            </span>
-          </div>
+          <span className="bg-[#21865B] text-white text-[10px] font-black px-2.5 py-1 rounded-lg shadow-xs tracking-wide">
+            GRATIS
+          </span>
         )}
 
-        {/* Gradient Overlay at Bottom */}
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
-
-        {/* Top Badges */}
-        <div className="absolute top-2 left-2 flex flex-col gap-1 items-start">
-          {badgeType === 'new' || series.isNew ? (
-            <span className="bg-[#FFD52E] text-[#21052F] text-[10px] font-extrabold px-2 py-0.5 rounded-md shadow-xs flex items-center gap-0.5">
-              <Sparkles className="w-2.5 h-2.5" />
-              BARU
-            </span>
-          ) : badgeType === 'free' ? (
-            <span className="bg-[#21865B] text-white text-[10px] font-extrabold px-2 py-0.5 rounded-md shadow-xs">
-              2 EP GRATIS
-            </span>
-          ) : null}
-        </div>
-
-        {/* Rating on bottom left of poster */}
-        <div className="absolute bottom-2 left-2 flex items-center gap-1 text-white text-[11px] font-bold">
-          <Star className="w-3 h-3 text-[#FFD52E] fill-[#FFD52E]" />
+        <div className="bg-black/60 backdrop-blur-xs text-white text-[11px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 border border-white/10 shadow-xs">
+          <Star className="w-2.5 h-2.5 text-[#FFD52E] fill-[#FFD52E]" />
           <span>{series.rating.toFixed(1)}</span>
-        </div>
-
-        {/* Episode count on bottom right */}
-        <div className="absolute bottom-2 right-2 text-[10px] font-semibold text-white/90 bg-black/40 backdrop-blur-xs px-1.5 py-0.5 rounded">
-          {series.episodeCount} Ep
         </div>
       </div>
 
-      {/* Series Title and Genre Info */}
-      <div className="mt-2 flex flex-col">
-        <h4 className="text-[13px] font-bold text-[#24172B] line-clamp-2 leading-snug group-hover:text-[#7028B8] transition-colors">
+      {/* Bottom Content Info */}
+      <div className="relative z-10 mt-auto flex flex-col">
+        <span className="text-[11px] font-extrabold text-[#FFD52E] uppercase tracking-wider mb-1 leading-none">
+          {series.genres[0]}
+        </span>
+
+        <h4 className="text-sm sm:text-base font-black text-white line-clamp-1 leading-snug group-hover:text-[#FFD52E] transition-colors">
           {series.title}
         </h4>
-        <div className="flex items-center gap-1 text-[11px] text-[#786F7D] mt-0.5 truncate">
-          <span>{series.genres[0]}</span>
-          {series.genres[1] && (
-            <>
-              <span>•</span>
-              <span className="truncate">{series.genres[1]}</span>
-            </>
-          )}
-        </div>
+
+        <span className="text-xs text-white/80 font-medium mt-0.5">
+          {series.episodeCount} Episode
+        </span>
       </div>
     </Link>
   );
