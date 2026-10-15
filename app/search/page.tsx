@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { Search as SearchIcon, X, Frown, Sparkles } from 'lucide-react';
 import { AppHeader } from '../../components/layout/AppHeader';
-import { SeriesCard } from '../../components/series/SeriesCard';
+import { BentoSeriesCard, BentoCardVariant } from '../../components/series/BentoSeriesCard';
 import { SERIES_LIST } from '../../lib/data/seriesData';
 
 const POPULAR_GENRES = [
@@ -15,6 +15,21 @@ const POPULAR_GENRES = [
   'Workplace',
   'Misteri',
 ];
+
+function getBentoCardVariant(index: number, total: number): BentoCardVariant {
+  if (index === 0) return 'hero';
+  if (total === 2) return 'horizontal';
+
+  const remainingAfterThis = total - 1 - index;
+  if (index === 3 && remainingAfterThis !== 1) {
+    return 'horizontal';
+  }
+  if (index === 6 && remainingAfterThis !== 1) {
+    return 'horizontal';
+  }
+
+  return 'portrait';
+}
 
 export default function SearchPage() {
   const [keyword, setKeyword] = useState('');
@@ -126,17 +141,19 @@ export default function SearchPage() {
         </div>
       </div>
 
-      {/* Results Grid */}
+      {/* Results Bento Grid */}
       {filteredSeries.length > 0 ? (
-        <div className="px-5 grid grid-cols-2 gap-3.5 sm:gap-4">
-          {filteredSeries.map((series) => (
-            <SeriesCard
-              key={series.id}
-              series={series}
-              width="w-full"
-              badgeType="free"
-            />
-          ))}
+        <div className="px-5 grid grid-cols-2 gap-3 sm:gap-4">
+          {filteredSeries.map((series, index) => {
+            const variant = getBentoCardVariant(index, filteredSeries.length);
+            return (
+              <BentoSeriesCard
+                key={series.id}
+                series={series}
+                variant={variant}
+              />
+            );
+          })}
         </div>
       ) : (
         /* Empty State */
