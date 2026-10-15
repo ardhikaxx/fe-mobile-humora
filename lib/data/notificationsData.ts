@@ -1,0 +1,52 @@
+import { NotificationItemData } from '../types';
+
+export const INITIAL_NOTIFICATIONS: NotificationItemData[] = [
+  {
+    id: 'notif-1',
+    title: 'Episode Baru Rilis!',
+    description: 'Kontrak Jadi Pacar: Episode 3 "Malam Puncak Reuni Akbar" sudah bisa ditonton.',
+    category: 'episode_baru',
+    time: '15 menit lalu',
+    read: false,
+    linkUrl: '/series/kontrak-jadi-pacar',
+    thumbnail: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=200&q=80',
+  },
+  {
+    id: 'notif-2',
+    title: 'Diskon Spesial Hari Ini 🎉',
+    description: 'Gunakan kode promo HUMORAHEMAT untuk diskon 20% semua paket premium.',
+    category: 'promo',
+    time: '2 jam lalu',
+    read: false,
+    linkUrl: '/subscription',
+  },
+  {
+    id: 'notif-3',
+    title: 'Series Baru Trending: Kos Paling Berisik',
+    description: 'Kisah kocak 4 mahasiswa tingkat akhir di kosan Ibu Broto yang bikin ngakak guling-guling.',
+    category: 'series_baru',
+    time: '1 hari lalu',
+    read: true,
+    linkUrl: '/series/kos-paling-berisik',
+    thumbnail: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=200&q=80',
+  },
+  {
+    id: 'notif-4',
+    title: 'Pengingat Akses Langganan',
+    description: 'Cek status langgananmu untuk memastikan tontonan series favoritmu tidak terputus.',
+    category: 'langganan',
+    time: '2 hari lalu',
+    read: true,
+    linkUrl: '/profile/subscription',
+  },
+  {
+    id: 'notif-5',
+    title: 'Series Baru: Rahasia Jam Pulang',
+    description: 'Misteri komedi kantor lantai 4 yang selalu heboh tiap jam 5 sore. Tonton 2 episode gratisnya!',
+    category: 'series_baru',
+    time: '3 hari lalu',
+    read: true,
+    linkUrl: '/series/rahasia-jam-pulang',
+    thumbnail: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=200&q=80',
+  },
+];

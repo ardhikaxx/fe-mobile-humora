@@ -1,26 +1,129 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors */
+  --brand-yellow: #FFD52E;
+  --brand-yellow-light: #FFF2A6;
+  --brand-yellow-warm: #FFF9E0;
+  --brand-purple: #4B0B7A;
+  --brand-purple-dark: #21052F;
+  --brand-purple-light: #7028B8;
+  --brand-purple-soft: #F6F1F8;
+  --brand-purple-muted: #E9DEEF;
+
+  /* Surfaces & Backgrounds */
+  --bg-app: #FFFDF7;
+  --surface-card: #FFFFFF;
+  --surface-elevated: #FFFFFF;
+  --border-light: #EEE8F0;
+  --border-subtle: #F3EEF5;
+
+  /* Typography Colors */
+  --text-main: #24172B;
+  --text-muted: #786F7D;
+  --text-subtle: #A39CA9;
+  --text-inverse: #FFFFFF;
+
+  /* Status Colors */
+  --status-success: #21865B;
+  --status-success-bg: #EAF8F1;
+  --status-warning: #E58A16;
+  --status-warning-bg: #FFF5E8;
+  --status-error: #D94152;
+  --status-error-bg: #FEECEF;
+
+  /* Radii */
+  --radius-xs: 8px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-card: 18px;
+  --radius-promo: 24px;
+  --radius-sheet: 30px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 6px rgba(33, 5, 47, 0.05);
+  --shadow-card: 0 4px 16px rgba(33, 5, 47, 0.07);
+  --shadow-elevated: 0 8px 24px rgba(33, 5, 47, 0.12);
+  --shadow-glow-yellow: 0 6px 20px rgba(255, 213, 46, 0.35);
+  --shadow-glow-purple: 0 6px 20px rgba(75, 11, 122, 0.3);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #F3EFE9;
+  color: var(--text-main);
+  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D8D0DE;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B6ADC0;
+}
+
+/* Hide scrollbar for carousel while preserving scrolling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.03); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.22s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+/* Safe areas */
+.safe-pb {
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+.safe-pt {
+  padding-top: max(12px, env(safe-area-inset-top));
 }
