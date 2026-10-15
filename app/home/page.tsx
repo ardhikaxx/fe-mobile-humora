@@ -12,7 +12,7 @@ import { useHumora } from '../../lib/context/HumoraContext';
 
 export default function HomePage() {
   const router = useRouter();
-  const { user, subscription, history } = useHumora();
+  const { subscription, history } = useHumora();
 
   const featuredSeries = SERIES_LIST.find((s) => s.featured) || SERIES_LIST[0];
   const popularSeries = SERIES_LIST.filter((s) => s.isPopular);
@@ -27,19 +27,9 @@ export default function HomePage() {
       {/* Mobile App Header */}
       <AppHeader />
 
-      {/* Greeting Banner */}
-      <section className="px-5 pt-4 pb-2">
-        <h2 className="text-xl sm:text-2xl font-black text-[#24172B] tracking-tight">
-          Hai{user?.name ? `, ${user.name.split(' ')[0]}` : ''}! Siap ketawa hari ini?
-        </h2>
-        <p className="text-xs sm:text-sm text-[#786F7D] mt-0.5">
-          Temukan cerita pendek yang bikin kamu ingin lanjut terus.
-        </p>
-      </section>
-
       {/* Premium Promo Card (Displayed if user does not have active subscription) */}
       {subscription.status !== 'active' && (
-        <section className="px-5 my-3">
+        <section className="px-5 mt-3 mb-2">
           <div className="relative rounded-2xl bg-[#21052F] p-4 text-white overflow-hidden shadow-md flex items-center justify-between border border-[#4B0B7A]">
             {/* Sparkle decorative background element */}
             <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-[#FFD52E]/10 rounded-full blur-xl pointer-events-none" />
@@ -74,7 +64,7 @@ export default function HomePage() {
       )}
 
       {/* HERO SECTION: Spotlight Series */}
-      <section className="px-5 my-2">
+      <section className={`px-5 ${subscription.status !== 'active' ? 'my-2' : 'mt-3 mb-2'}`}>
         <div className="relative w-full aspect-16/10 rounded-3xl overflow-hidden shadow-md bg-[#21052F] border border-[#EEE8F0]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
