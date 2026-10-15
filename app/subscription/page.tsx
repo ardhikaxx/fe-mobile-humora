@@ -88,7 +88,7 @@ export default function SubscriptionPage() {
         {/* Prototype Disclaimer Notice */}
         <div className="mt-4 p-3 rounded-xl bg-[#F6F1F8] border border-[#EEE8F0] flex items-start gap-2.5 text-[11px] text-[#786F7D]">
           <Info className="w-4 h-4 text-[#7028B8] shrink-0 mt-0.5" />
-          <p leading-relaxed>
+          <p className="leading-relaxed">
             Seluruh transaksi dan nominal pada aplikasi ini adalah demonstrasi prototype UI/UX. Tidak ada transaksi perbankan nyata yang diproses.
           </p>
         </div>
