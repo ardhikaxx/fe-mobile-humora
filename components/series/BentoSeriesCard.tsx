@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Star, Play, Sparkles, Flame, Crown, ChevronRight } from 'lucide-react';
+import { Star, Play, ChevronRight, Flame, Sparkles } from 'lucide-react';
 import { Series } from '../../lib/types';
 
 export type BentoCardVariant = 'hero' | 'horizontal' | 'portrait';
@@ -15,14 +15,14 @@ interface BentoSeriesCardProps {
 export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
   const [imageError, setImageError] = useState(false);
 
-  // 1. HERO BENTO CARD (Cinematic full-width banner)
+  // 1. HERO BENTO CARD (Widescreen cinematic spotlight tile)
   if (variant === 'hero') {
     const bgImage = !imageError ? (series.cover || series.poster) : null;
 
     return (
       <Link
         href={`/series/${series.slug}`}
-        className="group relative col-span-2 rounded-3xl overflow-hidden bg-[#21052F] border border-[#EEE8F0] shadow-sm hover:shadow-md transition-all duration-300 min-h-[230px] sm:min-h-[260px] flex flex-col justify-between p-4 sm:p-5 select-none active:scale-[0.99]"
+        className="group relative col-span-2 rounded-[24px] sm:rounded-3xl overflow-hidden bg-[#21052F] border border-[#EEE8F0] shadow-xs hover:shadow-md transition-all duration-300 min-h-[210px] sm:min-h-[240px] flex flex-col justify-between p-4 sm:p-5 select-none active:scale-[0.99]"
       >
         {/* Background Image with Zoom Effect */}
         {bgImage ? (
@@ -39,85 +39,75 @@ export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
         )}
 
         {/* Ambient Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#14021D] via-[#14021D]/60 to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#14021D]/80 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent pointer-events-none" />
 
-        {/* Top Badges Row */}
+        {/* Top Meta Row */}
         <div className="relative z-10 flex items-center justify-between w-full">
-          <div className="flex items-center gap-1.5 flex-wrap">
+          <div className="flex items-center gap-1.5">
             {series.isPopular ? (
-              <span className="bg-[#FFD52E] text-[#21052F] text-[10px] font-black px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
+              <span className="bg-[#FFD52E] text-[#21052F] text-[10px] font-black px-2.5 py-1 rounded-full flex items-center gap-1 shadow-xs">
                 <Flame className="w-3 h-3 fill-current text-[#E58A16]" />
                 POPULER
               </span>
             ) : series.isNew ? (
-              <span className="bg-[#FFD52E] text-[#21052F] text-[10px] font-black px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
+              <span className="bg-[#FFD52E] text-[#21052F] text-[10px] font-black px-2.5 py-1 rounded-full flex items-center gap-1 shadow-xs">
                 <Sparkles className="w-3 h-3" />
                 BARU
               </span>
             ) : (
-              <span className="bg-[#FFD52E] text-[#21052F] text-[10px] font-black px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
-                <Crown className="w-3 h-3 fill-current" />
-                SOROTAN
+              <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full border border-white/20">
+                2 EP GRATIS
               </span>
             )}
-
-            <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full border border-white/20">
-              2 EP GRATIS
-            </span>
           </div>
 
-          <div className="bg-black/50 backdrop-blur-md text-white text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1 border border-white/15">
+          <div className="bg-black/40 backdrop-blur-md text-white text-[11px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 border border-white/15">
             <Star className="w-3 h-3 text-[#FFD52E] fill-[#FFD52E]" />
             <span>{series.rating.toFixed(1)}</span>
           </div>
         </div>
 
         {/* Bottom Hero Info */}
-        <div className="relative z-10 mt-auto pt-8 flex flex-col">
-          <div className="flex items-center gap-1.5 mb-1.5">
-            {series.genres.slice(0, 2).map((genre) => (
-              <span
-                key={genre}
-                className="text-[10px] font-semibold text-white/80 bg-white/15 backdrop-blur-xs px-2 py-0.5 rounded-md"
-              >
-                {genre}
+        <div className="relative z-10 mt-auto pt-6 flex items-end justify-between gap-3">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-1.5 mb-1">
+              <span className="text-[10px] font-bold text-[#FFD52E] uppercase tracking-wider">
+                {series.genres[0]}
               </span>
-            ))}
+              <span className="text-white/40 text-[10px]">•</span>
+              <span className="text-[11px] font-medium text-white/80">
+                {series.episodeCount} Episode
+              </span>
+            </div>
+
+            <h3 className="text-base sm:text-lg font-black text-white tracking-tight line-clamp-1 group-hover:text-[#FFD52E] transition-colors">
+              {series.title}
+            </h3>
+
+            <p className="text-xs text-white/75 line-clamp-1 mt-0.5 leading-relaxed">
+              {series.synopsis}
+            </p>
           </div>
 
-          <h3 className="text-base sm:text-xl font-black text-white tracking-tight line-clamp-1 group-hover:text-[#FFD52E] transition-colors">
-            {series.title}
-          </h3>
-
-          <p className="text-xs text-white/80 line-clamp-2 mt-1 leading-relaxed max-w-md">
-            {series.synopsis}
-          </p>
-
-          <div className="mt-3 flex items-center justify-between border-t border-white/15 pt-2.5">
-            <span className="text-[11px] font-medium text-white/70">
-              {series.episodeCount} Episode • {series.year}
-            </span>
-
-            <span className="bg-[#FFD52E] group-hover:bg-white text-[#21052F] px-3 py-1 rounded-full text-xs font-extrabold flex items-center gap-1 shadow-xs transition-all">
-              <Play className="w-3 h-3 fill-current" />
-              <span>Nonton</span>
-            </span>
+          {/* Minimalist Circular Play Button */}
+          <div className="w-10 h-10 rounded-full bg-white/95 text-[#21052F] flex items-center justify-center shadow-md group-hover:scale-105 group-hover:bg-[#FFD52E] transition-all shrink-0">
+            <Play className="w-4 h-4 fill-current ml-0.5" />
           </div>
         </div>
       </Link>
     );
   }
 
-  // 2. HORIZONTAL BENTO CARD (Split poster & summary banner)
+  // 2. HORIZONTAL BENTO CARD (Airy split card with poster & summary)
   if (variant === 'horizontal') {
     return (
       <Link
         href={`/series/${series.slug}`}
-        className="group relative col-span-2 rounded-3xl bg-white border border-[#EEE8F0] shadow-xs hover:shadow-md transition-all duration-300 p-3 sm:p-3.5 flex gap-3 sm:gap-4 select-none active:scale-[0.99]"
+        className="group relative col-span-2 rounded-[22px] bg-white border border-[#EEE8F0] shadow-xs hover:shadow-md transition-all duration-300 p-3 sm:p-3.5 flex items-center gap-3.5 select-none active:scale-[0.99]"
       >
         {/* Left Poster Thumbnail */}
-        <div className="relative w-24 sm:w-28 aspect-3/4 rounded-2xl overflow-hidden bg-[#21052F] shrink-0 border border-[#EEE8F0]">
+        <div className="relative w-20 sm:w-24 aspect-[3/4] rounded-2xl overflow-hidden bg-[#21052F] shrink-0 border border-[#EEE8F0]">
           {!imageError ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -133,8 +123,8 @@ export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
             </div>
           )}
 
-          {/* Rating Badge on Thumbnail */}
-          <div className="absolute bottom-1.5 left-1.5 bg-black/60 backdrop-blur-xs text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
+          {/* Rating Pill */}
+          <div className="absolute bottom-1.5 left-1.5 bg-black/60 backdrop-blur-xs text-white text-[9px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
             <Star className="w-2.5 h-2.5 text-[#FFD52E] fill-[#FFD52E]" />
             <span>{series.rating.toFixed(1)}</span>
           </div>
@@ -143,18 +133,16 @@ export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
         {/* Right Info Section */}
         <div className="flex-1 flex flex-col justify-between min-w-0 py-0.5">
           <div>
-            <div className="flex items-center gap-1.5 flex-wrap mb-1">
-              <span className="text-[10px] font-bold text-[#7028B8] bg-[#F6F1F8] px-2 py-0.5 rounded-md">
+            <div className="flex items-center gap-1.5 mb-1">
+              <span className="text-[10px] font-bold text-[#7028B8] bg-[#F6F1F8] px-2 py-0.5 rounded-full">
                 {series.genres[0]}
               </span>
-              {series.isNew && (
-                <span className="text-[10px] font-bold text-[#E58A16] bg-[#FFF9E0] px-1.5 py-0.5 rounded-md">
-                  Baru
-                </span>
-              )}
+              <span className="text-[11px] text-[#786F7D] font-medium">
+                {series.episodeCount} Episode
+              </span>
             </div>
 
-            <h4 className="text-sm sm:text-base font-bold text-[#24172B] line-clamp-1 group-hover:text-[#7028B8] transition-colors leading-snug">
+            <h4 className="text-sm sm:text-base font-extrabold text-[#24172B] line-clamp-1 group-hover:text-[#7028B8] transition-colors leading-snug">
               {series.title}
             </h4>
 
@@ -164,12 +152,12 @@ export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
           </div>
 
           <div className="flex items-center justify-between pt-2 border-t border-[#F6F1F8] mt-2">
-            <span className="text-[11px] font-semibold text-[#786F7D]">
-              {series.episodeCount} Episode
+            <span className="text-[11px] font-semibold text-[#21865B]">
+              2 Episode Gratis
             </span>
 
             <span className="text-xs font-bold text-[#7028B8] flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform">
-              <span>Detail</span>
+              <span>Nonton</span>
               <ChevronRight className="w-3.5 h-3.5 stroke-[2.5]" />
             </span>
           </div>
@@ -178,74 +166,63 @@ export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
     );
   }
 
-  // 3. PORTRAIT BENTO CARD (Compact card for 1 column)
+  // 3. PORTRAIT BENTO CARD (Full-bleed edge-to-edge poster tile)
   return (
     <Link
       href={`/series/${series.slug}`}
-      className="group relative col-span-1 rounded-3xl bg-white border border-[#EEE8F0] shadow-xs hover:shadow-md transition-all duration-300 p-2.5 flex flex-col select-none active:scale-[0.98]"
+      className="group relative col-span-1 rounded-[22px] overflow-hidden aspect-[3/4] bg-[#21052F] border border-[#EEE8F0] shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between p-3 select-none active:scale-[0.98]"
     >
-      {/* Poster with 3:4 aspect ratio */}
-      <div className="relative aspect-3/4 w-full rounded-2xl overflow-hidden bg-[#21052F] border border-[#EEE8F0]">
-        {!imageError ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={series.poster}
-            alt={series.title}
-            onError={() => setImageError(true)}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            loading="lazy"
-          />
+      {/* Background Poster Image */}
+      {!imageError ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={series.poster}
+          alt={series.title}
+          onError={() => setImageError(true)}
+          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-600 ease-out"
+          loading="lazy"
+        />
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-b from-[#4B0B7A] to-[#21052F] flex flex-col items-center justify-center p-3 text-center text-white">
+          <Play className="w-6 h-6 fill-current text-[#FFD52E] mb-1" />
+          <span className="text-xs font-bold line-clamp-2">{series.title}</span>
+        </div>
+      )}
+
+      {/* Ambient Gradient Overlays for Readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent pointer-events-none" />
+
+      {/* Top Badges */}
+      <div className="relative z-10 flex items-center justify-between w-full">
+        {series.isNew ? (
+          <span className="bg-[#FFD52E] text-[#21052F] text-[9px] font-black px-1.5 py-0.5 rounded shadow-xs">
+            BARU
+          </span>
         ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center p-3 bg-gradient-to-b from-[#4B0B7A] to-[#21052F] text-center text-white">
-            <Play className="w-5 h-5 fill-current text-[#FFD52E] mb-1" />
-            <span className="text-xs font-bold line-clamp-2 leading-tight">
-              {series.title}
-            </span>
-          </div>
+          <span className="bg-[#21865B] text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded shadow-xs">
+            GRATIS
+          </span>
         )}
 
-        {/* Ambient Bottom Gradient */}
-        <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
-
-        {/* Top Badges */}
-        <div className="absolute top-2 left-2 flex items-center gap-1">
-          {series.isNew ? (
-            <span className="bg-[#FFD52E] text-[#21052F] text-[9px] font-black px-1.5 py-0.5 rounded shadow-xs">
-              BARU
-            </span>
-          ) : (
-            <span className="bg-[#21865B] text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded shadow-xs">
-              GRATIS
-            </span>
-          )}
-        </div>
-
-        {/* Rating on Bottom Left */}
-        <div className="absolute bottom-1.5 left-2 flex items-center gap-0.5 text-white text-[11px] font-bold">
-          <Star className="w-3 h-3 text-[#FFD52E] fill-[#FFD52E]" />
+        <div className="bg-black/50 backdrop-blur-xs text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5 border border-white/10">
+          <Star className="w-2.5 h-2.5 text-[#FFD52E] fill-[#FFD52E]" />
           <span>{series.rating.toFixed(1)}</span>
-        </div>
-
-        {/* Episode Count on Bottom Right */}
-        <div className="absolute bottom-1.5 right-2 text-[10px] font-semibold text-white/90 bg-black/40 backdrop-blur-xs px-1.5 py-0.5 rounded">
-          {series.episodeCount} Ep
         </div>
       </div>
 
-      {/* Series Title & Genre */}
-      <div className="mt-2.5 px-1 pb-1 flex flex-col">
-        <h4 className="text-xs sm:text-[13px] font-bold text-[#24172B] line-clamp-1 group-hover:text-[#7028B8] transition-colors leading-snug">
+      {/* Bottom Content Info */}
+      <div className="relative z-10 mt-auto flex flex-col">
+        <span className="text-[10px] font-bold text-[#FFD52E] uppercase tracking-wider leading-none mb-1">
+          {series.genres[0]}
+        </span>
+
+        <h4 className="text-xs sm:text-[13px] font-black text-white line-clamp-1 leading-snug group-hover:text-[#FFD52E] transition-colors">
           {series.title}
         </h4>
-        <div className="flex items-center gap-1 text-[11px] text-[#786F7D] mt-0.5 truncate">
-          <span>{series.genres[0]}</span>
-          {series.genres[1] && (
-            <>
-              <span>•</span>
-              <span className="truncate">{series.genres[1]}</span>
-            </>
-          )}
-        </div>
+
+        <span className="text-[10px] text-white/70 font-medium mt-0.5">
+          {series.episodeCount} Episode
+        </span>
       </div>
     </Link>
   );
