@@ -10,6 +10,7 @@ import {
   Tag,
   Check,
   AlertCircle,
+  Target,
 } from 'lucide-react';
 import { AppHeader } from '../../components/layout/AppHeader';
 import { ConfirmationModal } from '../../components/ui/ConfirmationModal';
@@ -163,8 +164,9 @@ export default function CheckoutPage() {
           </p>
 
           {activeEpisodeTarget && (
-            <div className="mt-2 text-[11px] text-[#4B0B7A] font-semibold bg-white/70 px-2.5 py-1 rounded-lg border border-[#EEE8F0]">
-              🎯 Langsung lanjut nonton Episode {activeEpisodeTarget.episodeId} setelah bayar
+            <div className="mt-2 text-[11px] text-[#4B0B7A] font-semibold bg-white/70 px-2.5 py-1.5 rounded-lg border border-[#EEE8F0] flex items-center gap-1.5">
+              <Target className="w-3.5 h-3.5 text-[#7028B8] shrink-0" />
+              <span>Langsung lanjut nonton Episode {activeEpisodeTarget.episodeId} setelah bayar</span>
             </div>
           )}
         </div>

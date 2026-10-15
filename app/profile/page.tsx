@@ -16,6 +16,8 @@ import {
   AlertTriangle,
   ArrowRight,
   CheckCircle2,
+  RotateCcw,
+  Play,
 } from 'lucide-react';
 import { AppHeader } from '../../components/layout/AppHeader';
 import { ConfirmationModal } from '../../components/ui/ConfirmationModal';
@@ -428,9 +430,10 @@ export default function ProfilePage() {
 
           <button
             onClick={resetDemoState}
-            className="mt-3 w-full py-2.5 rounded-xl border border-dashed border-gray-300 text-xs font-semibold text-gray-500 hover:text-red-600 hover:border-red-300 hover:bg-red-50 transition-all text-center"
+            className="mt-3 w-full py-2.5 rounded-xl border border-dashed border-gray-300 text-xs font-semibold text-gray-500 hover:text-red-600 hover:border-red-300 hover:bg-red-50 transition-all flex items-center justify-center gap-1.5"
           >
-            Reset Semua Data Demo ke Awal
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span>Reset Semua Data Demo ke Awal</span>
           </button>
         </div>
       </div>
@@ -451,8 +454,8 @@ export default function ProfilePage() {
       {isAboutModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
           <div className="bg-white rounded-3xl p-6 max-w-xs w-full text-center shadow-xl border border-[#EEE8F0]">
-            <div className="w-12 h-12 rounded-2xl bg-[#FFD52E] text-[#21052F] flex items-center justify-center mx-auto mb-3 font-black text-xl">
-              H
+            <div className="w-12 h-12 rounded-2xl bg-[#FFD52E] text-[#21052F] flex items-center justify-center mx-auto mb-3">
+              <Play className="w-6 h-6 fill-current ml-0.5" />
             </div>
             <h3 className="text-base font-black text-[#24172B]">HUMORA v1.0.0</h3>
             <p className="text-xs text-[#7028B8] font-semibold mt-0.5">Scroll. laugh. repeat.</p>

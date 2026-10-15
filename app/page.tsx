@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ArrowRight, Sparkles, Play, Smile } from 'lucide-react';
+import { ArrowRight, Sparkles, Play, Smile, Gift, Zap } from 'lucide-react';
 import { HumoraLogo } from '../components/brand/HumoraLogo';
 
 export default function EntryPage() {
@@ -92,11 +92,13 @@ export default function EntryPage() {
 
             {/* Quick highlight tags */}
             <div className="flex items-center gap-2 mt-4">
-              <span className="text-[11px] font-bold bg-white/70 px-2.5 py-1 rounded-full border border-[#21052F]/15">
-                🎉 Gratis 2 Episode
+              <span className="text-[11px] font-bold bg-white/70 px-2.5 py-1 rounded-full border border-[#21052F]/15 flex items-center gap-1.5">
+                <Gift className="w-3.5 h-3.5 text-[#4B0B7A]" />
+                <span>Gratis 2 Episode</span>
               </span>
-              <span className="text-[11px] font-bold bg-white/70 px-2.5 py-1 rounded-full border border-[#21052F]/15">
-                ⚡ Tanpa Wajib Login
+              <span className="text-[11px] font-bold bg-white/70 px-2.5 py-1 rounded-full border border-[#21052F]/15 flex items-center gap-1.5">
+                <Zap className="w-3.5 h-3.5 text-[#4B0B7A]" />
+                <span>Tanpa Wajib Login</span>
               </span>
             </div>
           </div>

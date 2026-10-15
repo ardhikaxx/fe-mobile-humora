@@ -13,7 +13,7 @@ export const INITIAL_NOTIFICATIONS: NotificationItemData[] = [
   },
   {
     id: 'notif-2',
-    title: 'Diskon Spesial Hari Ini 🎉',
+    title: 'Diskon Spesial Hari Ini',
     description: 'Gunakan kode promo HUMORAHEMAT untuk diskon 20% semua paket premium.',
     category: 'promo',
     time: '2 jam lalu',

@@ -290,7 +290,7 @@ export function HumoraProvider({ children }: { children: React.ReactNode }) {
       // Add celebratory notification
       const premiumNotif: NotificationItemData = {
         id: `notif-${Date.now()}`,
-        title: 'Paket Premium Humora Aktif! 🎉',
+        title: 'Paket Premium Humora Aktif!',
         description: `Selamat! Akses ${plan.name} aktif sampai ${end.toLocaleDateString('id-ID')}. Tonton semua episode sekarang.`,
         category: 'langganan',
         time: 'Baru saja',
@@ -298,7 +298,7 @@ export function HumoraProvider({ children }: { children: React.ReactNode }) {
         linkUrl: '/profile/subscription',
       };
       setNotifications((prev) => [premiumNotif, ...prev]);
-      showToast('🎉 Pembayaran sukses! Status Premium Aktif.');
+      showToast('Pembayaran sukses! Status Premium Aktif.');
     },
     [showToast]
   );

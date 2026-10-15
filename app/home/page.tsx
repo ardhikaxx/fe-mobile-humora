@@ -158,7 +158,7 @@ export default function HomePage() {
         <div className="px-5 flex items-center justify-between mb-3">
           <div className="flex items-center gap-1.5">
             <h3 className="text-base font-bold text-[#24172B]">Series Populer</h3>
-            <span className="text-xs text-[#E58A16]">🔥</span>
+            <Flame className="w-4 h-4 text-[#E58A16] fill-[#E58A16]/20" />
           </div>
           <Link
             href="/search"
