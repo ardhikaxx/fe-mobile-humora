@@ -13,6 +13,8 @@ interface AppHeaderProps {
   onBack?: () => void;
   showLogo?: boolean;
   rightAction?: React.ReactNode;
+  showProfile?: boolean;
+  showNotification?: boolean;
 }
 
 export function AppHeader({
@@ -21,6 +23,8 @@ export function AppHeader({
   onBack,
   showLogo = true,
   rightAction,
+  showProfile,
+  showNotification,
 }: AppHeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -37,7 +41,11 @@ export function AppHeader({
   };
 
   const isHome = pathname === '/home';
+  const isSearch = pathname === '/search';
   const displayName = user?.name ? user.name.split(' ')[0] : 'Tamu';
+
+  const shouldShowProfile = showProfile !== undefined ? showProfile : !isSearch;
+  const shouldShowNotification = showNotification !== undefined ? showNotification : !isSearch;
 
   return (
     <>
@@ -105,19 +113,7 @@ export function AppHeader({
               rightAction
             ) : isHome ? (
               /* Di beranda, di seberang kanan khusus icon bell notifikasi */
-              <Link
-                href="/notifications"
-                className="relative w-8 h-8 rounded-full flex items-center justify-center text-[#24172B] hover:bg-[#F6F1F8] active:scale-95 transition-all"
-                aria-label="Notifikasi"
-              >
-                <Bell className="w-4.5 h-4.5 text-[#4B0B7A]" />
-                {unreadCount > 0 && (
-                  <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#D94152] ring-2 ring-white"></span>
-                )}
-              </Link>
-            ) : (
-              /* Di halaman lain: Bell + Avatar Quick Link */
-              <>
+              shouldShowNotification ? (
                 <Link
                   href="/notifications"
                   className="relative w-8 h-8 rounded-full flex items-center justify-center text-[#24172B] hover:bg-[#F6F1F8] active:scale-95 transition-all"
@@ -128,23 +124,41 @@ export function AppHeader({
                     <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#D94152] ring-2 ring-white"></span>
                   )}
                 </Link>
+              ) : null
+            ) : (
+              /* Di halaman lain: Bell + Avatar Quick Link (hanya tampil bila diizinkan) */
+              <>
+                {shouldShowNotification && (
+                  <Link
+                    href="/notifications"
+                    className="relative w-8 h-8 rounded-full flex items-center justify-center text-[#24172B] hover:bg-[#F6F1F8] active:scale-95 transition-all"
+                    aria-label="Notifikasi"
+                  >
+                    <Bell className="w-4.5 h-4.5 text-[#4B0B7A]" />
+                    {unreadCount > 0 && (
+                      <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#D94152] ring-2 ring-white"></span>
+                    )}
+                  </Link>
+                )}
 
-                <Link
-                  href="/profile"
-                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border border-[#EEE8F0] flex items-center justify-center bg-[#F6F1F8] hover:ring-2 hover:ring-[#7028B8]/30 transition-all active:scale-95"
-                  aria-label="Profil"
-                >
-                  {user?.avatarUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={user.avatarUrl}
-                      alt={user.name}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <User className="w-4 h-4 text-[#4B0B7A]" />
-                  )}
-                </Link>
+                {shouldShowProfile && (
+                  <Link
+                    href="/profile"
+                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border border-[#EEE8F0] flex items-center justify-center bg-[#F6F1F8] hover:ring-2 hover:ring-[#7028B8]/30 transition-all active:scale-95"
+                    aria-label="Profil"
+                  >
+                    {user?.avatarUrl ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={user.avatarUrl}
+                        alt={user.name}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <User className="w-4 h-4 text-[#4B0B7A]" />
+                    )}
+                  </Link>
+                )}
               </>
             )}
           </div>

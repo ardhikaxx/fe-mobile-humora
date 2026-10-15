@@ -51,7 +51,11 @@ export default function SearchPage() {
   return (
     <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-24">
       {/* App Header */}
-      <AppHeader title="Pencarian" />
+      <AppHeader
+        title="Pencarian"
+        showProfile={false}
+        showNotification={false}
+      />
 
       <div className="px-5 pt-3">
         {/* Title */}
