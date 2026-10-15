@@ -69,7 +69,7 @@ export function AppHeader({
 
       {/* Modern Floating Capsule Header Bar */}
       <header className="fixed top-2.5 sm:top-3 inset-x-0 z-40 flex justify-center pointer-events-none px-3 pt-[calc(env(safe-area-inset-top,0px))]">
-        <div className="pointer-events-auto bg-white/95 backdrop-blur-md border border-[#EEE8F0] shadow-[0_2px_8px_rgba(0,0,0,0.04)] rounded-full px-3.5 sm:px-4 py-2 flex items-center justify-between w-[95%] max-w-[410px] min-h-[52px] transition-all">
+        <div className="pointer-events-auto bg-white/95 backdrop-blur-md border border-[#EEE8F0] shadow-[0_2px_8px_rgba(0,0,0,0.04)] rounded-full px-3.5 sm:px-4 py-1.5 sm:py-2 flex items-center justify-between w-[95%] max-w-[410px] min-h-[54px] sm:min-h-[56px] transition-all">
           {children ? (
             <div className="flex items-center gap-2.5 w-full">
               {showBack && (
@@ -97,10 +97,10 @@ export function AppHeader({
             /* Layout Beranda: Foto profil di sebelah paling kiri diikuti dengan Hai, Nama pengguna */
             <Link
               href="/profile"
-              className="flex items-center gap-2.5 min-w-0 active:scale-97 transition-all group"
+              className="flex items-center gap-2.5 sm:gap-3 min-w-0 active:scale-97 transition-all group"
               aria-label="Profil Saya"
             >
-              <div className="w-8 h-8 rounded-full overflow-hidden border border-[#EEE8F0] flex items-center justify-center bg-[#F6F1F8] shrink-0 group-hover:ring-2 group-hover:ring-[#7028B8]/30 transition-all">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden border border-[#EEE8F0] shadow-xs flex items-center justify-center bg-[#F6F1F8] shrink-0 group-hover:ring-2 group-hover:ring-[#7028B8]/30 transition-all">
                 {user?.avatarUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -109,11 +109,11 @@ export function AppHeader({
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <User className="w-4 h-4 text-[#4B0B7A]" />
+                  <User className="w-5 h-5 sm:w-6 sm:h-6 text-[#4B0B7A]" />
                 )}
               </div>
 
-              <span className="text-sm sm:text-base font-bold text-[#24172B] tracking-tight truncate max-w-[200px] sm:max-w-[240px]">
+              <span className="text-sm sm:text-base font-bold text-[#24172B] tracking-tight truncate max-w-[190px] sm:max-w-[230px]">
                 Hai, {displayName}
               </span>
             </Link>
@@ -157,10 +157,10 @@ export function AppHeader({
               shouldShowNotification ? (
                 <Link
                   href="/notifications"
-                  className="relative w-8 h-8 rounded-full flex items-center justify-center text-[#24172B] hover:bg-[#F6F1F8] active:scale-95 transition-all"
+                  className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-[#24172B] hover:bg-[#F6F1F8] active:scale-95 transition-all"
                   aria-label="Notifikasi"
                 >
-                  <Bell className="w-4.5 h-4.5 text-[#4B0B7A]" />
+                  <Bell className="w-5 h-5 text-[#4B0B7A]" />
                   {unreadCount > 0 && (
                     <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#D94152] ring-2 ring-white"></span>
                   )}
