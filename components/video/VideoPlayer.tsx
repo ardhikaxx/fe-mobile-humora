@@ -210,42 +210,44 @@ export function VideoPlayer({
           showControls ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
-        {/* Top Bar: Back & Series Info */}
-        <div className="flex items-center justify-between text-white">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onBack();
-            }}
-            className="w-9 h-9 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center hover:bg-black/60 transition-colors"
-            aria-label="Kembali"
-          >
-            <ArrowLeft className="w-5 h-5 text-white" />
-          </button>
+        {/* Top Bar: Floating Capsule Pill */}
+        <div className="flex justify-center w-full">
+          <div className="bg-black/50 backdrop-blur-md border border-white/15 shadow-lg rounded-full px-3 py-1.5 flex items-center justify-between w-full max-w-[390px] text-white">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onBack();
+              }}
+              className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 active:scale-95 transition-all shrink-0"
+              aria-label="Kembali"
+            >
+              <ArrowLeft className="w-4 h-4 text-white" />
+            </button>
 
-          <div className="text-center px-2 truncate max-w-[200px] sm:max-w-[280px]">
-            <h4 className="text-xs font-bold text-white truncate drop-shadow-sm">
-              {series.title}
-            </h4>
-            <span className="text-[10px] text-white/80 truncate block">
-              Ep {episode.number}: {episode.title}
-            </span>
+            <div className="text-center px-2 truncate max-w-[190px] sm:max-w-[250px]">
+              <h4 className="text-xs font-bold text-white truncate drop-shadow-sm">
+                {series.title}
+              </h4>
+              <span className="text-[10px] text-white/80 truncate block">
+                Ep {episode.number}: {episode.title}
+              </span>
+            </div>
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleMute();
+              }}
+              className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 active:scale-95 transition-all shrink-0"
+              aria-label={isMuted ? 'Unmute' : 'Mute'}
+            >
+              {isMuted ? (
+                <VolumeX className="w-4 h-4 text-white" />
+              ) : (
+                <Volume2 className="w-4 h-4 text-white" />
+              )}
+            </button>
           </div>
-
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              toggleMute();
-            }}
-            className="w-9 h-9 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center hover:bg-black/60 transition-colors"
-            aria-label={isMuted ? 'Unmute' : 'Mute'}
-          >
-            {isMuted ? (
-              <VolumeX className="w-4 h-4 text-white" />
-            ) : (
-              <Volume2 className="w-4 h-4 text-white" />
-            )}
-          </button>
         </div>
 
         {/* Center Playback Controls */}

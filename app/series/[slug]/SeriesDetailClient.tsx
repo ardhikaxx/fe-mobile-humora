@@ -3,13 +3,14 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
-  ArrowLeft,
   Play,
   Star,
   Sparkles,
   ChevronDown,
   ChevronUp,
+  Share2,
 } from 'lucide-react';
+import { AppHeader } from '../../../components/layout/AppHeader';
 import { SERIES_LIST } from '../../../lib/data/seriesData';
 import { EpisodeCard } from '../../../components/series/EpisodeCard';
 import { useHumora } from '../../../lib/context/HumoraContext';
@@ -20,7 +21,7 @@ interface SeriesDetailClientProps {
 
 export default function SeriesDetailClient({ slug }: SeriesDetailClientProps) {
   const router = useRouter();
-  const { history, openSubscriptionSheet, canAccessEpisode } = useHumora();
+  const { history, openSubscriptionSheet, canAccessEpisode, showToast } = useHumora();
   const [isSynopsisExpanded, setIsSynopsisExpanded] = useState(false);
 
   const series = SERIES_LIST.find((s) => s.slug === slug) || SERIES_LIST[0];
@@ -49,7 +50,28 @@ export default function SeriesDetailClient({ slug }: SeriesDetailClientProps) {
 
   return (
     <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-24">
-      {/* Top Banner / Backdrop with Floating Back Button */}
+      {/* Floating Header Bar */}
+      <AppHeader
+        title={series.title}
+        showBack
+        rightAction={
+          <button
+            onClick={() => {
+              if (typeof navigator !== 'undefined' && navigator.share) {
+                navigator.share({ title: series.title, url: window.location.href }).catch(() => {});
+              } else {
+                showToast('Tautan series disalin!');
+              }
+            }}
+            className="w-8 h-8 rounded-full flex items-center justify-center text-[#4B0B7A] hover:bg-[#F6F1F8] active:scale-95 transition-all"
+            aria-label="Bagikan"
+          >
+            <Share2 className="w-4 h-4" />
+          </button>
+        }
+      />
+
+      {/* Top Banner / Backdrop */}
       <div className="relative w-full aspect-16/10 sm:aspect-16/9 bg-[#21052F] overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -60,15 +82,6 @@ export default function SeriesDetailClient({ slug }: SeriesDetailClientProps) {
 
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#FFFDF7] via-[#21052F]/40 to-black/50" />
-
-        {/* Back Button */}
-        <button
-          onClick={() => router.back()}
-          className="absolute top-4 left-4 z-20 w-9 h-9 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 active:scale-95 transition-all"
-          aria-label="Kembali"
-        >
-          <ArrowLeft className="w-5 h-5" />
-        </button>
 
         {/* Badges on Banner */}
         <div className="absolute top-4 right-4 flex items-center gap-1.5 z-20">

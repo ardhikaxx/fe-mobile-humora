@@ -8,11 +8,11 @@ import {
   Mail,
   Lock,
   ArrowRight,
-  ArrowLeft,
   Sparkles,
   Loader2,
 } from 'lucide-react';
 import { HumoraLogo } from '../../../components/brand/HumoraLogo';
+import { AppHeader } from '../../../components/layout/AppHeader';
 import { useHumora } from '../../../lib/context/HumoraContext';
 
 export default function RegisterPage() {
@@ -74,21 +74,17 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-[#FFFDF7] p-5 sm:p-6 justify-between select-none">
-      {/* Top Bar with Back Button */}
-      <div className="flex items-center justify-between mb-3">
-        <button
-          onClick={() => router.back()}
-          className="w-9 h-9 rounded-full bg-[#F6F1F8] flex items-center justify-center text-[#24172B] hover:bg-[#E9DEEF] active:scale-95 transition-all"
-          aria-label="Kembali"
-        >
-          <ArrowLeft className="w-5 h-5" />
-        </button>
-
-        <Link href="/home" className="text-xs font-bold text-[#7028B8] hover:underline">
-          Lewati
-        </Link>
-      </div>
+    <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-6 select-none">
+      {/* Floating Header Bar */}
+      <AppHeader
+        title="Daftar Akun"
+        showBack
+        rightAction={
+          <Link href="/home" className="text-xs font-bold text-[#7028B8] hover:underline px-2 py-1">
+            Lewati
+          </Link>
+        }
+      />
 
       {/* Main Form Content */}
       <div className="w-full max-w-sm mx-auto flex-1 flex flex-col justify-center py-2">
