@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
-import { ChevronLeft, Bell, User } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Bell, User, Crown } from 'lucide-react';
 import { HumoraLogo } from '../brand/HumoraLogo';
 import { useHumora } from '../../lib/context/HumoraContext';
 
@@ -32,7 +32,7 @@ export function AppHeader({
 }: AppHeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const { user, notifications } = useHumora();
+  const { user, subscription, notifications } = useHumora();
 
   const unreadCount = notifications.filter((n) => !n.read).length;
 
@@ -53,6 +53,7 @@ export function AppHeader({
   const isPayment = pathname === '/payment' || pathname?.startsWith('/payment');
   const isNotifications = pathname === '/notifications' || pathname?.startsWith('/notifications');
   const displayName = user?.name ? user.name.split(' ')[0] : 'Tamu';
+  const isPremium = subscription?.status === 'active';
 
   const isSubPageOrSpecial = isSearch || isProfile || isHistory || isSeriesDetail || isSubscription || isPayment || isNotifications;
 
@@ -94,13 +95,13 @@ export function AppHeader({
             <>
           {/* LEFT SIDE */}
           {isHome ? (
-            /* Layout Beranda: Foto profil di sebelah paling kiri diikuti dengan Hai, Nama pengguna */
-            <Link
-              href="/profile"
-              className="flex items-center gap-2.5 sm:gap-3 min-w-0 active:scale-97 transition-all group"
-              aria-label="Profil Saya"
-            >
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden border border-[#EEE8F0] shadow-xs flex items-center justify-center bg-[#F6F1F8] shrink-0 group-hover:ring-2 group-hover:ring-[#7028B8]/30 transition-all">
+            /* Layout Beranda: Foto profil di sebelah paling kiri diikuti dengan Hai, Nama pengguna & status sub-header */
+            <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+              <Link
+                href="/profile"
+                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden border border-[#EEE8F0] shadow-xs flex items-center justify-center bg-[#F6F1F8] shrink-0 hover:ring-2 hover:ring-[#7028B8]/30 transition-all active:scale-95"
+                aria-label="Profil Saya"
+              >
                 {user?.avatarUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -111,12 +112,35 @@ export function AppHeader({
                 ) : (
                   <User className="w-5 h-5 sm:w-6 sm:h-6 text-[#4B0B7A]" />
                 )}
-              </div>
+              </Link>
 
-              <span className="text-sm sm:text-base font-bold text-[#24172B] tracking-tight truncate max-w-[190px] sm:max-w-[230px]">
-                Hai, {displayName}
-              </span>
-            </Link>
+              <div className="flex flex-col min-w-0 justify-center">
+                <Link
+                  href="/profile"
+                  className="text-xs sm:text-sm font-bold text-[#24172B] tracking-tight truncate max-w-[170px] sm:max-w-[210px] leading-tight hover:text-[#4B0B7A] transition-colors"
+                >
+                  Hai, {displayName}
+                </Link>
+
+                {isPremium ? (
+                  <Link
+                    href="/profile/subscription"
+                    className="text-[10px] sm:text-[11px] font-bold text-[#7028B8] flex items-center gap-1 leading-tight mt-0.5 hover:opacity-85 transition-opacity"
+                  >
+                    <Crown className="w-2.5 h-2.5 text-[#FFB800] fill-[#FFB800]" />
+                    <span>Humora Premium</span>
+                  </Link>
+                ) : (
+                  <Link
+                    href="/subscription"
+                    className="text-[10px] sm:text-[11px] font-bold text-[#7028B8] hover:text-[#4B0B7A] flex items-center gap-0.5 leading-tight mt-0.5 group/vip transition-colors"
+                  >
+                    <span>Upgrade ke VIP</span>
+                    <ChevronRight className="w-3 h-3 stroke-[2.5] text-[#7028B8] group-hover/vip:translate-x-0.5 transition-transform" />
+                  </Link>
+                )}
+              </div>
+            </div>
           ) : (
             /* Layout Halaman Lain: Back button, Logo, atau Judul */
             <div className="flex items-center gap-2.5 min-w-0">
