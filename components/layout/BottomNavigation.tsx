@@ -46,9 +46,9 @@ export function BottomNavigation() {
   ];
 
   return (
-    <nav className="fixed bottom-5 inset-x-0 z-40 flex justify-center pointer-events-none px-4 select-none safe-pb">
-      {/* Sederhana tapi Modern: Clean Frosted White Capsule Pill */}
-      <div className="pointer-events-auto bg-white/95 backdrop-blur-md border border-[#EEE8F0] shadow-[0_10px_30px_rgba(33,5,47,0.08)] rounded-full p-1.5 flex items-center justify-between w-full max-w-[356px] transition-all">
+    <nav className="fixed bottom-2.5 sm:bottom-3 inset-x-0 z-40 flex justify-center pointer-events-none px-3 select-none pb-[calc(env(safe-area-inset-bottom,0px))]">
+      {/* Sederhana, Modern, Lebih Besar & Nyaman Disentuh */}
+      <div className="pointer-events-auto bg-white/95 backdrop-blur-md border border-[#EEE8F0] shadow-[0_12px_36px_rgba(33,5,47,0.12),0_2px_8px_rgba(0,0,0,0.04)] rounded-full p-2 flex items-center justify-between w-[95%] max-w-[410px] transition-all">
         {navItems.map((item) => {
           const Icon = item.icon;
           const active = item.isActive;
@@ -58,22 +58,22 @@ export function BottomNavigation() {
               key={item.href}
               href={item.href}
               aria-label={item.label}
-              className={`flex items-center gap-1.5 rounded-full transition-all duration-200 active:scale-95 ${
+              className={`flex items-center gap-1.5 sm:gap-2 rounded-full whitespace-nowrap transition-all duration-200 active:scale-95 ${
                 active
-                  ? 'bg-[#21052F] text-white px-3.5 py-2 font-bold shadow-xs'
-                  : 'text-[#786F7D] hover:text-[#24172B] hover:bg-[#F6F1F8] px-2.5 py-2'
+                  ? 'bg-[#21052F] text-white px-3.5 sm:px-4 py-2.5 font-bold shadow-[0_4px_12px_rgba(33,5,47,0.2)]'
+                  : 'text-[#786F7D] hover:text-[#24172B] hover:bg-[#F6F1F8] px-2.5 sm:px-3 py-2.5'
               }`}
             >
               <Icon
-                className={`w-4 h-4 shrink-0 transition-transform ${
-                  active ? 'text-[#FFD52E] stroke-[2.4]' : 'stroke-[1.9]'
+                className={`w-5 h-5 shrink-0 transition-transform ${
+                  active ? 'text-[#FFD52E] stroke-[2.4]' : 'stroke-[2]'
                 }`}
               />
               <span
-                className={`text-xs tracking-tight transition-all ${
+                className={`text-xs sm:text-[13px] tracking-tight transition-all ${
                   active
                     ? 'font-bold text-white'
-                    : 'font-medium text-[#786F7D]'
+                    : 'font-semibold text-[#786F7D]'
                 }`}
               >
                 {item.label}

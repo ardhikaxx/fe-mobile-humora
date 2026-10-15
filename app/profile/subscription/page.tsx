@@ -21,7 +21,7 @@ export default function SubscriptionDetailPage() {
   const daysRemaining = getDaysRemaining(subscription.endDate);
 
   return (
-    <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-12">
+    <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-36 sm:pb-40">
       <AppHeader title="Detail Langganan" showBack />
 
       <div className="px-5 pt-3">

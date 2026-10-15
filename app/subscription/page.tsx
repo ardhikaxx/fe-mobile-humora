@@ -39,7 +39,7 @@ export default function SubscriptionPage() {
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-12">
+    <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-36 sm:pb-40">
       {/* App Header with Back button */}
       <AppHeader title="Paket Premium" showBack />
 
