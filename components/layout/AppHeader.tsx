@@ -49,10 +49,15 @@ export function AppHeader({
   const isProfile = pathname === '/profile' || pathname?.startsWith('/profile');
   const isHistory = pathname === '/history';
   const isSeriesDetail = pathname?.startsWith('/series/');
+  const isSubscription = pathname === '/subscription' || pathname?.startsWith('/subscription');
+  const isPayment = pathname === '/payment' || pathname?.startsWith('/payment');
+  const isNotifications = pathname === '/notifications' || pathname?.startsWith('/notifications');
   const displayName = user?.name ? user.name.split(' ')[0] : 'Tamu';
 
-  const shouldShowProfile = showProfile !== undefined ? showProfile : (!isSearch && !isProfile && !isHistory && !isSeriesDetail);
-  const shouldShowNotification = showNotification !== undefined ? showNotification : (!isSearch && !isProfile && !isHistory && !isSeriesDetail);
+  const isSubPageOrSpecial = isSearch || isProfile || isHistory || isSeriesDetail || isSubscription || isPayment || isNotifications;
+
+  const shouldShowProfile = showProfile !== undefined ? showProfile : !isSubPageOrSpecial;
+  const shouldShowNotification = showNotification !== undefined ? showNotification : !isSubPageOrSpecial;
   const shouldHaveTopSpacer = withTopSpacer !== undefined ? withTopSpacer : !isSeriesDetail;
 
   return (

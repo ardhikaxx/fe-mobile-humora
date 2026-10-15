@@ -123,7 +123,12 @@ export default function CheckoutPage() {
 
   return (
     <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-12">
-      <AppHeader title="Checkout Simulasi" showBack />
+      <AppHeader
+        title="Checkout Simulasi"
+        showBack
+        showProfile={false}
+        showNotification={false}
+      />
 
       <div className="px-5 pt-3">
         {/* Account Info Pill */}
