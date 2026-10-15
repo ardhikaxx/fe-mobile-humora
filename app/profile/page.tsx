@@ -24,7 +24,7 @@ import { formatDateIndo, getDaysRemaining } from '../../lib/utils/formatters';
 
 export default function ProfilePage() {
   const router = useRouter();
-  const { user, subscription, logout, showToast } = useHumora();
+  const { user, subscription, logout, showToast, setDemoState, resetDemoState } = useHumora();
 
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
@@ -363,6 +363,75 @@ export default function ProfilePage() {
               <ChevronRight className="w-4 h-4 text-red-300" />
             </button>
           )}
+        </div>
+
+        {/* Simulasi Fitur Demo Langsung di Dalam Aplikasi */}
+        <div className="mt-5 p-4 bg-white rounded-3xl border border-[#EEE8F0] shadow-xs">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#786F7D]">
+              Demo Simulator Fitur
+            </span>
+            <span className="text-[10px] font-bold text-[#4B0B7A] bg-[#F6F1F8] px-2.5 py-0.5 rounded-full border border-[#EEE8F0]">
+              {!user ? 'Tamu (Guest)' : subscription.status === 'active' ? 'Premium Aktif' : subscription.status === 'expired' ? 'Expired' : 'User Gratis'}
+            </span>
+          </div>
+
+          <p className="text-xs text-[#786F7D] mb-3 leading-relaxed">
+            Pilih status akun demo untuk menguji perbedaan tampilan beranda, hak akses episode, penawaran langganan, dan masa aktif:
+          </p>
+
+          <div className="grid grid-cols-2 gap-2 text-xs font-semibold">
+            <button
+              onClick={() => setDemoState('guest')}
+              className={`py-2 px-2.5 rounded-xl border text-center transition-all ${
+                !user
+                  ? 'bg-[#4B0B7A] text-white border-[#4B0B7A] shadow-xs'
+                  : 'bg-[#F6F1F8] text-[#24172B] border-[#EEE8F0] hover:bg-[#E9DEEF]'
+              }`}
+            >
+              1. Tamu (Guest)
+            </button>
+
+            <button
+              onClick={() => setDemoState('free')}
+              className={`py-2 px-2.5 rounded-xl border text-center transition-all ${
+                user && subscription.status === 'none'
+                  ? 'bg-[#4B0B7A] text-white border-[#4B0B7A] shadow-xs'
+                  : 'bg-[#F6F1F8] text-[#24172B] border-[#EEE8F0] hover:bg-[#E9DEEF]'
+              }`}
+            >
+              2. User Gratis
+            </button>
+
+            <button
+              onClick={() => setDemoState('premium')}
+              className={`py-2 px-2.5 rounded-xl border text-center transition-all ${
+                subscription.status === 'active'
+                  ? 'bg-[#4B0B7A] text-white border-[#4B0B7A] shadow-xs'
+                  : 'bg-[#F6F1F8] text-[#24172B] border-[#EEE8F0] hover:bg-[#E9DEEF]'
+              }`}
+            >
+              3. Premium Aktif
+            </button>
+
+            <button
+              onClick={() => setDemoState('expired')}
+              className={`py-2 px-2.5 rounded-xl border text-center transition-all ${
+                subscription.status === 'expired'
+                  ? 'bg-[#E58A16] text-white border-[#E58A16] shadow-xs'
+                  : 'bg-[#F6F1F8] text-[#24172B] border-[#EEE8F0] hover:bg-[#E9DEEF]'
+              }`}
+            >
+              4. Expired
+            </button>
+          </div>
+
+          <button
+            onClick={resetDemoState}
+            className="mt-3 w-full py-2.5 rounded-xl border border-dashed border-gray-300 text-xs font-semibold text-gray-500 hover:text-red-600 hover:border-red-300 hover:bg-red-50 transition-all text-center"
+          >
+            Reset Semua Data Demo ke Awal
+          </button>
         </div>
       </div>
 

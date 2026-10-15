@@ -28,19 +28,16 @@ Proyek ini dibangun sepenuhnya menggunakan **Next.js (App Router), React, TypeSc
 
 ## 📱 2. Desain Mobile-First & Mode Screenshot Desktop
 
-1. **Pada Smartphone Nyata / Viewport Sempit (< 640px):**
-   - Tampilan memenuhi layar secara native (100% viewport).
-   - Bottom navigation menetap dengan padding safe-area (`env(safe-area-inset-bottom)`).
-   - Frame bezel smartphone otomatis dihilangkan.
-2. **Pada Desktop / Layar Lebar (≥ 640px):**
-   - Menampilkan frame smartphone virtual elegan berukuran proporsional (~400px x 880px) dengan bezel melengkung dan mock status bar dynamic island di tengah studio background netral.
-   - Dilengkapi **Humora Demo Controller** di sisi kiri luar frame untuk keperluan pengujian dan pengambilan screenshot.
+1. **Tampilan Bersih & Responsif (Tanpa Mockup Frame):**
+   - Aplikasi ditampilkan secara penuh dan alami tanpa adanya bezel perangkat atau status bar tiruan.
+   - Pada layar smartphone (< 640px), tampilan memenuhi 100% layar dengan kenyamanan navigasi satu tangan dan safe area padding.
+   - Pada layar tablet / desktop (≥ 640px), aplikasi tampil terpusat dengan lebar proporsional (`max-w-md`) yang elegan tanpa bingkai ponsel virtual.
 
 ---
 
-## 🕹️ 3. Panel Pengujian Demo & State Pengguna
+## 🕹️ 3. Pengujian Demo & State Pengguna (Langsung di Dalam Aplikasi)
 
-Panel controller di sisi layar desktop memungkinkan penguji mengubah kondisi aplikasi dalam 1 kali klik:
+Pengujian status aplikasi dapat dilakukan langsung dari halaman **Profil** (`/profile`) pada kartu **Demo Simulator Fitur**:
 
 | Mode Pengguna | Deskripsi Perilaku di Aplikasi |
 |---|---|
@@ -48,7 +45,7 @@ Panel controller di sisi layar desktop memungkinkan penguji mengubah kondisi apl
 | **2. User Gratis** | Sudah login tapi belum berlangganan. Episode 1 & 2 terbuka, episode 3+ terkunci. Profil menampilkan kartu *Akun Gratis*. |
 | **3. Premium Aktif** | Memiliki paket aktif (3 Bulan). Seluruh episode terkunci di 8 series terbuka langsung tanpa gembok. Profil menampilkan badge *Premium Aktif* dan sisa masa aktif. |
 | **4. Expired** | Masa langganan telah kedaluwarsa. Episode premium terkunci kembali. Profil menampilkan peringatan jelas berwarna jingga dengan tombol *Perpanjang Premium*. |
-| **Reset Demo Data** | Mengembalikan seluruh data demo, riwayat tontonan, notifikasi, dan transaksi ke kondisi awal. |
+| **Reset Semua Data** | Mengembalikan seluruh data demo, riwayat tontonan, notifikasi, dan transaksi ke kondisi awal. |
 
 ---
 

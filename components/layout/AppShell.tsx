@@ -1,11 +1,9 @@
 'use client';
 
 import React, { Suspense } from 'react';
-import { StatusBarMock } from './StatusBarMock';
 import { BottomNavigation } from './BottomNavigation';
 import { Toast } from '../ui/Toast';
 import { SubscriptionBottomSheet } from '../subscription/SubscriptionBottomSheet';
-import { DemoToolbar } from '../demo/DemoToolbar';
 
 interface AppShellProps {
   children: React.ReactNode;
@@ -13,26 +11,17 @@ interface AppShellProps {
 
 export function AppShell({ children }: AppShellProps) {
   return (
-    <div className="min-h-screen w-full bg-[#F3EFE9] flex items-center justify-center sm:py-8 sm:px-4 relative font-sans text-[#24172B]">
-      {/* External Desktop Demo Toolbar (Strictly outside smartphone viewport) */}
-      <Suspense fallback={null}>
-        <DemoToolbar />
-      </Suspense>
+    <div className="min-h-screen w-full bg-[#FFFDF7] flex justify-center font-sans text-[#24172B] antialiased">
+      {/* Dynamic Global Toast */}
+      <Toast />
 
-      {/* SMARTPHONE VIRTUAL FRAME / MOBILE VIEWPORT CONTAINER */}
-      <div className="w-full sm:max-w-[414px] sm:h-[880px] sm:max-h-[92vh] sm:rounded-[48px] sm:border-[10px] sm:border-[#1E1226] sm:shadow-[0_25px_60px_-15px_rgba(33,5,47,0.28)] flex flex-col relative bg-[#FFFDF7] overflow-hidden min-h-screen sm:min-h-0">
-        
-        {/* Mock Status Bar for Desktop Screenshot Preview */}
-        <StatusBarMock />
+      {/* Episode Lock Subscription Bottom Sheet */}
+      <SubscriptionBottomSheet />
 
-        {/* Dynamic Global Toast */}
-        <Toast />
-
-        {/* Episode Lock Subscription Bottom Sheet */}
-        <SubscriptionBottomSheet />
-
-        {/* Scrollable Screen Content Area */}
-        <main className="flex-1 flex flex-col overflow-y-auto overflow-x-hidden no-scrollbar relative">
+      {/* Clean responsive page container without phone frame or bezel */}
+      <div className="w-full max-w-md min-h-screen flex flex-col bg-[#FFFDF7] relative shadow-none sm:border-x sm:border-[#EEE8F0]">
+        {/* Main Content Area */}
+        <main className="flex-1 flex flex-col relative">
           <Suspense
             fallback={
               <div className="flex-1 flex items-center justify-center p-8 text-[#4B0B7A]">
