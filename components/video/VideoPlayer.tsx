@@ -10,7 +10,7 @@ import {
   Volume2,
   VolumeX,
   SkipForward,
-  ArrowLeft,
+  ChevronLeft,
   Sparkles,
 } from 'lucide-react';
 import { Episode, Series } from '../../lib/types';
@@ -221,7 +221,7 @@ export function VideoPlayer({
               className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 active:scale-95 transition-all shrink-0"
               aria-label="Kembali"
             >
-              <ArrowLeft className="w-4 h-4 text-white" />
+              <ChevronLeft className="w-5 h-5 stroke-[2.5] text-white -ml-0.5" />
             </button>
 
             <div className="text-center px-2 truncate max-w-[190px] sm:max-w-[250px]">

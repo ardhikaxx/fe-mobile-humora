@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
-import { ArrowLeft, Bell, User } from 'lucide-react';
+import { ChevronLeft, Bell, User } from 'lucide-react';
 import { HumoraLogo } from '../brand/HumoraLogo';
 import { useHumora } from '../../lib/context/HumoraContext';
 
@@ -73,7 +73,7 @@ export function AppHeader({
                   className="w-8 h-8 rounded-full flex items-center justify-center text-[#24172B] hover:bg-[#F6F1F8] active:scale-95 transition-all shrink-0 select-none"
                   aria-label="Kembali"
                 >
-                  <ArrowLeft className="w-4.5 h-4.5 stroke-[2.3]" />
+                  <ChevronLeft className="w-5 h-5 stroke-[2.5] -ml-0.5 text-[#24172B]" />
                 </button>
               )}
               <div className="flex-1 flex items-center min-w-0">
@@ -121,7 +121,7 @@ export function AppHeader({
                   className="w-8 h-8 rounded-full flex items-center justify-center text-[#24172B] hover:bg-[#F6F1F8] active:scale-95 transition-all shrink-0"
                   aria-label="Kembali"
                 >
-                  <ArrowLeft className="w-4.5 h-4.5 stroke-[2.3]" />
+                  <ChevronLeft className="w-5 h-5 stroke-[2.5] -ml-0.5 text-[#24172B]" />
                 </button>
               )}
 
