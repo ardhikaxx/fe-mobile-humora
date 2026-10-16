@@ -47,8 +47,8 @@ export function BottomNavigation() {
 
   return (
     <nav className="fixed bottom-2.5 sm:bottom-3 inset-x-0 z-40 flex justify-center pointer-events-none px-3 select-none pb-[calc(env(safe-area-inset-bottom,0px))]">
-      {/* Sederhana, Modern, Lebih Besar & Nyaman Disentuh */}
-      <div className="pointer-events-auto bg-white/95 backdrop-blur-md border border-[#EEE8F0] shadow-[0_12px_36px_rgba(33,5,47,0.12),0_2px_8px_rgba(0,0,0,0.04)] rounded-full p-2 flex items-center justify-between w-[95%] max-w-[410px] transition-all">
+      {/* Sederhana, Modern, Lebih Besar & Nyaman Disentuh dengan Background Kuning Tema Humora */}
+      <div className="pointer-events-auto bg-[#FFD52E] border border-[#21052F]/15 shadow-[0_12px_32px_rgba(33,5,47,0.18),0_2px_8px_rgba(0,0,0,0.06)] rounded-full p-2 flex items-center justify-between w-[95%] max-w-[410px] transition-all">
         {navItems.map((item) => {
           const Icon = item.icon;
           const active = item.isActive;
@@ -60,20 +60,20 @@ export function BottomNavigation() {
               aria-label={item.label}
               className={`flex items-center gap-1.5 sm:gap-2 rounded-full whitespace-nowrap transition-all duration-200 active:scale-95 ${
                 active
-                  ? 'bg-[#21052F] text-white px-3.5 sm:px-4 py-2.5 font-bold shadow-[0_4px_12px_rgba(33,5,47,0.2)]'
-                  : 'text-[#786F7D] hover:text-[#24172B] hover:bg-[#F6F1F8] px-2.5 sm:px-3 py-2.5'
+                  ? 'bg-[#21052F] text-white px-3.5 sm:px-4 py-2.5 font-bold shadow-[0_4px_12px_rgba(33,5,47,0.25)]'
+                  : 'text-[#21052F]/80 hover:text-[#21052F] hover:bg-black/5 px-2.5 sm:px-3 py-2.5'
               }`}
             >
               <Icon
                 className={`w-5 h-5 shrink-0 transition-transform ${
-                  active ? 'text-[#FFD52E] stroke-[2.4]' : 'stroke-[2]'
+                  active ? 'text-[#FFD52E] stroke-[2.4]' : 'text-[#21052F]/80 stroke-[2]'
                 }`}
               />
               <span
                 className={`text-xs sm:text-[13px] tracking-tight transition-all ${
                   active
                     ? 'font-bold text-white'
-                    : 'font-semibold text-[#786F7D]'
+                    : 'font-bold text-[#21052F]/80'
                 }`}
               >
                 {item.label}
