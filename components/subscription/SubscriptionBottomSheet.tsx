@@ -93,7 +93,7 @@ export function SubscriptionBottomSheet() {
 
           <p className="text-xs sm:text-sm text-[#786F7D] mt-1.5 max-w-xs leading-relaxed">
             {subscriptionSheetContext?.reason ||
-              'Episode ini khusus member Premium. Buka semua episode dan lanjutkan tawa tanpa batas.'}
+              'Video ini khusus member Premium. Buka semua video dan lanjutkan tawa tanpa batas.'}
           </p>
         </div>
 
@@ -104,8 +104,8 @@ export function SubscriptionBottomSheet() {
               <PlayCircle className="w-4 h-4" />
             </div>
             <div className="text-left">
-              <h5 className="text-xs font-bold text-[#24172B]">Akses Semua Episode</h5>
-              <p className="text-[11px] text-[#786F7D]">Nonton episode 3 sampai tamat tanpa gembok</p>
+              <h5 className="text-xs font-bold text-[#24172B]">Akses Semua Video</h5>
+              <p className="text-[11px] text-[#786F7D]">Nonton semua video premium tanpa gembok</p>
             </div>
           </div>
 
@@ -114,8 +114,8 @@ export function SubscriptionBottomSheet() {
               <Film className="w-4 h-4" />
             </div>
             <div className="text-left">
-              <h5 className="text-xs font-bold text-[#24172B]">Tanpa Batas Semua Series</h5>
-              <p className="text-[11px] text-[#786F7D]">Katalog lengkap serial komedi & romansa</p>
+              <h5 className="text-xs font-bold text-[#24172B]">Tanpa Batas Semua Judul Video</h5>
+              <p className="text-[11px] text-[#786F7D]">Katalog lengkap sketsa komedi & hiburan</p>
             </div>
           </div>
 
@@ -125,7 +125,7 @@ export function SubscriptionBottomSheet() {
             </div>
             <div className="text-left">
               <h5 className="text-xs font-bold text-[#24172B]">Cerita Baru Tiap Minggu</h5>
-              <p className="text-[11px] text-[#786F7D]">Nikmati episode terbaru lebih awal</p>
+              <p className="text-[11px] text-[#786F7D]">Nikmati video terbaru lebih awal</p>
             </div>
           </div>
         </div>

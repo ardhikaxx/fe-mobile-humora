@@ -28,16 +28,16 @@ const FAQ_DATA: FAQItem[] = [
   {
     id: 'faq-1',
     category: 'langganan',
-    question: 'Apakah 2 episode pertama benar-benar gratis selamanya?',
+    question: 'Apakah 2 video pertama benar-benar gratis selamanya?',
     answer:
-      'Ya! Seluruh series di HUMORA dapat ditonton secara gratis pada Episode 1 dan Episode 2 tanpa perlu registrasi akun maupun membayar. Episode 3 dan seterusnya dapat diakses dengan berlangganan paket Premium.',
+      'Ya! Seluruh judul video di HUMORA dapat ditonton secara gratis pada Video 1 dan Video 2 tanpa perlu registrasi akun maupun membayar. Video 3 dan seterusnya dapat diakses dengan berlangganan paket Premium.',
   },
   {
     id: 'faq-2',
     category: 'langganan',
     question: 'Bagaimana cara berlangganan Paket Premium HUMORA?',
     answer:
-      'Kamu cukup membuka tab "Langganan", pilih paket yang kamu inginkan (Mingguan, Bulanan, atau Tahunan), lalu selesaikan pembayaran simulasi via QRIS, GoPay, OVO, atau Transfer Bank. Akses seluruh episode premium akan langsung aktif seketika.',
+      'Kamu cukup membuka tab "Langganan", pilih paket yang kamu inginkan (Bulanan, 3 Bulan, atau Tahunan), lalu selesaikan pembayaran simulasi via QRIS, GoPay, OVO, atau Transfer Bank. Akses seluruh video premium akan langsung aktif seketika.',
   },
   {
     id: 'faq-3',
@@ -70,9 +70,9 @@ const FAQ_DATA: FAQItem[] = [
   {
     id: 'faq-7',
     category: 'umum',
-    question: 'Seberapa sering series baru dirilis di HUMORA?',
+    question: 'Seberapa sering video baru dirilis di HUMORA?',
     answer:
-      'Kami merilis episode baru setiap minggunya, serta 1-2 judul series komedi pendek original terbaru setiap bulan yang dikerjakan langsung oleh sineas dan komika lokal Indonesia.',
+      'Kami merilis video baru setiap minggunya, serta judul koleksi sketsa komedi orisinal terbaru setiap bulan yang dikerjakan langsung oleh sineas dan komika lokal Indonesia.',
   },
 ];
 

@@ -98,7 +98,7 @@ export default function ProfilePage() {
             </h3>
 
             <p className="text-xs text-[#D8D0DE] mt-1 max-w-xs leading-relaxed">
-              Simpan tontonan favoritmu dan nikmati akses episode premium tanpa batas.
+              Simpan tontonan favoritmu dan nikmati akses video premium tanpa batas.
             </p>
 
             <div className="flex w-full gap-2.5 mt-4">

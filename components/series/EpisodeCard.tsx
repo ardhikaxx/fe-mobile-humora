@@ -99,7 +99,7 @@ export function EpisodeCard({ series, episode, isCurrent = false }: EpisodeCardP
         <div>
           <div className="flex items-center justify-between gap-2 mb-1">
             <span className="text-xs font-bold text-[#7028B8]">
-              Episode {episode.number}
+              Video {episode.number}
             </span>
 
             {/* Access Badges */}

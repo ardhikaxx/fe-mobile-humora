@@ -19,14 +19,17 @@ export interface Series {
   title: string;
   synopsis: string;
   genres: string[];
-  poster: string; // 2:3 vertical aspect ratio
-  cover: string; // horizontal banner aspect ratio
+  thumbnail: string; // Unified single thumbnail (no poster needed)
+  poster?: string; // Optional fallback
+  cover?: string; // Optional fallback
   rating: number; // e.g. 4.8
   year: number;
+  videoCount?: number;
   episodeCount: number;
   featured?: boolean;
   isPopular?: boolean;
   isNew?: boolean;
+  videos?: Episode[];
   episodes: Episode[];
 }
 
@@ -68,6 +71,7 @@ export interface SubscriptionState {
 export interface WatchHistoryItem {
   seriesSlug: string;
   seriesTitle: string;
+  seriesThumbnail?: string;
   seriesPoster: string;
   episodeId: number;
   episodeNumber: number;

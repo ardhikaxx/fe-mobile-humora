@@ -79,29 +79,59 @@ const DEFAULT_SUBSCRIPTION: SubscriptionState = {
 
 const DEFAULT_HISTORY: WatchHistoryItem[] = [
   {
-    seriesSlug: 'kontrak-jadi-pacar',
-    seriesTitle: 'Kontrak Jadi Pacar',
-    seriesPoster: '/images/series/kontrak-jadi-pacar-cover.jpg',
+    seriesSlug: 'tipe-penumpang-taxi-online',
+    seriesTitle: 'Tipe Penumpang Taxi Online',
+    seriesThumbnail: '/images/thumbnails/tipe-penumpang-taxi-online.jpg',
+    seriesPoster: '/images/thumbnails/tipe-penumpang-taxi-online.jpg',
     episodeId: 1,
     episodeNumber: 1,
-    episodeTitle: 'Kopi Dingin & Tanda Tangan',
-    progressSeconds: 320,
-    totalSeconds: 522,
-    percent: 61,
+    episodeTitle: 'Tipe Bawel',
+    progressSeconds: 85,
+    totalSeconds: 134,
+    percent: 63,
     lastWatchedAt: '2026-02-15T08:30:00.000Z',
     completed: false,
   },
   {
-    seriesSlug: 'kos-paling-berisik',
-    seriesTitle: 'Kos Paling Berisik',
-    seriesPoster: '/images/series/kos-paling-berisik-cover.jpg',
+    seriesSlug: 'cara-deketin-cewek',
+    seriesTitle: 'Cara Deketin Cewek',
+    seriesThumbnail: '/images/thumbnails/cara-deketin-cewek.jpg',
+    seriesPoster: '/images/thumbnails/cara-deketin-cewek.jpg',
     episodeId: 1,
     episodeNumber: 1,
-    episodeTitle: 'Misteri Telur di Kulkas Bersama',
-    progressSeconds: 430,
-    totalSeconds: 430,
+    episodeTitle: 'Pake Hadiah',
+    progressSeconds: 58,
+    totalSeconds: 130,
+    percent: 45,
+    lastWatchedAt: '2026-02-15T06:15:00.000Z',
+    completed: false,
+  },
+  {
+    seriesSlug: 'tipe-penumpang-taxi-online',
+    seriesTitle: 'Tipe Penumpang Taxi Online',
+    seriesThumbnail: '/images/thumbnails/tipe-penumpang-taxi-online.jpg',
+    seriesPoster: '/images/thumbnails/tipe-penumpang-taxi-online.jpg',
+    episodeId: 2,
+    episodeNumber: 2,
+    episodeTitle: 'Tipe Sensi',
+    progressSeconds: 118,
+    totalSeconds: 118,
     percent: 100,
-    lastWatchedAt: '2026-02-14T19:45:00.000Z',
+    lastWatchedAt: '2026-02-14T20:45:00.000Z',
+    completed: true,
+  },
+  {
+    seriesSlug: 'cara-deketin-cewek',
+    seriesTitle: 'Cara Deketin Cewek',
+    seriesThumbnail: '/images/thumbnails/cara-deketin-cewek.jpg',
+    seriesPoster: '/images/thumbnails/cara-deketin-cewek.jpg',
+    episodeId: 2,
+    episodeNumber: 2,
+    episodeTitle: 'Pake Rayuan Maut',
+    progressSeconds: 115,
+    totalSeconds: 115,
+    percent: 100,
+    lastWatchedAt: '2026-02-14T19:20:00.000Z',
     completed: true,
   },
 ];
@@ -136,15 +166,26 @@ export function HumoraProvider({ children }: { children: React.ReactNode }) {
           if (parsed.user !== undefined) setUser(parsed.user);
           if (parsed.subscription) setSubscription(parsed.subscription);
           if (parsed.history && Array.isArray(parsed.history)) {
-            const migratedHistory = parsed.history.map((h: WatchHistoryItem) => {
-              const matchedSeries = SERIES_LIST.find((s) => s.slug === h.seriesSlug);
-              const coverImg = matchedSeries?.cover || `/images/series/${h.seriesSlug}-cover.jpg`;
-              return {
-                ...h,
-                seriesPoster: h.seriesPoster?.includes('unsplash.com') ? coverImg : (h.seriesPoster || coverImg),
-              };
-            });
-            setHistory(migratedHistory);
+            const validHistory = parsed.history
+              .map((h: WatchHistoryItem) => {
+                const matchedSeries = SERIES_LIST.find((s) => s.slug === h.seriesSlug);
+                if (!matchedSeries) return null;
+                const matchedEpisode = matchedSeries.episodes.find(
+                  (e) => e.id === h.episodeId || e.number === h.episodeNumber
+                );
+                const thumbImg =
+                  matchedEpisode?.thumbnail || matchedSeries.thumbnail || `/images/thumbnails/${matchedSeries.slug}.jpg`;
+                return {
+                  ...h,
+                  seriesTitle: matchedSeries.title,
+                  seriesThumbnail: thumbImg,
+                  seriesPoster: thumbImg,
+                  episodeTitle: matchedEpisode ? matchedEpisode.title : h.episodeTitle,
+                };
+              })
+              .filter((h: WatchHistoryItem | null): h is WatchHistoryItem => h !== null);
+
+            setHistory(validHistory.length > 0 ? validHistory : DEFAULT_HISTORY);
           }
           if (parsed.notifications) setNotifications(parsed.notifications);
           if (parsed.transactions) setTransactions(parsed.transactions);
@@ -302,7 +343,7 @@ export function HumoraProvider({ children }: { children: React.ReactNode }) {
       const premiumNotif: NotificationItemData = {
         id: `notif-${Date.now()}`,
         title: 'Paket Premium Humora Aktif!',
-        description: `Selamat! Akses ${plan.name} aktif sampai ${end.toLocaleDateString('id-ID')}. Tonton semua episode sekarang.`,
+        description: `Selamat! Akses ${plan.name} aktif sampai ${end.toLocaleDateString('id-ID')}. Tonton semua video sekarang.`,
         category: 'langganan',
         time: 'Baru saja',
         read: false,
@@ -393,7 +434,8 @@ export function HumoraProvider({ children }: { children: React.ReactNode }) {
         const newItem: WatchHistoryItem = {
           seriesSlug: series.slug,
           seriesTitle: series.title,
-          seriesPoster: episode.thumbnail || series.cover || series.poster,
+          seriesThumbnail: episode.thumbnail || series.thumbnail,
+          seriesPoster: episode.thumbnail || series.thumbnail,
           episodeId: episode.id,
           episodeNumber: episode.number,
           episodeTitle: episode.title,

@@ -148,7 +148,7 @@ export default function HistoryPage() {
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={episode?.thumbnail || series?.cover || item.seriesPoster}
+                      src={episode?.thumbnail || series?.thumbnail || item.seriesThumbnail || item.seriesPoster}
                       alt={item.episodeTitle}
                       className={`w-full h-full object-cover transition-transform group-hover:scale-105 ${
                         isLocked ? 'filter brightness-65' : ''
@@ -180,7 +180,7 @@ export default function HistoryPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
                       <span className="text-[11px] font-bold text-[#7028B8]">
-                        Ep {item.episodeNumber}
+                        Video {item.episodeNumber}
                       </span>
                       <span className="text-[10px] text-[#A39CA9]">
                         {formatDateIndo(item.lastWatchedAt)}
@@ -229,11 +229,11 @@ export default function HistoryPage() {
             <h3 className="text-base font-bold text-[#24172B]">
               {activeTab === 'continue'
                 ? 'Belum ada tontonan yang sedang berjalan'
-                : 'Belum ada episode yang selesai ditonton'}
+                : 'Belum ada video yang selesai ditonton'}
             </h3>
 
             <p className="text-xs text-[#786F7D] mt-1 max-w-xs leading-relaxed">
-              Mulai tonton serial seru HUMORA, dan riwayat tontonanmu akan otomatis tersimpan di sini.
+              Mulai tonton video seru HUMORA, dan riwayat tontonanmu akan otomatis tersimpan di sini.
             </p>
 
             <Link
@@ -241,7 +241,7 @@ export default function HistoryPage() {
               className="mt-5 px-5 py-2.5 rounded-xl bg-[#4B0B7A] text-white font-bold text-xs shadow-sm flex items-center gap-1.5 active:scale-95 transition-all"
             >
               <Sparkles className="w-3.5 h-3.5 text-[#FFD52E]" />
-              <span>Jelajahi Series Sekarang</span>
+              <span>Jelajahi Video Sekarang</span>
             </Link>
           </div>
         )}
@@ -251,7 +251,7 @@ export default function HistoryPage() {
       <ConfirmationModal
         isOpen={!!itemToDelete}
         title="Hapus dari Riwayat?"
-        description={`Episode "${itemToDelete?.episodeTitle}" dari ${itemToDelete?.seriesTitle} akan dihapus dari daftar riwayat tontonanmu.`}
+        description={`Video "${itemToDelete?.episodeTitle}" dari ${itemToDelete?.seriesTitle} akan dihapus dari daftar riwayat tontonanmu.`}
         confirmLabel="Hapus"
         cancelLabel="Batal"
         isDestructive

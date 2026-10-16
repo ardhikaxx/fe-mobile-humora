@@ -62,7 +62,7 @@ export default function SeriesDetailClient({ slug }: SeriesDetailClientProps) {
       <div className="relative w-full aspect-16/11 sm:aspect-16/9 min-h-[300px] sm:min-h-[360px] bg-[#21052F] overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={series.cover}
+          src={series.thumbnail || series.cover || series.poster || ''}
           alt={series.title}
           className="w-full h-full object-cover"
         />
@@ -73,7 +73,7 @@ export default function SeriesDetailClient({ slug }: SeriesDetailClientProps) {
         {/* Badges on Banner */}
         <div className="absolute top-[72px] sm:top-20 right-4 flex items-center gap-1.5 z-20">
           <span className="bg-[#21865B] text-white text-[10px] font-black px-2.5 py-1 rounded-md shadow-xs backdrop-blur-xs">
-            2 Episode Gratis
+            2 Video Gratis
           </span>
         </div>
       </div>
@@ -107,7 +107,7 @@ export default function SeriesDetailClient({ slug }: SeriesDetailClientProps) {
             <span>{series.rating.toFixed(1)}</span>
           </div>
           <span>•</span>
-          <span className="font-medium">{series.episodeCount} Episode</span>
+          <span className="font-medium">{series.videoCount || series.episodes.length} Video</span>
           <span>•</span>
           <span className="text-[#21865B] font-bold">Free Preview</span>
         </div>
@@ -121,8 +121,8 @@ export default function SeriesDetailClient({ slug }: SeriesDetailClientProps) {
             <Play className="w-4 h-4 fill-current" />
             <span>
               {latestWatch
-                ? `Lanjutkan Ep ${latestWatch.episodeNumber}: ${latestWatch.episodeTitle}`
-                : 'Mulai Menonton (Ep 1)'}
+                ? `Lanjutkan Video ${latestWatch.episodeNumber}: ${latestWatch.episodeTitle}`
+                : 'Mulai Menonton (Video 1)'}
             </span>
           </button>
         </div>
@@ -153,13 +153,13 @@ export default function SeriesDetailClient({ slug }: SeriesDetailClientProps) {
           </button>
         </div>
 
-        {/* Episode List Section */}
+        {/* Video List Section */}
         <div className="mt-6">
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-base font-bold text-[#24172B]">
-              Daftar Episode ({series.episodes.length})
+              Daftar Video ({series.episodes.length})
             </h3>
-            <span className="text-xs text-[#786F7D]">Ep 1 & 2 Gratis</span>
+            <span className="text-xs text-[#786F7D]">Video 1 & 2 Gratis</span>
           </div>
 
           <div className="space-y-2.5">

@@ -79,7 +79,7 @@ export default function SubscriptionDetailPage() {
                 {subscription.planName}
               </h3>
               <p className="text-xs text-[#786F7D] mt-1">
-                Berakhir pada {formatDateIndo(subscription.endDate || '')}. Perpanjang untuk kembali menikmati episode premium.
+                Berakhir pada {formatDateIndo(subscription.endDate || '')}. Perpanjang untuk kembali menikmati video premium.
               </p>
 
               <Link
@@ -97,7 +97,7 @@ export default function SubscriptionDetailPage() {
               </div>
               <h3 className="text-base font-bold text-[#24172B]">Belum Berlangganan</h3>
               <p className="text-xs text-[#786F7D] mt-1 max-w-xs mx-auto">
-                Saat ini kamu berada pada akses Akun Gratis (hanya 2 episode pertama).
+                Saat ini kamu berada pada akses Akun Gratis (hanya 2 video pertama).
               </p>
 
               <Link
@@ -118,11 +118,11 @@ export default function SubscriptionDetailPage() {
           <div className="space-y-2 text-xs text-[#786F7D]">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#21865B]" />
-              <span>Bebas nonton seluruh episode terkunci</span>
+              <span>Bebas nonton seluruh video terkunci</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#21865B]" />
-              <span>Akses lebih awal untuk serial terbaru</span>
+              <span>Akses lebih awal untuk video terbaru</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#21865B]" />

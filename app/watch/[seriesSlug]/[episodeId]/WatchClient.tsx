@@ -84,11 +84,11 @@ export default function WatchClient({ seriesSlug, episodeId }: WatchClientProps)
   const handleShare = () => {
     if (typeof navigator !== 'undefined' && navigator.share) {
       navigator.share({
-        title: `${series.title} - Ep ${currentEpisode.number}`,
+        title: `${series.title} - Video ${currentEpisode.number}`,
         url: window.location.href,
       }).catch(() => {});
     } else {
-      showToast('Tautan episode disalin ke clipboard!');
+      showToast('Tautan video disalin ke clipboard!');
     }
   };
 
@@ -113,7 +113,7 @@ export default function WatchClient({ seriesSlug, episodeId }: WatchClientProps)
               </span>
               <span className="text-[#786F7D] text-xs">•</span>
               <span className="text-xs text-[#786F7D]">
-                Episode {currentEpisode.number} dari {series.episodeCount}
+                Video {currentEpisode.number} dari {series.videoCount || series.episodeCount}
               </span>
             </div>
 
@@ -166,7 +166,7 @@ export default function WatchClient({ seriesSlug, episodeId }: WatchClientProps)
             }`}
           >
             <ChevronLeft className="w-4 h-4" />
-            <span>Episode Sebelumnya</span>
+            <span>Video Sebelumnya</span>
           </button>
 
           <button
@@ -178,15 +178,15 @@ export default function WatchClient({ seriesSlug, episodeId }: WatchClientProps)
                 : 'bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200'
             }`}
           >
-            <span>Episode Berikutnya</span>
+            <span>Video Berikutnya</span>
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>
 
-        {/* "Episode Lainnya" Horizontal Carousel */}
+        {/* "Video Lainnya" Horizontal Carousel */}
         <div className="mt-7">
           <h3 className="text-sm font-bold text-[#24172B] mb-2.5">
-            Semua Episode Series Ini
+            Semua Video dalam Judul Ini
           </h3>
 
           <div className="flex gap-2.5 overflow-x-auto no-scrollbar pb-2">
@@ -227,7 +227,7 @@ export default function WatchClient({ seriesSlug, episodeId }: WatchClientProps)
                   </div>
 
                   <span className="text-[11px] font-bold text-[#7028B8] block">
-                    Ep {ep.number}
+                    Video {ep.number}
                   </span>
                   <span className="text-xs font-semibold text-[#24172B] line-clamp-1 leading-snug">
                     {ep.title}
@@ -241,7 +241,7 @@ export default function WatchClient({ seriesSlug, episodeId }: WatchClientProps)
         {/* Recommendations at bottom */}
         <div className="mt-8">
           <h3 className="text-sm font-bold text-[#24172B] mb-3">
-            Rekomendasi Series Lainnya
+            Rekomendasi Video Lainnya
           </h3>
           <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2">
             {SERIES_LIST.filter((s) => s.slug !== series.slug).map((s) => (

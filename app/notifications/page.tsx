@@ -164,7 +164,7 @@ export default function NotificationsPage() {
             </h3>
 
             <p className="text-xs text-[#786F7D] mt-1 max-w-xs leading-relaxed">
-              Semua info penting mengenai rilis episode terbaru dan promo akan muncul di sini.
+              Semua info penting mengenai rilis video terbaru dan promo akan muncul di sini.
             </p>
           </div>
         )}

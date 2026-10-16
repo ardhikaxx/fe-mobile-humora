@@ -54,7 +54,7 @@ export default function PaymentSuccessPage() {
         </h2>
 
         <p className="text-xs sm:text-sm text-[#786F7D] mt-1.5 max-w-xs leading-relaxed">
-          Semua episode terkunci kini telah terbuka! Nikmati serial komedi dan romansa favoritmu tanpa batas.
+          Semua video terkunci kini telah terbuka! Nikmati beragam video komedi favoritmu tanpa batas.
         </p>
 
         {/* Transaction Summary Card */}
@@ -90,7 +90,7 @@ export default function PaymentSuccessPage() {
             <span className="text-[#786F7D]">Status Akses</span>
             <span className="font-bold text-[#7028B8] flex items-center gap-1">
               <Sparkles className="w-3 h-3 text-[#FFD52E]" />
-              SEMUA EPISODE TERBUKA
+              SEMUA VIDEO TERBUKA
             </span>
           </div>
         </div>
@@ -105,7 +105,7 @@ export default function PaymentSuccessPage() {
           {activeEpisodeTarget ? (
             <>
               <Play className="w-4 h-4 fill-current" />
-              <span>Lanjut Nonton Episode {activeEpisodeTarget.episodeId}</span>
+              <span>Lanjut Nonton Video {activeEpisodeTarget.episodeId}</span>
             </>
           ) : (
             <>

@@ -15,7 +15,7 @@ export function ContinueWatchingCard({ item }: ContinueWatchingCardProps) {
   const remainingSeconds = Math.max(0, item.totalSeconds - item.progressSeconds);
   const series = SERIES_LIST.find((s) => s.slug === item.seriesSlug);
   const episode = series?.episodes.find((e) => e.id === item.episodeId);
-  const imageSrc = episode?.thumbnail || series?.cover || item.seriesPoster;
+  const imageSrc = episode?.thumbnail || series?.thumbnail || item.seriesThumbnail || item.seriesPoster;
 
   return (
     <Link
@@ -58,7 +58,7 @@ export function ContinueWatchingCard({ item }: ContinueWatchingCardProps) {
           {item.seriesTitle}
         </h4>
         <p className="text-[11px] text-[#786F7D] truncate mt-0.5">
-          Ep {item.episodeNumber}: {item.episodeTitle}
+          Video {item.episodeNumber}: {item.episodeTitle}
         </p>
       </div>
     </Link>

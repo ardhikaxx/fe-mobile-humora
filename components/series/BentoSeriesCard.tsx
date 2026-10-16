@@ -17,7 +17,7 @@ export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
 
   // 1. HERO BENTO CARD (Widescreen cinematic spotlight tile)
   if (variant === 'hero') {
-    const bgImage = !imageError ? (series.cover || series.poster) : null;
+    const bgImage = !imageError ? (series.thumbnail || series.cover || series.poster) : null;
 
     return (
       <Link
@@ -57,7 +57,7 @@ export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
               </span>
             ) : (
               <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full border border-white/20">
-                2 EP GRATIS
+                2 VIDEO GRATIS
               </span>
             )}
           </div>
@@ -77,7 +77,7 @@ export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
               </span>
               <span className="text-white/40 text-[10px]">•</span>
               <span className="text-[11px] font-medium text-white/80">
-                {series.episodeCount} Episode
+                {series.videoCount || series.episodeCount} Video
               </span>
             </div>
 
@@ -106,12 +106,12 @@ export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
         href={`/series/${series.slug}`}
         className="group relative col-span-2 rounded-[22px] bg-white border border-[#EEE8F0] shadow-xs hover:shadow-md transition-all duration-300 p-3 sm:p-3.5 flex items-center gap-3.5 select-none active:scale-[0.99]"
       >
-        {/* Left Poster Thumbnail */}
+        {/* Left Thumbnail */}
         <div className="relative w-20 sm:w-24 aspect-[3/4] rounded-2xl overflow-hidden bg-[#21052F] shrink-0 border border-[#EEE8F0]">
           {!imageError ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={series.poster}
+              src={series.thumbnail || series.poster || ''}
               alt={series.title}
               onError={() => setImageError(true)}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -138,7 +138,7 @@ export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
                 {series.genres[0]}
               </span>
               <span className="text-[11px] text-[#786F7D] font-medium">
-                {series.episodeCount} Episode
+                {series.videoCount || series.episodeCount} Video
               </span>
             </div>
 
@@ -153,7 +153,7 @@ export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
 
           <div className="flex items-center justify-between pt-2 border-t border-[#F6F1F8] mt-2">
             <span className="text-[11px] font-semibold text-[#21865B]">
-              2 Episode Gratis
+              2 Video Gratis
             </span>
 
             <span className="text-xs font-bold text-[#7028B8] flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform">
@@ -166,17 +166,17 @@ export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
     );
   }
 
-  // 3. PORTRAIT BENTO CARD (Full-bleed edge-to-edge poster tile)
+  // 3. PORTRAIT BENTO CARD (Full-bleed edge-to-edge thumbnail tile)
   return (
     <Link
       href={`/series/${series.slug}`}
       className="group relative col-span-1 rounded-[22px] overflow-hidden aspect-[3/4] bg-[#21052F] border border-[#EEE8F0] shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between p-3 select-none active:scale-[0.98]"
     >
-      {/* Background Poster Image */}
+      {/* Background Thumbnail Image */}
       {!imageError ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={series.poster}
+          src={series.thumbnail || series.poster || ''}
           alt={series.title}
           onError={() => setImageError(true)}
           className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-600 ease-out"
@@ -221,7 +221,7 @@ export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
         </h4>
 
         <span className="text-[10px] text-white/70 font-medium mt-0.5">
-          {series.episodeCount} Episode
+          {series.videoCount || series.episodeCount} Video
         </span>
       </div>
     </Link>

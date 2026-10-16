@@ -84,8 +84,8 @@ export default function SettingsPage() {
             {/* Auto Play Next */}
             <div className="flex items-center justify-between">
               <div>
-                <span className="font-bold text-[#24172B] block">Putar Otomatis Episode</span>
-                <span className="text-[11px] text-[#786F7D]">Lanjut otomatis ke episode berikutnya saat video selesai</span>
+                <span className="font-bold text-[#24172B] block">Putar Otomatis Video</span>
+                <span className="text-[11px] text-[#786F7D]">Lanjut otomatis ke video berikutnya saat pemutaran selesai</span>
               </div>
               <button
                 type="button"
@@ -158,8 +158,8 @@ export default function SettingsPage() {
           <div className="space-y-3.5 text-xs">
             <div className="flex items-center justify-between">
               <div>
-                <span className="font-bold text-[#24172B] block">Episode & Series Baru</span>
-                <span className="text-[11px] text-[#786F7D]">Dapatkan info rilis series komedi teranyar</span>
+                <span className="font-bold text-[#24172B] block">Video & Koleksi Baru</span>
+                <span className="text-[11px] text-[#786F7D]">Dapatkan info rilis video komedi teranyar</span>
               </div>
               <button
                 type="button"
@@ -193,7 +193,7 @@ export default function SettingsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <span className="font-bold text-[#24172B] block">Pengingat Lanjut Nonton</span>
-                <span className="text-[11px] text-[#786F7D]">Ingatkan episode yang belum selesai ditonton</span>
+                <span className="text-[11px] text-[#786F7D]">Ingatkan video yang belum selesai ditonton</span>
               </div>
               <button
                 type="button"

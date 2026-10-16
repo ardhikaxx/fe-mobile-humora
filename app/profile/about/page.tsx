@@ -37,19 +37,19 @@ export default function AboutPage() {
           </p>
 
           <p className="text-xs text-[#786F7D] mt-3 leading-relaxed max-w-xs">
-            HUMORA adalah platform streaming digital karya anak bangsa yang didedikasikan untuk menghadirkan web-series komedi pendek berkualitas tinggi, dekat dengan keseharian, dan siap menghibur di sela-sela rutinitasmu.
+            HUMORA adalah platform streaming digital karya anak bangsa yang didedikasikan untuk menghadirkan video sketsa komedi pendek berkualitas tinggi, dekat dengan keseharian, dan siap menghibur di sela-sela rutinitasmu.
           </p>
         </div>
 
         {/* METRICS & STATS */}
         <div className="grid grid-cols-3 gap-2.5">
           <div className="bg-white p-3.5 rounded-2xl border border-[#EEE8F0] text-center shadow-xs">
-            <span className="text-lg font-black text-[#4B0B7A] block">8+</span>
-            <span className="text-[10px] font-semibold text-[#786F7D]">Series Orisinal</span>
+            <span className="text-lg font-black text-[#4B0B7A] block">6+</span>
+            <span className="text-[10px] font-semibold text-[#786F7D]">Koleksi Video</span>
           </div>
           <div className="bg-white p-3.5 rounded-2xl border border-[#EEE8F0] text-center shadow-xs">
-            <span className="text-lg font-black text-[#E58A16] block">60+</span>
-            <span className="text-[10px] font-semibold text-[#786F7D]">Episode Tayang</span>
+            <span className="text-lg font-black text-[#E58A16] block">24+</span>
+            <span className="text-[10px] font-semibold text-[#786F7D]">Video Tayang</span>
           </div>
           <div className="bg-white p-3.5 rounded-2xl border border-[#EEE8F0] text-center shadow-xs">
             <span className="text-lg font-black text-[#21865B] block">100%</span>
@@ -71,7 +71,7 @@ export default function AboutPage() {
               <div>
                 <span className="font-bold text-[#24172B] block">Format Cepat & Ringkas</span>
                 <p className="text-[11px] text-[#786F7D] mt-0.5 leading-relaxed">
-                  Durasi 3–10 menit per episode dirancang pas untuk dinikmati saat rehat kerja, perjalanan komuter, atau waktu luang.
+                  Durasi -+2 menit per video dirancang pas untuk dinikmati saat rehat kerja, perjalanan komuter, atau waktu santai.
                 </p>
               </div>
             </div>

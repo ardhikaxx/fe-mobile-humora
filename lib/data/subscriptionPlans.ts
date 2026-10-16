@@ -11,10 +11,10 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
     description: 'Pilihan pas untuk eksplorasi dan tonton santai sebulan penuh.',
     perMonthPrice: 19000,
     features: [
-      'Akses semua episode terkunci',
+      'Akses semua video terkunci',
       'Nonton tanpa jeda iklan cerita',
       'Kualitas streaming HD jernih',
-      'Download episode untuk ditonton offline',
+      'Download video untuk ditonton offline',
       'Dukungan nonton di HP & Tablet',
     ],
   },
@@ -27,13 +27,13 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
     periodLabel: '90 Hari',
     badge: 'Favorit Pengguna',
     isPopular: true,
-    description: 'Paling diminati! Hemat 35% untuk marathon series favoritmu.',
+    description: 'Paling diminati! Hemat 35% untuk marathon video favoritmu.',
     perMonthPrice: 16333,
     features: [
       'Semua keuntungan Paket Bulanan',
       'Hemat lebih besar dibanding bulanan',
-      'Akses lebih awal untuk episode baru',
-      'Bebas unduh hingga 50 episode',
+      'Akses lebih awal untuk video baru',
+      'Bebas unduh hingga 50 video',
       'Prioritas rekomendasi tontonan',
     ],
   },
@@ -68,6 +68,10 @@ export const DEMO_PROMO_CODES: Record<string, { discountPercent: number; descrip
   },
   SERIESSERU: {
     discountPercent: 10,
-    description: 'Diskon Penggemar Series 10%',
+    description: 'Diskon Penggemar Video 10%',
+  },
+  VIDEOSERU: {
+    discountPercent: 10,
+    description: 'Diskon Penggemar Video 10%',
   },
 };

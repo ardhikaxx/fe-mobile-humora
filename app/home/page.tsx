@@ -41,14 +41,14 @@ export default function HomePage() {
               <div>
                 <div className="flex items-center gap-1.5">
                   <h4 className="text-sm font-bold text-white tracking-tight">
-                    Buka Semua Episode
+                    Buka Semua Video
                   </h4>
                   <span className="bg-[#FFD52E] text-[#21052F] text-[9px] font-black px-1.5 py-0.2 rounded">
                     PROMO
                   </span>
                 </div>
                 <p className="text-xs text-[#D8D0DE] mt-0.5">
-                  Mulai Rp19rb untuk tonton semua cerita
+                  Mulai Rp19rb untuk tonton semua video
                 </p>
               </div>
             </div>
@@ -68,7 +68,7 @@ export default function HomePage() {
         <div className="relative w-full aspect-16/10 rounded-3xl overflow-hidden shadow-md bg-[#21052F] border border-[#EEE8F0]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={latestSeries.cover}
+            src={latestSeries.thumbnail || latestSeries.cover || latestSeries.poster || ''}
             alt={latestSeries.title}
             className="w-full h-full object-cover"
           />
@@ -84,7 +84,7 @@ export default function HomePage() {
                 TERBARU
               </span>
               <span className="bg-white/20 backdrop-blur-xs text-white text-[10px] font-semibold px-2 py-0.5 rounded-md">
-                2 Episode Gratis
+                2 Video Gratis
               </span>
             </div>
 
@@ -147,7 +147,7 @@ export default function HomePage() {
       <section className="mt-6">
         <div className="px-5 flex items-center justify-between mb-3">
           <div className="flex items-center gap-1.5">
-            <h3 className="text-base font-bold text-[#24172B]">Series Populer</h3>
+            <h3 className="text-base font-bold text-[#24172B]">Video Populer</h3>
             <Flame className="w-4 h-4 text-[#E58A16] fill-[#E58A16]/20" />
           </div>
           <Link
@@ -194,7 +194,7 @@ export default function HomePage() {
         <div className="px-5 flex items-center justify-between mb-3">
           <div>
             <h3 className="text-base font-bold text-[#24172B]">Gratis untuk Kamu</h3>
-            <p className="text-[11px] text-[#786F7D]">Tonton 2 episode pertama tanpa langganan</p>
+            <p className="text-[11px] text-[#786F7D]">Tonton 2 video pertama tanpa langganan</p>
           </div>
           <Link
             href="/search"

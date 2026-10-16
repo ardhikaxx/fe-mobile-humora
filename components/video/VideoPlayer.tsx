@@ -229,7 +229,7 @@ export function VideoPlayer({
                 {series.title}
               </h4>
               <span className="text-[10px] text-white/80 truncate block">
-                Ep {episode.number}: {episode.title}
+                Video {episode.number}: {episode.title}
               </span>
             </div>
 
@@ -318,7 +318,7 @@ export function VideoPlayer({
                   onClick={onNextEpisode}
                   className="flex items-center gap-1 text-[11px] font-bold text-[#FFD52E] hover:underline"
                 >
-                  <span>Ep Selanjutnya</span>
+                  <span>Video Selanjutnya</span>
                   <SkipForward className="w-3.5 h-3.5" />
                 </button>
               )}

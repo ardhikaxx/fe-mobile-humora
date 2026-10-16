@@ -73,7 +73,7 @@ export default function SearchPage() {
             type="text"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
-            placeholder="Cari series, judul, atau genre..."
+            placeholder="Cari video, judul, atau genre..."
             className="flex-1 bg-transparent text-sm sm:text-base font-medium text-[#24172B] placeholder:text-[#A39CA9] focus:outline-none select-text"
           />
           {keyword && (
@@ -95,7 +95,7 @@ export default function SearchPage() {
           Cari cerita favoritmu
         </h2>
         <p className="text-xs text-[#786F7D] mt-0.5 mb-2">
-          Temukan ratusan episode penuh canda dan kisah manis
+          Temukan berbagai video penuh canda dan cerita lucu
         </p>
 
         {/* Popular Genre Filter Chips */}
@@ -123,7 +123,7 @@ export default function SearchPage() {
           <span className="text-xs font-bold text-[#24172B]">
             {keyword || selectedGenre !== 'Semua' ? (
               <>
-                Ditemukan <span className="text-[#7028B8]">{filteredSeries.length}</span> series
+                Ditemukan <span className="text-[#7028B8]">{filteredSeries.length}</span> judul video
               </>
             ) : (
               'Katalog Lengkap'
@@ -175,7 +175,7 @@ export default function SearchPage() {
             className="mt-4 px-4 py-2 rounded-xl bg-[#4B0B7A] text-white font-semibold text-xs shadow-xs active:scale-95 transition-all flex items-center gap-1.5"
           >
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Lihat Semua Series</span>
+            <span>Lihat Semua Video</span>
           </button>
         </div>
       )}
