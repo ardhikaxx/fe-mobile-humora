@@ -7,7 +7,6 @@ import {
   Shield,
   Trash2,
   KeyRound,
-  Smartphone,
   Save,
   Check,
 } from 'lucide-react';
@@ -19,7 +18,6 @@ export default function SettingsPage() {
   const { showToast, user } = useHumora();
 
   // Playback & Video Settings
-  const [videoQuality, setVideoQuality] = useState<'auto' | '1080p' | '720p' | '480p'>('auto');
   const [autoPlayNext, setAutoPlayNext] = useState(true);
   const [dataSaver, setDataSaver] = useState(false);
   const [playbackSpeed, setPlaybackSpeed] = useState('1.0x');
@@ -29,8 +27,7 @@ export default function SettingsPage() {
   const [notifPromo, setNotifPromo] = useState(true);
   const [notifReminder, setNotifReminder] = useState(true);
 
-  // Privacy & Cache Settings
-  const [privateMode, setPrivateMode] = useState(false);
+  // Storage & Cache Settings
   const [cacheSize, setCacheSize] = useState('48.5 MB');
 
   // Modal States
@@ -70,7 +67,7 @@ export default function SettingsPage() {
       <AppHeader title="Pengaturan Akun" showBack />
 
       <div className="px-5 pt-3 space-y-5">
-        {/* SECTION 1: KUALITAS & PEMUTARAN VIDEO */}
+        {/* SECTION 1: PEMUTARAN VIDEO */}
         <section className="bg-white rounded-3xl p-4 sm:p-5 border border-[#EEE8F0] shadow-xs">
           <div className="flex items-center gap-2.5 mb-3.5 pb-2.5 border-b border-[#EEE8F0]">
             <div className="w-8 h-8 rounded-xl bg-[#F6F1F8] flex items-center justify-center text-[#7028B8]">
@@ -78,30 +75,7 @@ export default function SettingsPage() {
             </div>
             <div>
               <h2 className="text-sm font-bold text-[#24172B]">Pemutaran Video</h2>
-              <p className="text-[11px] text-[#786F7D]">Atur resolusi dan kenyamanan streaming</p>
-            </div>
-          </div>
-
-          {/* Quality Selector */}
-          <div className="mb-4">
-            <label className="text-xs font-semibold text-[#24172B] block mb-2">
-              Kualitas Streaming Default
-            </label>
-            <div className="grid grid-cols-4 gap-1.5 p-1 bg-[#F6F1F8] rounded-xl text-xs font-bold">
-              {(['auto', '1080p', '720p', '480p'] as const).map((q) => (
-                <button
-                  key={q}
-                  type="button"
-                  onClick={() => setVideoQuality(q)}
-                  className={`py-2 rounded-lg transition-all capitalize ${
-                    videoQuality === q
-                      ? 'bg-white text-[#4B0B7A] shadow-xs'
-                      : 'text-[#786F7D] hover:text-[#24172B]'
-                  }`}
-                >
-                  {q === 'auto' ? 'Otomatis' : q}
-                </button>
-              ))}
+              <p className="text-[11px] text-[#786F7D]">Atur kenyamanan streaming dan kontrol pemutaran</p>
             </div>
           </div>
 
@@ -235,37 +209,20 @@ export default function SettingsPage() {
           </div>
         </section>
 
-        {/* SECTION 3: PRIVASI & PENYIMPANAN */}
+        {/* SECTION 3: PENYIMPANAN & CACHE */}
         <section className="bg-white rounded-3xl p-4 sm:p-5 border border-[#EEE8F0] shadow-xs">
           <div className="flex items-center gap-2.5 mb-3.5 pb-2.5 border-b border-[#EEE8F0]">
             <div className="w-8 h-8 rounded-xl bg-[#F6F1F8] flex items-center justify-center text-[#21865B]">
               <Shield className="w-4.5 h-4.5" />
             </div>
             <div>
-              <h2 className="text-sm font-bold text-[#24172B]">Privasi & Penyimpanan</h2>
-              <p className="text-[11px] text-[#786F7D]">Kelola data lokal dan riwayat streaming</p>
+              <h2 className="text-sm font-bold text-[#24172B]">Penyimpanan & Cache</h2>
+              <p className="text-[11px] text-[#786F7D]">Kelola file cache dan data lokal</p>
             </div>
           </div>
 
           <div className="space-y-3.5 text-xs">
             <div className="flex items-center justify-between">
-              <div>
-                <span className="font-bold text-[#24172B] block">Mode Privat Streaming</span>
-                <span className="text-[11px] text-[#786F7D]">Jangan catat riwayat tontonan saat mode ini aktif</span>
-              </div>
-              <button
-                type="button"
-                onClick={() => setPrivateMode(!privateMode)}
-                className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors shrink-0 ${
-                  privateMode ? 'bg-[#7028B8] justify-end' : 'bg-gray-200 justify-start'
-                }`}
-                aria-label="Toggle mode privat"
-              >
-                <div className="w-4 h-4 rounded-full bg-white shadow-xs" />
-              </button>
-            </div>
-
-            <div className="flex items-center justify-between pt-1">
               <div>
                 <span className="font-bold text-[#24172B] block">Cache Aplikasi</span>
                 <span className="text-[11px] text-[#786F7D]">Ukuran file cache lokal: {cacheSize}</span>
@@ -289,41 +246,26 @@ export default function SettingsPage() {
               <KeyRound className="w-4.5 h-4.5" />
             </div>
             <div>
-              <h2 className="text-sm font-bold text-[#24172B]">Keamanan & Akun</h2>
-              <p className="text-[11px] text-[#786F7D]">Akses kredensial dan perangkat masuk</p>
+              <h2 className="text-sm font-bold text-[#24172B]">Keamanan Akun</h2>
+              <p className="text-[11px] text-[#786F7D]">Kelola kata sandi dan kredensial akun</p>
             </div>
           </div>
 
           <div className="space-y-3 text-xs">
             {user ? (
-              <>
-                <div className="flex items-center justify-between py-1">
-                  <div>
-                    <span className="font-bold text-[#24172B] block">Kata Sandi Akun</span>
-                    <span className="text-[11px] text-[#786F7D]">Terakhir diubah 30 hari lalu</span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setIsPasswordModalOpen(true)}
-                    className="text-xs font-bold text-[#7028B8] hover:underline"
-                  >
-                    Ubah Sandi
-                  </button>
+              <div className="flex items-center justify-between py-1">
+                <div>
+                  <span className="font-bold text-[#24172B] block">Kata Sandi Akun</span>
+                  <span className="text-[11px] text-[#786F7D]">Terakhir diubah 30 hari lalu</span>
                 </div>
-
-                <div className="flex items-center justify-between py-1 border-t border-[#EEE8F0]">
-                  <div className="flex items-center gap-2.5">
-                    <Smartphone className="w-4 h-4 text-[#786F7D]" />
-                    <div>
-                      <span className="font-bold text-[#24172B] block">Perangkat Aktif</span>
-                      <span className="text-[11px] text-[#21865B] font-semibold">Web Browser (Sesi Saat Ini)</span>
-                    </div>
-                  </div>
-                  <span className="text-[10px] bg-[#EAF8F1] text-[#21865B] font-bold px-2 py-0.5 rounded-full">
-                    Aktif
-                  </span>
-                </div>
-              </>
+                <button
+                  type="button"
+                  onClick={() => setIsPasswordModalOpen(true)}
+                  className="text-xs font-bold text-[#7028B8] hover:underline"
+                >
+                  Ubah Sandi
+                </button>
+              </div>
             ) : (
               <p className="text-[#786F7D] text-xs">
                 Kamu sedang menggunakan akun Tamu. Masuk untuk mengelola kata sandi dan keamanan akun.
