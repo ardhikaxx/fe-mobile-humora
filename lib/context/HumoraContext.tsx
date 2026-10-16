@@ -33,6 +33,7 @@ interface HumoraContextType {
   login: (identifier: string, name?: string) => Promise<boolean>;
   register: (name: string, identifier: string) => Promise<boolean>;
   logout: () => void;
+  updateProfile: (updated: Partial<UserProfile>) => void;
   selectPlan: (planId: 'monthly' | 'quarterly' | 'annual') => void;
   setPendingRedirectUrl: (url: string | null) => void;
   setActiveEpisodeTarget: (target: { seriesSlug: string; episodeId: number } | null) => void;
@@ -65,6 +66,8 @@ const DEMO_USER: UserProfile = {
   phone: '0812-8899-7766',
   avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
   joinedDate: '12 Januari 2026',
+  bio: 'Penikmat sketsa komedi garis keras 😂',
+  gender: 'Laki-laki',
 };
 
 const DEFAULT_SUBSCRIPTION: SubscriptionState = {
@@ -304,6 +307,20 @@ export function HumoraProvider({ children }: { children: React.ReactNode }) {
     showToast('Kamu telah keluar dari akun.');
   }, [showToast]);
 
+  const updateProfile = useCallback(
+    (updated: Partial<UserProfile>) => {
+      setUser((prev) => {
+        if (!prev) return prev;
+        return {
+          ...prev,
+          ...updated,
+        };
+      });
+      showToast('Profil berhasil diperbarui!');
+    },
+    [showToast]
+  );
+
   const activatePremium = useCallback(
     (planId: 'monthly' | 'quarterly' | 'annual', paymentMethod: string, promoCode?: string) => {
       const plan = SUBSCRIPTION_PLANS.find((p) => p.id === planId) || SUBSCRIPTION_PLANS[0];
@@ -489,6 +506,7 @@ export function HumoraProvider({ children }: { children: React.ReactNode }) {
     login,
     register,
     logout,
+    updateProfile,
     selectPlan,
     setPendingRedirectUrl,
     setActiveEpisodeTarget,

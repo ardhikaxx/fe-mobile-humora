@@ -79,12 +79,13 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            <button
-              onClick={() => showToast('Edit profil dapat dilakukan pada versi lengkap.')}
-              className="text-xs font-bold text-[#7028B8] hover:underline"
+            <Link
+              href="/profile/edit"
+              className="text-xs font-bold text-[#7028B8] hover:text-[#4B0B7A] bg-[#F6F1F8] hover:bg-[#EEE8F0] px-3 py-1.5 rounded-full transition-colors flex items-center gap-1 active:scale-95"
             >
-              Ubah
-            </button>
+              <span>Ubah</span>
+              <ChevronRight className="w-3.5 h-3.5 stroke-[2.5]" />
+            </Link>
           </div>
         ) : (
           /* Guest State Banner */
@@ -227,6 +228,29 @@ export default function ProfilePage() {
 
         {/* PROFILE MENU NAVIGATION */}
         <div className="bg-white rounded-3xl border border-[#EEE8F0] overflow-hidden shadow-xs divide-y divide-[#EEE8F0]">
+          {/* Edit Profil */}
+          {user && (
+            <Link
+              href="/profile/edit"
+              className="flex items-center justify-between p-3.5 sm:p-4 hover:bg-[#F6F1F8] transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-[#FFF9E0] flex items-center justify-center text-[#4B0B7A]">
+                  <User className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="text-xs sm:text-sm font-bold text-[#24172B] block">
+                    Edit Profil
+                  </span>
+                  <span className="text-[11px] text-[#786F7D]">
+                    Ubah nama, foto profil, bio & nomor HP
+                  </span>
+                </div>
+              </div>
+              <ChevronRight className="w-4 h-4 text-[#A39CA9]" />
+            </Link>
+          )}
+
           {/* Riwayat Tontonan */}
           <Link
             href="/history"

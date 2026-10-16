@@ -56,6 +56,8 @@ export interface UserProfile {
   phone: string;
   avatarUrl: string;
   joinedDate: string;
+  bio?: string;
+  gender?: string;
 }
 
 export interface SubscriptionState {
