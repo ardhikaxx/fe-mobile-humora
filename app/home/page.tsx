@@ -14,7 +14,7 @@ export default function HomePage() {
   const router = useRouter();
   const { subscription, history } = useHumora();
 
-  const featuredSeries = SERIES_LIST.find((s) => s.featured) || SERIES_LIST[0];
+  const latestSeries = SERIES_LIST.find((s) => s.isNew) || SERIES_LIST[0];
   const popularSeries = SERIES_LIST.filter((s) => s.isPopular);
   const newSeries = SERIES_LIST.filter((s) => s.isNew);
   const recommendedSeries = SERIES_LIST.slice(2, 7);
@@ -63,13 +63,13 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* HERO SECTION: Spotlight Series */}
+      {/* HERO SECTION: Latest Series */}
       <section className={`px-5 ${subscription.status !== 'active' ? 'my-2' : 'mt-3 mb-2'}`}>
         <div className="relative w-full aspect-16/10 rounded-3xl overflow-hidden shadow-md bg-[#21052F] border border-[#EEE8F0]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={featuredSeries.cover}
-            alt={featuredSeries.title}
+            src={latestSeries.cover}
+            alt={latestSeries.title}
             className="w-full h-full object-cover"
           />
 
@@ -80,8 +80,8 @@ export default function HomePage() {
           <div className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-end text-white">
             <div className="flex items-center gap-2 mb-1.5">
               <span className="bg-[#FFD52E] text-[#21052F] text-[10px] font-black px-2 py-0.5 rounded-md flex items-center gap-1">
-                <Flame className="w-3 h-3 fill-current" />
-                UNGGULAN
+                <Sparkles className="w-3 h-3 fill-current" />
+                TERBARU
               </span>
               <span className="bg-white/20 backdrop-blur-xs text-white text-[10px] font-semibold px-2 py-0.5 rounded-md">
                 2 Episode Gratis
@@ -89,16 +89,16 @@ export default function HomePage() {
             </div>
 
             <h3 className="text-lg sm:text-xl font-black text-white tracking-tight drop-shadow-sm">
-              {featuredSeries.title}
+              {latestSeries.title}
             </h3>
 
             <p className="text-xs text-white/80 line-clamp-2 mt-1 leading-relaxed max-w-sm">
-              {featuredSeries.synopsis}
+              {latestSeries.synopsis}
             </p>
 
             <div className="flex items-center gap-2.5 mt-3">
               <button
-                onClick={() => router.push(`/watch/${featuredSeries.slug}/1`)}
+                onClick={() => router.push(`/watch/${latestSeries.slug}/1`)}
                 className="py-2.5 px-4 rounded-xl bg-[#FFD52E] hover:bg-[#FFE57F] active:scale-95 text-[#21052F] font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all"
               >
                 <Play className="w-3.5 h-3.5 fill-current" />
@@ -106,7 +106,7 @@ export default function HomePage() {
               </button>
 
               <button
-                onClick={() => router.push(`/series/${featuredSeries.slug}`)}
+                onClick={() => router.push(`/series/${latestSeries.slug}`)}
                 className="py-2.5 px-3.5 rounded-xl bg-white/20 hover:bg-white/30 backdrop-blur-md active:scale-95 text-white font-semibold text-xs transition-all"
               >
                 Detail
