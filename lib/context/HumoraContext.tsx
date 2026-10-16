@@ -13,6 +13,7 @@ import {
 } from '../types';
 import { SUBSCRIPTION_PLANS } from '../data/subscriptionPlans';
 import { INITIAL_NOTIFICATIONS } from '../data/notificationsData';
+import { SERIES_LIST } from '../data/seriesData';
 
 interface HumoraContextType {
   isHydrated: boolean;
@@ -80,7 +81,7 @@ const DEFAULT_HISTORY: WatchHistoryItem[] = [
   {
     seriesSlug: 'kontrak-jadi-pacar',
     seriesTitle: 'Kontrak Jadi Pacar',
-    seriesPoster: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=600&q=80',
+    seriesPoster: '/images/series/kontrak-jadi-pacar-cover.jpg',
     episodeId: 1,
     episodeNumber: 1,
     episodeTitle: 'Kopi Dingin & Tanda Tangan',
@@ -93,7 +94,7 @@ const DEFAULT_HISTORY: WatchHistoryItem[] = [
   {
     seriesSlug: 'kos-paling-berisik',
     seriesTitle: 'Kos Paling Berisik',
-    seriesPoster: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80',
+    seriesPoster: '/images/series/kos-paling-berisik-cover.jpg',
     episodeId: 1,
     episodeNumber: 1,
     episodeTitle: 'Misteri Telur di Kulkas Bersama',
@@ -134,7 +135,17 @@ export function HumoraProvider({ children }: { children: React.ReactNode }) {
         setTimeout(() => {
           if (parsed.user !== undefined) setUser(parsed.user);
           if (parsed.subscription) setSubscription(parsed.subscription);
-          if (parsed.history) setHistory(parsed.history);
+          if (parsed.history && Array.isArray(parsed.history)) {
+            const migratedHistory = parsed.history.map((h: WatchHistoryItem) => {
+              const matchedSeries = SERIES_LIST.find((s) => s.slug === h.seriesSlug);
+              const coverImg = matchedSeries?.cover || `/images/series/${h.seriesSlug}-cover.jpg`;
+              return {
+                ...h,
+                seriesPoster: h.seriesPoster?.includes('unsplash.com') ? coverImg : (h.seriesPoster || coverImg),
+              };
+            });
+            setHistory(migratedHistory);
+          }
           if (parsed.notifications) setNotifications(parsed.notifications);
           if (parsed.transactions) setTransactions(parsed.transactions);
           if (parsed.selectedPlanId) setSelectedPlanId(parsed.selectedPlanId);
@@ -382,7 +393,7 @@ export function HumoraProvider({ children }: { children: React.ReactNode }) {
         const newItem: WatchHistoryItem = {
           seriesSlug: series.slug,
           seriesTitle: series.title,
-          seriesPoster: series.poster,
+          seriesPoster: episode.thumbnail || series.cover || series.poster,
           episodeId: episode.id,
           episodeNumber: episode.number,
           episodeTitle: episode.title,

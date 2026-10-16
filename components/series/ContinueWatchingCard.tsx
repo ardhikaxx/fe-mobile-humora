@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Play } from 'lucide-react';
 import { WatchHistoryItem } from '../../lib/types';
 import { formatSecondsToTime } from '../../lib/utils/formatters';
+import { SERIES_LIST } from '../../lib/data/seriesData';
 
 interface ContinueWatchingCardProps {
   item: WatchHistoryItem;
@@ -12,6 +13,9 @@ interface ContinueWatchingCardProps {
 
 export function ContinueWatchingCard({ item }: ContinueWatchingCardProps) {
   const remainingSeconds = Math.max(0, item.totalSeconds - item.progressSeconds);
+  const series = SERIES_LIST.find((s) => s.slug === item.seriesSlug);
+  const episode = series?.episodes.find((e) => e.id === item.episodeId);
+  const imageSrc = episode?.thumbnail || series?.cover || item.seriesPoster;
 
   return (
     <Link
@@ -22,7 +26,7 @@ export function ContinueWatchingCard({ item }: ContinueWatchingCardProps) {
       <div className="relative aspect-16/9 w-full rounded-xl overflow-hidden bg-[#21052F]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={item.seriesPoster}
+          src={imageSrc}
           alt={item.episodeTitle}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
