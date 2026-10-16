@@ -9,7 +9,7 @@ export const INITIAL_NOTIFICATIONS: NotificationItemData[] = [
     time: '15 menit lalu',
     read: false,
     linkUrl: '/series/kontrak-jadi-pacar',
-    thumbnail: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=200&q=80',
+    thumbnail: '/images/series/kontrak-jadi-pacar-cover.jpg',
   },
   {
     id: 'notif-2',
@@ -28,7 +28,7 @@ export const INITIAL_NOTIFICATIONS: NotificationItemData[] = [
     time: '1 hari lalu',
     read: true,
     linkUrl: '/series/kos-paling-berisik',
-    thumbnail: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=200&q=80',
+    thumbnail: '/images/series/kos-paling-berisik-cover.jpg',
   },
   {
     id: 'notif-4',
@@ -47,6 +47,6 @@ export const INITIAL_NOTIFICATIONS: NotificationItemData[] = [
     time: '3 hari lalu',
     read: true,
     linkUrl: '/series/rahasia-jam-pulang',
-    thumbnail: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=200&q=80',
+    thumbnail: '/images/series/rahasia-jam-pulang-cover.jpg',
   },
 ];
