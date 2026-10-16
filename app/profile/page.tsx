@@ -17,9 +17,6 @@ import {
   ArrowRight,
   CheckCircle2,
   RotateCcw,
-  Sparkles,
-  ShieldCheck,
-  Zap,
 } from 'lucide-react';
 import { AppHeader } from '../../components/layout/AppHeader';
 import { ConfirmationModal } from '../../components/ui/ConfirmationModal';
@@ -126,195 +123,102 @@ export default function ProfilePage() {
         {user && (
           <div className="mb-5">
             {subscription.status === 'active' ? (
-              /* State 1: Black Card VIP Exclusive (Active) */
-              <div className="relative overflow-hidden rounded-[26px] bg-gradient-to-br from-[#160621] via-[#0D0213] to-[#250838] text-white shadow-xl border border-[#FFD52E]/30 p-5 sm:p-6 select-none transition-all group">
-                {/* Background Ambient Glow & Watermark */}
-                <div className="absolute -right-10 -bottom-10 w-48 h-48 rounded-full bg-gradient-to-br from-[#FFD52E]/15 to-[#7028B8]/20 blur-2xl pointer-events-none" />
-                <div className="absolute -top-12 -left-12 w-36 h-36 rounded-full bg-purple-600/10 blur-xl pointer-events-none" />
-
-                {/* Top Card Row */}
-                <div className="relative z-10 flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    {/* Metallic Smart Chip Simulation */}
-                    <div className="w-9 h-7 rounded-md bg-gradient-to-br from-[#FFE89E] via-[#D8A72B] to-[#9E7309] p-0.5 shadow-sm border border-[#FFF6D4]/50 shrink-0">
-                      <div className="w-full h-full border border-black/25 rounded-xs flex items-center justify-center bg-black/10">
-                        <Sparkles className="w-3.5 h-3.5 text-[#543800]" />
-                      </div>
-                    </div>
-                    <div>
-                      <span className="text-[11px] font-black tracking-widest text-[#FFD52E] uppercase block leading-none">
-                        HUMORA VIP
-                      </span>
-                      <span className="text-[9px] text-white/50 tracking-wider font-mono uppercase mt-0.5 block">
-                        BLACK PASS
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="px-3 py-1 rounded-full bg-[#FFD52E]/15 backdrop-blur-md border border-[#FFD52E]/40 text-[#FFD52E] text-[10px] font-black tracking-wider uppercase flex items-center gap-1.5 shadow-xs">
-                    <Crown className="w-3 h-3 fill-current text-[#FFD52E]" />
+              /* State 1: Premium Active */
+              <div className="p-4 sm:p-5 rounded-3xl bg-gradient-to-r from-[#21052F] to-[#4B0B7A] text-white shadow-md border border-[#7028B8]">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-1.5 bg-[#FFD52E] text-[#21052F] px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider">
+                    <Crown className="w-3 h-3 fill-current" />
                     <span>PREMIUM AKTIF</span>
                   </div>
-                </div>
-
-                {/* VIP Membership Serial Number */}
-                <div className="relative z-10 my-4">
-                  <span className="text-[10px] text-white/40 uppercase tracking-widest block font-medium">
-                    Nomor Anggota Eksklusif
-                  </span>
-                  <div className="font-mono text-sm sm:text-base font-bold tracking-[0.22em] text-white/90 mt-0.5 drop-shadow-xs">
-                    HMRA • 8820 • 2026 • VIP
-                  </div>
-                </div>
-
-                {/* 3 VIP Privileges Pills */}
-                <div className="relative z-10 flex items-center gap-1.5 flex-wrap my-3">
-                  <span className="bg-white/10 backdrop-blur-xs text-white/90 text-[10px] font-bold px-2.5 py-1 rounded-lg border border-white/10 flex items-center gap-1">
-                    <CheckCircle2 className="w-3 h-3 text-[#FFD52E]" />
-                    Bebas Iklan
-                  </span>
-                  <span className="bg-white/10 backdrop-blur-xs text-white/90 text-[10px] font-bold px-2.5 py-1 rounded-lg border border-white/10 flex items-center gap-1">
-                    <Zap className="w-3 h-3 text-[#FFD52E]" />
-                    Akses Semua Episode
-                  </span>
-                  <span className="bg-white/10 backdrop-blur-xs text-white/90 text-[10px] font-bold px-2.5 py-1 rounded-lg border border-white/10 flex items-center gap-1">
-                    <Sparkles className="w-3 h-3 text-[#FFD52E]" />
-                    Kualitas Full HD
+                  <span className="text-[11px] text-[#FFD52E] font-bold">
+                    Sisa {daysRemaining} Hari
                   </span>
                 </div>
 
-                {/* Cardholder Info & Expiry Footer */}
-                <div className="relative z-10 pt-3 border-t border-white/15 flex items-center justify-between text-xs">
-                  <div>
-                    <span className="text-[9px] uppercase tracking-wider text-white/50 block font-medium">
-                      Pemegang Kartu
-                    </span>
-                    <span className="font-extrabold text-white tracking-wide text-xs sm:text-sm">
-                      {user.name}
-                    </span>
-                  </div>
+                <h4 className="text-base font-black text-white mt-1">
+                  {subscription.planName}
+                </h4>
 
-                  <div className="text-right">
-                    <span className="text-[9px] uppercase tracking-wider text-white/50 block font-medium">
-                      Masa Berlaku
-                    </span>
-                    <span className="font-extrabold text-[#FFD52E] tracking-wide text-xs">
-                      Sisa {daysRemaining} Hari
-                    </span>
-                  </div>
-                </div>
+                <p className="text-xs text-[#D8D0DE] mt-0.5">
+                  Berlaku hingga {formatDateIndo(subscription.endDate || '')}
+                </p>
 
-                {/* Link to Subscription Detail */}
-                <div className="relative z-10 mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between">
-                  <span className="text-[11px] text-white/70 flex items-center gap-1.5">
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#21865B]" />
-                    Paket: <strong className="text-white font-bold">{subscription.planName}</strong>
+                <div className="mt-4 pt-3 border-t border-white/15 flex items-center justify-between">
+                  <span className="text-xs text-white/80 flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#FFD52E]" />
+                    Semua episode terbuka
                   </span>
 
                   <Link
                     href="/profile/subscription"
-                    className="text-xs font-bold text-[#FFD52E] hover:underline flex items-center gap-0.5 transition-all"
+                    className="text-xs font-bold text-[#FFD52E] hover:underline flex items-center"
                   >
-                    <span>Detail Langganan</span>
+                    <span>Detail</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </div>
             ) : subscription.status === 'expired' ? (
-              /* State 2: Black Card Expired State */
-              <div className="relative overflow-hidden rounded-[26px] bg-gradient-to-br from-[#1E1107] via-[#120803] to-[#2B1505] text-white shadow-lg border border-[#E58A16]/50 p-5 select-none">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2 text-[#E58A16]">
-                    <AlertTriangle className="w-4 h-4 shrink-0" />
-                    <span className="text-xs font-black uppercase tracking-wider">
-                      Masa VIP Telah Berakhir
-                    </span>
-                  </div>
-                  <span className="text-[10px] text-[#E58A16] font-bold bg-[#E58A16]/15 px-2 py-0.5 rounded-full border border-[#E58A16]/30">
-                    Expired
+              /* State 2: Premium Expired Warning */
+              <div className="p-4 sm:p-5 rounded-3xl bg-[#FFF5E8] border-2 border-[#E58A16] text-[#24172B] shadow-xs">
+                <div className="flex items-center gap-2 text-[#E58A16] mb-1.5">
+                  <AlertTriangle className="w-4 h-4 shrink-0" />
+                  <span className="text-xs font-black uppercase tracking-wider">
+                    Masa Premium Telah Berakhir
                   </span>
                 </div>
 
-                <h4 className="text-sm font-bold text-white mt-1">
+                <h4 className="text-sm font-bold text-[#24172B]">
                   Aksesmu telah kedaluwarsa pada {formatDateIndo(subscription.endDate || '')}
                 </h4>
 
-                <p className="text-xs text-white/75 mt-1 leading-relaxed">
-                  Semua episode terkunci kembali. Perpanjang Black Card VIP sekarang agar tontonanmu tidak terhenti.
+                <p className="text-xs text-[#786F7D] mt-1 leading-relaxed">
+                  Episode 3 dan seterusnya terkunci kembali. Perpanjang sekarang agar tontonanmu tidak terhenti.
                 </p>
 
-                <div className="mt-4 flex items-center gap-2">
+                <div className="mt-3.5 flex items-center gap-2">
                   <Link
                     href="/subscription"
-                    className="flex-1 py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#E58A16] to-[#D47E10] hover:brightness-110 active:scale-98 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md transition-all"
+                    className="flex-1 py-2.5 px-4 rounded-xl bg-[#E58A16] hover:bg-[#D47E10] active:scale-98 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-xs transition-all"
                   >
-                    <Crown className="w-3.5 h-3.5 text-white fill-current" />
-                    <span>Aktifkan Ulang VIP</span>
+                    <Crown className="w-3.5 h-3.5" />
+                    <span>Perpanjang Premium</span>
                   </Link>
 
                   <Link
                     href="/profile/subscription"
-                    className="py-2.5 px-3.5 rounded-xl border border-white/20 bg-white/10 text-xs font-semibold text-white/90 hover:bg-white/20 transition-all"
+                    className="py-2.5 px-3 rounded-xl border border-gray-300 bg-white text-xs font-semibold text-[#786F7D] hover:bg-gray-50 transition-all"
                   >
                     Riwayat
                   </Link>
                 </div>
               </div>
             ) : (
-              /* State 3: Invitation to Black Card VIP (Free User) */
-              <div className="relative overflow-hidden rounded-[26px] bg-gradient-to-br from-[#180A22] via-[#0E0314] to-[#250838] text-white shadow-xl border border-[#FFD52E]/30 p-5 sm:p-6 select-none group">
-                {/* Background Ambient Glow */}
-                <div className="absolute -right-8 -bottom-8 w-40 h-40 rounded-full bg-gradient-to-br from-[#FFD52E]/15 to-[#7028B8]/20 blur-2xl pointer-events-none" />
-
-                {/* Top Card Row */}
-                <div className="relative z-10 flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-6 rounded-md bg-gradient-to-br from-[#FFE89E] via-[#D8A72B] to-[#9E7309] p-0.5 shadow-sm border border-[#FFF6D4]/50 shrink-0">
-                      <div className="w-full h-full border border-black/25 rounded-xs flex items-center justify-center bg-black/10">
-                        <Sparkles className="w-3.5 h-3.5 text-[#543800]" />
-                      </div>
-                    </div>
-                    <span className="text-[11px] font-black tracking-widest text-[#FFD52E] uppercase">
-                      HUMORA BLACK VIP
-                    </span>
-                  </div>
-
-                  <span className="px-2.5 py-0.5 rounded-full bg-white/10 backdrop-blur-xs text-white/80 text-[10px] font-bold border border-white/10 uppercase">
-                    Eksklusif
+              /* State 3: Free User (Belum Berlangganan) */
+              <div className="p-4 sm:p-5 rounded-3xl bg-white border border-[#EEE8F0] shadow-xs">
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-xs font-extrabold text-[#786F7D] uppercase tracking-wider bg-[#F6F1F8] px-2.5 py-0.5 rounded-full">
+                    Akun Gratis
+                  </span>
+                  <span className="text-[11px] text-[#21865B] font-bold">
+                    Free Tier
                   </span>
                 </div>
 
-                {/* Card Title & Perks */}
-                <div className="relative z-10">
-                  <h4 className="text-base font-black text-white tracking-tight">
-                    Upgrade ke Black Card VIP
-                  </h4>
-                  <p className="text-xs text-white/75 mt-1 leading-relaxed">
-                    Buka semua episode dari awal hingga tamat tanpa iklan di seluruh serial HUMORA.
-                  </p>
-                </div>
+                <h4 className="text-sm font-bold text-[#24172B] mt-1">
+                  Kamu dapat menonton 2 episode pertama
+                </h4>
 
-                {/* Perks Pills */}
-                <div className="relative z-10 flex items-center gap-1.5 flex-wrap my-3.5">
-                  <span className="bg-white/10 backdrop-blur-xs text-white/90 text-[10px] font-bold px-2 py-0.5 rounded-md border border-white/10 flex items-center gap-1">
-                    👑 Akses Semua Episode
-                  </span>
-                  <span className="bg-white/10 backdrop-blur-xs text-white/90 text-[10px] font-bold px-2 py-0.5 rounded-md border border-white/10 flex items-center gap-1">
-                    🚫 Tanpa Iklan
-                  </span>
-                  <span className="bg-white/10 backdrop-blur-xs text-white/90 text-[10px] font-bold px-2 py-0.5 rounded-md border border-white/10 flex items-center gap-1">
-                    ⚡ Kualitas Full HD
-                  </span>
-                </div>
+                <p className="text-xs text-[#786F7D] mt-1 leading-relaxed">
+                  Buka episode 3 hingga tamat di seluruh series dengan berlangganan HUMORA Premium mulai Rp19.000.
+                </p>
 
-                {/* Gold CTA Button */}
                 <Link
                   href="/subscription"
-                  className="relative z-10 mt-1 w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#FFD52E] via-[#FFE57F] to-[#FFD52E] hover:brightness-105 active:scale-98 text-[#21052F] font-black text-xs flex items-center justify-center gap-1.5 shadow-md transition-all"
+                  className="mt-3.5 w-full py-3 px-4 rounded-xl bg-[#4B0B7A] hover:bg-[#38065C] active:scale-98 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all"
                 >
-                  <Crown className="w-3.5 h-3.5 fill-current text-[#21052F]" />
-                  <span>Dapatkan Kartu VIP Mulai Rp19.000</span>
-                  <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
+                  <Crown className="w-3.5 h-3.5 text-[#FFD52E]" />
+                  <span>Aktifkan Premium Sekarang</span>
                 </Link>
               </div>
             )}
