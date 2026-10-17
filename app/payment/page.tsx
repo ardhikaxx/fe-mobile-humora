@@ -6,17 +6,13 @@ import {
   QrCode,
   CreditCard,
   Wallet,
-  ShieldCheck,
-  Tag,
   Check,
-  AlertCircle,
   Target,
   Loader2,
 } from 'lucide-react';
 import { AppHeader } from '../../components/layout/AppHeader';
 import { ConfirmationModal } from '../../components/ui/ConfirmationModal';
 import { useHumora } from '../../lib/context/HumoraContext';
-import { DEMO_PROMO_CODES } from '../../lib/data/subscriptionPlans';
 import { formatRupiah } from '../../lib/utils/formatters';
 
 interface PaymentMethod {
@@ -58,15 +54,11 @@ export default function CheckoutPage() {
     activatePremium,
     user,
     activeEpisodeTarget,
-    showToast,
   } = useHumora();
 
   const plan = selectedPlan;
 
   const [selectedMethod, setSelectedMethod] = useState('qris');
-  const [promoInput, setPromoInput] = useState('HUMORAHEMAT');
-  const [appliedPromo, setAppliedPromo] = useState<string | null>('HUMORAHEMAT');
-  const [promoError, setPromoError] = useState('');
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -85,28 +77,7 @@ export default function CheckoutPage() {
   }
 
   // Calculate pricing
-  const originalAmount = plan.price;
-  const promoData = appliedPromo ? DEMO_PROMO_CODES[appliedPromo] : null;
-  const discountAmount = promoData
-    ? Math.round(originalAmount * (promoData.discountPercent / 100))
-    : 0;
-  const totalAmount = originalAmount - discountAmount;
-
-  const handleApplyPromo = () => {
-    setPromoError('');
-    const code = promoInput.trim().toUpperCase();
-    if (!code) {
-      setAppliedPromo(null);
-      return;
-    }
-
-    if (DEMO_PROMO_CODES[code]) {
-      setAppliedPromo(code);
-      showToast(`Promo ${code} berhasil dipasang! Diskon ${DEMO_PROMO_CODES[code].discountPercent}%`);
-    } else {
-      setPromoError('Kode promo tidak valid. Coba: HUMORAHEMAT atau TAWALAGI');
-    }
-  };
+  const totalAmount = plan.price;
 
   const handleConfirmPayment = () => {
     setIsConfirmModalOpen(false);
@@ -115,7 +86,7 @@ export default function CheckoutPage() {
     const chosenMethod = PAYMENT_METHODS.find((m) => m.id === selectedMethod)?.name || 'QRIS';
 
     setTimeout(() => {
-      activatePremium(plan.id, chosenMethod, appliedPromo || undefined);
+      activatePremium(plan.id, chosenMethod);
       setIsProcessing(false);
       router.push('/payment/success');
     }, 750);
@@ -124,7 +95,7 @@ export default function CheckoutPage() {
   return (
     <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-12">
       <AppHeader
-        title="Checkout Simulasi"
+        title="Checkout"
         showBack
         showProfile={false}
         showNotification={false}
@@ -132,21 +103,15 @@ export default function CheckoutPage() {
 
       <div className="px-5 pt-3">
         {/* Account Info Pill */}
-        <div className="p-3 bg-white rounded-2xl border border-[#EEE8F0] shadow-xs flex items-center justify-between mb-4">
-          <div>
-            <span className="text-[10px] text-[#786F7D] uppercase font-bold tracking-wider block">
-              Akun Pembeli
-            </span>
-            <span className="text-xs font-bold text-[#24172B]">
-              {user?.name || 'Tamu Pengguna'}
-            </span>
-            <span className="text-[11px] text-[#786F7D] block">
-              {user?.email || 'user@humora.id'}
-            </span>
-          </div>
-
-          <span className="text-[10px] font-bold text-[#21865B] bg-[#EAF8F1] px-2.5 py-1 rounded-full border border-[#21865B]/20">
-            Terverifikasi
+        <div className="p-3.5 bg-white rounded-2xl border border-[#EEE8F0] shadow-xs mb-4">
+          <span className="text-[10px] text-[#786F7D] uppercase font-bold tracking-wider block mb-0.5">
+            Akun Pembeli
+          </span>
+          <span className="text-xs font-bold text-[#24172B] block">
+            {user?.name || 'Tamu Pengguna'}
+          </span>
+          <span className="text-[11px] text-[#786F7D] block">
+            {user?.email || 'user@humora.id'}
           </span>
         </div>
 
@@ -173,56 +138,6 @@ export default function CheckoutPage() {
             <div className="mt-2 text-[11px] text-[#4B0B7A] font-semibold bg-white/70 px-2.5 py-1.5 rounded-lg border border-[#EEE8F0] flex items-center gap-1.5">
               <Target className="w-3.5 h-3.5 text-[#7028B8] shrink-0" />
               <span>Langsung lanjut nonton Episode {activeEpisodeTarget.episodeId} setelah bayar</span>
-            </div>
-          )}
-        </div>
-
-        {/* Promo Code Input */}
-        <div className="mb-5">
-          <label className="block text-xs font-bold text-[#24172B] mb-1.5">
-            Punya Kode Promo?
-          </label>
-          <div className="flex gap-2">
-            <div className="relative flex-1">
-              <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-[#786F7D]">
-                <Tag className="w-3.5 h-3.5" />
-              </div>
-              <input
-                type="text"
-                value={promoInput}
-                onChange={(e) => setPromoInput(e.target.value.toUpperCase())}
-                placeholder="cth. HUMORAHEMAT"
-                className="w-full pl-9 pr-3 py-2.5 bg-white rounded-xl border border-[#EEE8F0] text-xs font-bold uppercase text-[#24172B] focus:outline-none focus:border-[#7028B8]"
-              />
-            </div>
-            <button
-              type="button"
-              onClick={handleApplyPromo}
-              className="px-4 py-2.5 rounded-xl bg-[#21052F] text-white text-xs font-bold active:scale-95 transition-all"
-            >
-              Pasang
-            </button>
-          </div>
-
-          {promoError && (
-            <p className="text-[11px] text-red-600 mt-1 flex items-center gap-1">
-              <AlertCircle className="w-3 h-3" />
-              <span>{promoError}</span>
-            </p>
-          )}
-
-          {appliedPromo && promoData && (
-            <div className="mt-1.5 flex items-center justify-between text-[11px] text-[#21865B] bg-[#EAF8F1] px-2.5 py-1 rounded-lg">
-              <span>{promoData.description} (-{promoData.discountPercent}%)</span>
-              <button
-                onClick={() => {
-                  setAppliedPromo(null);
-                  setPromoInput('');
-                }}
-                className="font-bold underline text-red-600 ml-2"
-              >
-                Hapus
-              </button>
             </div>
           )}
         </div>
@@ -287,18 +202,11 @@ export default function CheckoutPage() {
         <div className="p-4 bg-white rounded-2xl border border-[#EEE8F0] space-y-2 text-xs shadow-xs mb-5">
           <div className="flex items-center justify-between text-[#786F7D]">
             <span>Harga Paket ({plan.periodLabel})</span>
-            <span>{formatRupiah(originalAmount)}</span>
+            <span>{formatRupiah(totalAmount)}</span>
           </div>
 
-          {discountAmount > 0 && (
-            <div className="flex items-center justify-between text-[#21865B] font-semibold">
-              <span>Diskon Promo ({appliedPromo})</span>
-              <span>-{formatRupiah(discountAmount)}</span>
-            </div>
-          )}
-
           <div className="flex items-center justify-between text-[#786F7D]">
-            <span>Biaya Layanan Simulasi</span>
+            <span>Biaya Layanan</span>
             <span className="text-[#21865B] font-bold">GRATIS</span>
           </div>
 
@@ -322,20 +230,15 @@ export default function CheckoutPage() {
             <span>Bayar Sekarang ({formatRupiah(totalAmount)})</span>
           )}
         </button>
-
-        <div className="flex items-center justify-center gap-1.5 text-[11px] text-[#786F7D] mt-3">
-          <ShieldCheck className="w-3.5 h-3.5 text-[#21865B]" />
-          <span>Simulasi instan tanpa kartu kredit nyata</span>
-        </div>
       </div>
 
       {/* Confirmation Modal */}
       <ConfirmationModal
         isOpen={isConfirmModalOpen}
-        title="Konfirmasi Pembayaran Demo"
+        title="Konfirmasi Pembayaran"
         description={`Kamu akan mengaktifkan "${plan.name}" seharga ${formatRupiah(
           totalAmount
-        )} secara simulasi. Tidak ada uang riil yang ditarik.`}
+        )}.`}
         confirmLabel="Konfirmasi Pembayaran"
         cancelLabel="Batal"
         onConfirm={handleConfirmPayment}
