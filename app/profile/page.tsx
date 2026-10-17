@@ -246,7 +246,7 @@ export default function ProfilePage() {
                     Edit Profil
                   </span>
                   <span className="text-[11px] text-[#786F7D]">
-                    Ubah nama, foto profil, bio & nomor HP
+                    Ubah nama, foto profil & nomor HP
                   </span>
                 </div>
               </div>

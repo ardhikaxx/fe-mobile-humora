@@ -7,7 +7,6 @@ import {
   User,
   Mail,
   Phone,
-  Smile,
   Camera,
   Check,
   Save,
@@ -59,7 +58,6 @@ export default function EditProfilePage() {
   const [name, setName] = useState(user?.name || '');
   const [email, setEmail] = useState(user?.email || '');
   const [phone, setPhone] = useState(user?.phone || '');
-  const [bio, setBio] = useState(user?.bio || 'Penikmat sketsa komedi garis keras 😂');
   const [gender, setGender] = useState(user?.gender === 'Perempuan' ? 'Perempuan' : 'Laki-laki');
   const [avatarUrl, setAvatarUrl] = useState(user?.avatarUrl || PRESET_AVATARS[0].url);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -72,7 +70,6 @@ export default function EditProfilePage() {
       if (user.name) setName(user.name);
       if (user.email) setEmail(user.email);
       if (user.phone) setPhone(user.phone);
-      if (user.bio) setBio(user.bio);
       if (user.gender) setGender(user.gender === 'Perempuan' ? 'Perempuan' : 'Laki-laki');
       if (user.avatarUrl) setAvatarUrl(user.avatarUrl);
     }
@@ -116,7 +113,6 @@ export default function EditProfilePage() {
         name: name.trim(),
         email: email.trim(),
         phone: phone.trim(),
-        bio: bio.trim(),
         gender,
         avatarUrl,
       });
@@ -339,25 +335,6 @@ export default function EditProfilePage() {
                 {errors.phone}
               </span>
             )}
-          </div>
-
-          {/* Bio / Status Humor */}
-          <div>
-            <div className="flex items-center justify-between mb-1.5">
-              <label className="text-xs font-bold text-[#24172B] flex items-center gap-1">
-                <Smile className="w-3.5 h-3.5 text-[#7028B8]" />
-                <span>Bio / Status Lucu</span>
-              </label>
-              <span className="text-[10px] text-[#A39CA9]">{bio.length}/100</span>
-            </div>
-            <textarea
-              rows={2}
-              maxLength={100}
-              value={bio}
-              onChange={(e) => setBio(e.target.value)}
-              placeholder="Ceritakan sedikit seleramu atau status lucumu..."
-              className="w-full px-3.5 py-2.5 rounded-2xl border border-[#EEE8F0] bg-white text-xs sm:text-sm font-semibold text-[#24172B] focus:border-[#7028B8] focus:ring-2 focus:ring-[#7028B8]/15 focus:outline-none transition-all resize-none"
-            />
           </div>
 
           {/* Jenis Kelamin */}
