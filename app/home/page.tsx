@@ -161,7 +161,7 @@ export default function HomePage() {
 
         <div className="flex gap-3 px-5 overflow-x-auto no-scrollbar pb-2">
           {popularSeries.map((s) => (
-            <SeriesCard key={s.id} series={s} badgeType="rating" />
+            <SeriesCard key={s.id} series={s} badgeType="likes" />
           ))}
         </div>
       </section>

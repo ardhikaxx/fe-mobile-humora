@@ -2,13 +2,14 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Star, Play } from 'lucide-react';
+import { Heart, Play } from 'lucide-react';
 import { Series } from '../../lib/types';
+import { formatLikes } from '../../lib/utils/formatters';
 
 interface SeriesCardProps {
   series: Series;
   width?: string;
-  badgeType?: 'free' | 'premium' | 'new' | 'rating';
+  badgeType?: 'free' | 'premium' | 'new' | 'rating' | 'likes';
 }
 
 export function SeriesCard({
@@ -62,9 +63,9 @@ export function SeriesCard({
           </span>
         )}
 
-        <div className="bg-black/60 backdrop-blur-xs text-white text-[11px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 border border-white/10 shadow-xs">
-          <Star className="w-2.5 h-2.5 text-[#FFD52E] fill-[#FFD52E]" />
-          <span>{series.rating.toFixed(1)}</span>
+        <div className="bg-black/60 backdrop-blur-xs text-white text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 border border-white/10 shadow-xs">
+          <Heart className="w-2.5 h-2.5 text-[#D94152] fill-[#D94152]" />
+          <span>{formatLikes(series.likesCount || 12000)}</span>
         </div>
       </div>
 

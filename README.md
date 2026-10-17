@@ -90,7 +90,7 @@ fe-humora/
 │   ├── series/
 │   │   ├── ContinueWatchingCard.tsx  # Kartu horizontal lanjutkan menonton
 │   │   ├── EpisodeCard.tsx           # Baris episode dengan indikator gembok & gratis
-│   │   └── SeriesCard.tsx            # Kartu poster vertikal 2:3 dengan rating & badge
+│   │   └── SeriesCard.tsx            # Kartu poster vertikal dengan jumlah suka & badge
 │   ├── subscription/
 │   │   ├── SubscriptionBottomSheet.tsx # Bottom sheet penawaran episode premium
 │   │   └── SubscriptionPlanCard.tsx    # Kartu pilihan paket berlangganan

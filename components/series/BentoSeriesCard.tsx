@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Star, Play, ChevronRight, Flame, Sparkles } from 'lucide-react';
+import { Heart, Play, ChevronRight, Flame, Sparkles } from 'lucide-react';
 import { Series } from '../../lib/types';
+import { formatLikes } from '../../lib/utils/formatters';
 
 export type BentoCardVariant = 'hero' | 'horizontal' | 'portrait';
 
@@ -63,8 +64,8 @@ export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
           </div>
 
           <div className="bg-black/40 backdrop-blur-md text-white text-[11px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 border border-white/15">
-            <Star className="w-3 h-3 text-[#FFD52E] fill-[#FFD52E]" />
-            <span>{series.rating.toFixed(1)}</span>
+            <Heart className="w-3 h-3 text-[#D94152] fill-[#D94152]" />
+            <span>{formatLikes(series.likesCount || 14000)}</span>
           </div>
         </div>
 
@@ -123,10 +124,10 @@ export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
             </div>
           )}
 
-          {/* Rating Pill */}
+          {/* Likes Pill */}
           <div className="absolute bottom-1.5 left-1.5 bg-black/60 backdrop-blur-xs text-white text-[9px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
-            <Star className="w-2.5 h-2.5 text-[#FFD52E] fill-[#FFD52E]" />
-            <span>{series.rating.toFixed(1)}</span>
+            <Heart className="w-2.5 h-2.5 text-[#D94152] fill-[#D94152]" />
+            <span>{formatLikes(series.likesCount || 14000)}</span>
           </div>
         </div>
 
@@ -205,8 +206,8 @@ export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
         )}
 
         <div className="bg-black/50 backdrop-blur-xs text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5 border border-white/10">
-          <Star className="w-2.5 h-2.5 text-[#FFD52E] fill-[#FFD52E]" />
-          <span>{series.rating.toFixed(1)}</span>
+          <Heart className="w-2.5 h-2.5 text-[#D94152] fill-[#D94152]" />
+          <span>{formatLikes(series.likesCount || 14000)}</span>
         </div>
       </div>
 

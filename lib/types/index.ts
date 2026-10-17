@@ -22,7 +22,8 @@ export interface Series {
   thumbnail: string; // Unified single thumbnail (no poster needed)
   poster?: string; // Optional fallback
   cover?: string; // Optional fallback
-  rating: number; // e.g. 4.8
+  rating?: number;
+  likesCount: number; // e.g. 14200 (14.2rb suka)
   year: number;
   videoCount?: number;
   episodeCount: number;

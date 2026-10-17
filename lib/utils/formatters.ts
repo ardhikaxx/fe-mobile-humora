@@ -43,3 +43,14 @@ export function getDaysRemaining(endDateStr: string | null): number {
     return 0;
   }
 }
+
+export function formatLikes(count?: number | null): string {
+  if (!count && count !== 0) return '0';
+  if (count >= 1000000) {
+    return `${(count / 1000000).toFixed(1).replace('.0', '')}jt`;
+  }
+  if (count >= 1000) {
+    return `${(count / 1000).toFixed(1).replace('.0', '')}rb`;
+  }
+  return count.toLocaleString('id-ID');
+}

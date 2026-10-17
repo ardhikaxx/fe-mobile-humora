@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Play,
-  Star,
+  Heart,
   Sparkles,
   ChevronDown,
   ChevronUp,
@@ -13,6 +13,7 @@ import { AppHeader } from '../../../components/layout/AppHeader';
 import { SERIES_LIST } from '../../../lib/data/seriesData';
 import { EpisodeCard } from '../../../components/series/EpisodeCard';
 import { useHumora } from '../../../lib/context/HumoraContext';
+import { formatLikes } from '../../../lib/utils/formatters';
 
 interface SeriesDetailClientProps {
   slug: string;
@@ -102,9 +103,9 @@ export default function SeriesDetailClient({ slug }: SeriesDetailClientProps) {
 
         {/* Series Info Row */}
         <div className="flex items-center gap-3 text-xs text-[#786F7D] mt-2">
-          <div className="flex items-center gap-1 font-bold text-[#24172B]">
-            <Star className="w-3.5 h-3.5 text-[#FFD52E] fill-[#FFD52E]" />
-            <span>{series.rating.toFixed(1)}</span>
+          <div className="flex items-center gap-1.5 font-bold text-[#D94152] bg-[#FEECEF] px-2.5 py-0.5 rounded-full border border-[#D94152]/20">
+            <Heart className="w-3.5 h-3.5 fill-[#D94152]" />
+            <span>{formatLikes(series.likesCount || 14200)} Suka</span>
           </div>
           <span>•</span>
           <span className="font-medium">{series.videoCount || series.episodes.length} Video</span>
