@@ -10,7 +10,6 @@ import {
   Phone,
   Lock,
   ArrowRight,
-  Sparkles,
   Loader2,
 } from 'lucide-react';
 import { HumoraLogo } from '../../../components/brand/HumoraLogo';
@@ -22,8 +21,8 @@ export default function LoginPage() {
   const { login, pendingRedirectUrl, setPendingRedirectUrl, showToast } = useHumora();
 
   const [authMethod, setAuthMethod] = useState<'email' | 'phone'>('email');
-  const [identifier, setIdentifier] = useState('ardhika@humora.id');
-  const [password, setPassword] = useState('humora2026');
+  const [identifier, setIdentifier] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -57,17 +56,6 @@ export default function LoginPage() {
     }, 550);
   };
 
-  const handleQuickDemoFill = () => {
-    if (authMethod === 'email') {
-      setIdentifier('ardhika@humora.id');
-      setPassword('humora2026');
-    } else {
-      setIdentifier('081288997766');
-      setPassword('123456');
-    }
-    setErrorMsg('');
-  };
-
   return (
     <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-6 select-none">
       {/* Floating Header Bar */}
@@ -89,25 +77,13 @@ export default function LoginPage() {
           </p>
         </div>
 
-        {/* Quick Demo Fill Pill */}
-        <div className="mb-4 flex justify-center">
-          <button
-            type="button"
-            onClick={handleQuickDemoFill}
-            className="text-[11px] font-bold text-[#4B0B7A] bg-[#FFF9E0] hover:bg-[#FFE57F] border border-[#FFD52E] px-3 py-1 rounded-full flex items-center gap-1.5 transition-all shadow-xs"
-          >
-            <Sparkles className="w-3 h-3 text-[#E58A16]" />
-            <span>Isi Cepat Akun Demo</span>
-          </button>
-        </div>
-
         {/* Method Switcher Tabs (Email vs Phone) */}
         <div className="grid grid-cols-2 p-1 bg-[#F6F1F8] rounded-xl mb-4 text-xs font-bold">
           <button
             type="button"
             onClick={() => {
               setAuthMethod('email');
-              setIdentifier('ardhika@humora.id');
+              setIdentifier('');
             }}
             className={`py-2 rounded-lg transition-all flex items-center justify-center gap-1.5 ${
               authMethod === 'email'
@@ -122,7 +98,7 @@ export default function LoginPage() {
             type="button"
             onClick={() => {
               setAuthMethod('phone');
-              setIdentifier('081288997766');
+              setIdentifier('');
             }}
             className={`py-2 rounded-lg transition-all flex items-center justify-center gap-1.5 ${
               authMethod === 'phone'
@@ -248,21 +224,21 @@ export default function LoginPage() {
         </Link>
       </div>
 
-      {/* Modal Lupa Sandi Demo */}
+      {/* Modal Lupa Sandi */}
       {isForgotModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
           <div className="bg-white rounded-3xl p-6 max-w-xs w-full text-center shadow-xl border border-[#EEE8F0]">
             <div className="w-12 h-12 rounded-2xl bg-[#FFF9E0] text-[#E58A16] flex items-center justify-center mx-auto mb-3">
               <Lock className="w-6 h-6" />
             </div>
-            <h3 className="text-base font-bold text-[#24172B]">Pemulihan Sandi Demo</h3>
+            <h3 className="text-base font-bold text-[#24172B]">Pemulihan Kata Sandi</h3>
             <p className="text-xs text-[#786F7D] mt-2 leading-relaxed">
-              Karena ini aplikasi prototype, kamu bisa langsung masuk menggunakan akun demo apapun tanpa khawatir lupa kata sandi.
+              Tautan pemulihan kata sandi akan dikirimkan ke email atau nomor handphone akun kamu.
             </p>
             <button
               onClick={() => {
                 setIsForgotModalOpen(false);
-                showToast('Gunakan kredensial cepat yang telah disediakan.');
+                showToast('Petunjuk pemulihan kata sandi telah dikirim.');
               }}
               className="mt-4 w-full py-2.5 rounded-xl bg-[#4B0B7A] text-white font-bold text-xs"
             >
