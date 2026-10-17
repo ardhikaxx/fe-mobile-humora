@@ -125,7 +125,7 @@ export default function RegisterPage() {
                     if (errorMsg) setErrorMsg('');
                   }}
                   placeholder="cth. Ardhika Pradana"
-                  className="w-full pl-10 pr-4 py-3 bg-[#FAF8F5] focus:bg-white rounded-xl border border-[#EEE8F0] text-xs sm:text-sm text-[#24172B] placeholder-[#9E95A4] focus:outline-none focus:border-[#7028B8] focus:ring-3 focus:ring-[#7028B8]/15 transition-all shadow-xs"
+                  className="w-full pl-10 pr-4 py-3 bg-white rounded-xl border border-[#EEE8F0] text-xs sm:text-sm text-[#24172B] placeholder-[#9E95A4] focus:outline-none focus:border-[#7028B8] focus:ring-3 focus:ring-[#7028B8]/15 transition-all shadow-xs"
                 />
               </div>
             </div>
@@ -147,7 +147,7 @@ export default function RegisterPage() {
                     if (errorMsg) setErrorMsg('');
                   }}
                   placeholder="nama@email.com atau 0812xxxx"
-                  className="w-full pl-10 pr-4 py-3 bg-[#FAF8F5] focus:bg-white rounded-xl border border-[#EEE8F0] text-xs sm:text-sm text-[#24172B] placeholder-[#9E95A4] focus:outline-none focus:border-[#7028B8] focus:ring-3 focus:ring-[#7028B8]/15 transition-all shadow-xs"
+                  className="w-full pl-10 pr-4 py-3 bg-white rounded-xl border border-[#EEE8F0] text-xs sm:text-sm text-[#24172B] placeholder-[#9E95A4] focus:outline-none focus:border-[#7028B8] focus:ring-3 focus:ring-[#7028B8]/15 transition-all shadow-xs"
                 />
               </div>
             </div>
@@ -169,7 +169,7 @@ export default function RegisterPage() {
                     if (errorMsg) setErrorMsg('');
                   }}
                   placeholder="Minimal 6 karakter"
-                  className="w-full pl-10 pr-10 py-3 bg-[#FAF8F5] focus:bg-white rounded-xl border border-[#EEE8F0] text-xs sm:text-sm text-[#24172B] placeholder-[#9E95A4] focus:outline-none focus:border-[#7028B8] focus:ring-3 focus:ring-[#7028B8]/15 transition-all shadow-xs"
+                  className="w-full pl-10 pr-10 py-3 bg-white rounded-xl border border-[#EEE8F0] text-xs sm:text-sm text-[#24172B] placeholder-[#9E95A4] focus:outline-none focus:border-[#7028B8] focus:ring-3 focus:ring-[#7028B8]/15 transition-all shadow-xs"
                 />
                 <button
                   type="button"
@@ -199,7 +199,7 @@ export default function RegisterPage() {
                     if (errorMsg) setErrorMsg('');
                   }}
                   placeholder="Ketik ulang kata sandi..."
-                  className="w-full pl-10 pr-10 py-3 bg-[#FAF8F5] focus:bg-white rounded-xl border border-[#EEE8F0] text-xs sm:text-sm text-[#24172B] placeholder-[#9E95A4] focus:outline-none focus:border-[#7028B8] focus:ring-3 focus:ring-[#7028B8]/15 transition-all shadow-xs"
+                  className="w-full pl-10 pr-10 py-3 bg-white rounded-xl border border-[#EEE8F0] text-xs sm:text-sm text-[#24172B] placeholder-[#9E95A4] focus:outline-none focus:border-[#7028B8] focus:ring-3 focus:ring-[#7028B8]/15 transition-all shadow-xs"
                 />
                 <button
                   type="button"

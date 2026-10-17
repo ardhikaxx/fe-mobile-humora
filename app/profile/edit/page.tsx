@@ -263,7 +263,7 @@ export default function EditProfilePage() {
                 className={`w-full pl-10 pr-3.5 py-3 rounded-2xl border text-xs sm:text-sm font-semibold text-[#24172B] focus:outline-none transition-all ${
                   errors.name
                     ? 'border-[#D94152] bg-[#FEECEF]/30 focus:ring-2 focus:ring-[#D94152]/30'
-                    : 'border-[#EEE8F0] bg-[#FFFDF7] focus:border-[#7028B8] focus:ring-2 focus:ring-[#7028B8]/15'
+                    : 'border-[#EEE8F0] bg-white focus:border-[#7028B8] focus:ring-2 focus:ring-[#7028B8]/15'
                 }`}
               />
             </div>
@@ -301,7 +301,7 @@ export default function EditProfilePage() {
                 className={`w-full pl-10 pr-3.5 py-3 rounded-2xl border text-xs sm:text-sm font-semibold text-[#24172B] focus:outline-none transition-all ${
                   errors.email
                     ? 'border-[#D94152] bg-[#FEECEF]/30 focus:ring-2 focus:ring-[#D94152]/30'
-                    : 'border-[#EEE8F0] bg-[#FFFDF7] focus:border-[#7028B8] focus:ring-2 focus:ring-[#7028B8]/15'
+                    : 'border-[#EEE8F0] bg-white focus:border-[#7028B8] focus:ring-2 focus:ring-[#7028B8]/15'
                 }`}
               />
             </div>
@@ -333,7 +333,7 @@ export default function EditProfilePage() {
                 className={`w-full pl-10 pr-3.5 py-3 rounded-2xl border text-xs sm:text-sm font-semibold text-[#24172B] focus:outline-none transition-all ${
                   errors.phone
                     ? 'border-[#D94152] bg-[#FEECEF]/30 focus:ring-2 focus:ring-[#D94152]/30'
-                    : 'border-[#EEE8F0] bg-[#FFFDF7] focus:border-[#7028B8] focus:ring-2 focus:ring-[#7028B8]/15'
+                    : 'border-[#EEE8F0] bg-white focus:border-[#7028B8] focus:ring-2 focus:ring-[#7028B8]/15'
                 }`}
               />
             </div>
@@ -360,7 +360,7 @@ export default function EditProfilePage() {
               value={bio}
               onChange={(e) => setBio(e.target.value)}
               placeholder="Ceritakan sedikit seleramu atau status lucumu..."
-              className="w-full px-3.5 py-2.5 rounded-2xl border border-[#EEE8F0] bg-[#FFFDF7] text-xs sm:text-sm font-semibold text-[#24172B] focus:border-[#7028B8] focus:ring-2 focus:ring-[#7028B8]/15 focus:outline-none transition-all resize-none"
+              className="w-full px-3.5 py-2.5 rounded-2xl border border-[#EEE8F0] bg-white text-xs sm:text-sm font-semibold text-[#24172B] focus:border-[#7028B8] focus:ring-2 focus:ring-[#7028B8]/15 focus:outline-none transition-all resize-none"
             />
           </div>
 

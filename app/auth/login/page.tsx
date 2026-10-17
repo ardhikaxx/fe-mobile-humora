@@ -173,7 +173,7 @@ export default function LoginPage() {
                   placeholder={
                     authMethod === 'email' ? 'nama@email.com' : '0812xxxxxxxx'
                   }
-                  className="w-full pl-10 pr-4 py-3 bg-[#FAF8F5] focus:bg-white rounded-xl border border-[#EEE8F0] text-xs sm:text-sm text-[#24172B] placeholder-[#9E95A4] focus:outline-none focus:border-[#7028B8] focus:ring-3 focus:ring-[#7028B8]/15 transition-all shadow-xs"
+                  className="w-full pl-10 pr-4 py-3 bg-white rounded-xl border border-[#EEE8F0] text-xs sm:text-sm text-[#24172B] placeholder-[#9E95A4] focus:outline-none focus:border-[#7028B8] focus:ring-3 focus:ring-[#7028B8]/15 transition-all shadow-xs"
                 />
               </div>
             </div>
@@ -204,7 +204,7 @@ export default function LoginPage() {
                     if (errorMsg) setErrorMsg('');
                   }}
                   placeholder="Masukkan kata sandi..."
-                  className="w-full pl-10 pr-10 py-3 bg-[#FAF8F5] focus:bg-white rounded-xl border border-[#EEE8F0] text-xs sm:text-sm text-[#24172B] placeholder-[#9E95A4] focus:outline-none focus:border-[#7028B8] focus:ring-3 focus:ring-[#7028B8]/15 transition-all shadow-xs"
+                  className="w-full pl-10 pr-10 py-3 bg-white rounded-xl border border-[#EEE8F0] text-xs sm:text-sm text-[#24172B] placeholder-[#9E95A4] focus:outline-none focus:border-[#7028B8] focus:ring-3 focus:ring-[#7028B8]/15 transition-all shadow-xs"
                 />
                 <button
                   type="button"
@@ -279,7 +279,7 @@ export default function LoginPage() {
                 value={forgotInput}
                 onChange={(e) => setForgotInput(e.target.value)}
                 placeholder="nama@email.com atau 0812xxxx"
-                className="w-full px-3.5 py-2.5 bg-[#FAF8F5] focus:bg-white rounded-xl border border-[#EEE8F0] text-xs text-[#24172B] focus:outline-none focus:border-[#7028B8] transition-all"
+                className="w-full px-3.5 py-2.5 bg-white rounded-xl border border-[#EEE8F0] text-xs text-[#24172B] focus:outline-none focus:border-[#7028B8] transition-all"
                 autoFocus
               />
               <div className="flex gap-2">
