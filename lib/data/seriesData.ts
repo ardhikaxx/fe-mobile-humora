@@ -10,7 +10,6 @@ export const SERIES_LIST: Series[] = [
     thumbnail: '/images/thumbnails/tipe-penumpang-taxi-online.jpg',
     poster: '/images/thumbnails/tipe-penumpang-taxi-online.jpg',
     cover: '/images/thumbnails/tipe-penumpang-taxi-online.jpg',
-    rating: 4.9,
     likesCount: 14200,
     year: 2026,
     videoCount: 4,
@@ -30,6 +29,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/tipe-penumpang-taxi-online.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
         releaseDate: '10 Feb 2026',
+        likesCount: 4250,
       },
       {
         id: 2,
@@ -42,6 +42,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/tipe-penumpang-taxi-online.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
         releaseDate: '12 Feb 2026',
+        likesCount: 3820,
       },
       {
         id: 3,
@@ -54,6 +55,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/tipe-penumpang-taxi-online.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
         releaseDate: '15 Feb 2026',
+        likesCount: 3100,
       },
       {
         id: 4,
@@ -66,6 +68,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/tipe-penumpang-taxi-online.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
         releaseDate: '18 Feb 2026',
+        likesCount: 3030,
       },
     ],
   },
@@ -78,7 +81,6 @@ export const SERIES_LIST: Series[] = [
     thumbnail: '/images/thumbnails/cara-deketin-cewek.jpg',
     poster: '/images/thumbnails/cara-deketin-cewek.jpg',
     cover: '/images/thumbnails/cara-deketin-cewek.jpg',
-    rating: 4.8,
     likesCount: 18500,
     year: 2026,
     videoCount: 4,
@@ -98,6 +100,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/cara-deketin-cewek.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
         releaseDate: '1 Mar 2026',
+        likesCount: 5600,
       },
       {
         id: 2,
@@ -110,6 +113,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/cara-deketin-cewek.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
         releaseDate: '3 Mar 2026',
+        likesCount: 4900,
       },
       {
         id: 3,
@@ -122,6 +126,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/cara-deketin-cewek.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4',
         releaseDate: '5 Mar 2026',
+        likesCount: 4100,
       },
       {
         id: 4,
@@ -134,6 +139,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/cara-deketin-cewek.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
         releaseDate: '8 Mar 2026',
+        likesCount: 3900,
       },
     ],
   },
@@ -146,7 +152,6 @@ export const SERIES_LIST: Series[] = [
     thumbnail: '/images/thumbnails/tipe-tipe-teman-sekantor.jpg',
     poster: '/images/thumbnails/tipe-tipe-teman-sekantor.jpg',
     cover: '/images/thumbnails/tipe-tipe-teman-sekantor.jpg',
-    rating: 4.9,
     likesCount: 12800,
     year: 2026,
     videoCount: 4,
@@ -166,6 +171,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/tipe-tipe-teman-sekantor.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
         releaseDate: '15 Jan 2026',
+        likesCount: 3800,
       },
       {
         id: 2,
@@ -178,6 +184,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/tipe-tipe-teman-sekantor.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
         releaseDate: '18 Jan 2026',
+        likesCount: 3400,
       },
       {
         id: 3,
@@ -190,6 +197,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/tipe-tipe-teman-sekantor.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
         releaseDate: '22 Jan 2026',
+        likesCount: 2900,
       },
       {
         id: 4,
@@ -202,6 +210,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/tipe-tipe-teman-sekantor.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
         releaseDate: '25 Jan 2026',
+        likesCount: 2700,
       },
     ],
   },
@@ -214,7 +223,6 @@ export const SERIES_LIST: Series[] = [
     thumbnail: '/images/thumbnails/drama-warga-grup-rt.jpg',
     poster: '/images/thumbnails/drama-warga-grup-rt.jpg',
     cover: '/images/thumbnails/drama-warga-grup-rt.jpg',
-    rating: 4.8,
     likesCount: 21400,
     year: 2026,
     videoCount: 4,
@@ -234,6 +242,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/drama-warga-grup-rt.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
         releaseDate: '2 Feb 2026',
+        likesCount: 6500,
       },
       {
         id: 2,
@@ -246,6 +255,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/drama-warga-grup-rt.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
         releaseDate: '5 Feb 2026',
+        likesCount: 5800,
       },
       {
         id: 3,
@@ -258,6 +268,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/drama-warga-grup-rt.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4',
         releaseDate: '8 Feb 2026',
+        likesCount: 4700,
       },
       {
         id: 4,
@@ -270,6 +281,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/drama-warga-grup-rt.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
         releaseDate: '12 Feb 2026',
+        likesCount: 4400,
       },
     ],
   },
@@ -282,7 +294,6 @@ export const SERIES_LIST: Series[] = [
     thumbnail: '/images/thumbnails/tipe-pembeli-di-toko-kelontong.jpg',
     poster: '/images/thumbnails/tipe-pembeli-di-toko-kelontong.jpg',
     cover: '/images/thumbnails/tipe-pembeli-di-toko-kelontong.jpg',
-    rating: 4.7,
     likesCount: 9600,
     year: 2026,
     videoCount: 4,
@@ -302,6 +313,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/tipe-pembeli-di-toko-kelontong.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
         releaseDate: '20 Jan 2026',
+        likesCount: 2900,
       },
       {
         id: 2,
@@ -314,6 +326,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/tipe-pembeli-di-toko-kelontong.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
         releaseDate: '23 Jan 2026',
+        likesCount: 2500,
       },
       {
         id: 3,
@@ -326,6 +339,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/tipe-pembeli-di-toko-kelontong.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
         releaseDate: '27 Jan 2026',
+        likesCount: 2200,
       },
       {
         id: 4,
@@ -338,6 +352,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/tipe-pembeli-di-toko-kelontong.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
         releaseDate: '30 Jan 2026',
+        likesCount: 2000,
       },
     ],
   },
@@ -350,7 +365,6 @@ export const SERIES_LIST: Series[] = [
     thumbnail: '/images/thumbnails/momen-canggung-kencan-pertama.jpg',
     poster: '/images/thumbnails/momen-canggung-kencan-pertama.jpg',
     cover: '/images/thumbnails/momen-canggung-kencan-pertama.jpg',
-    rating: 4.9,
     likesCount: 16700,
     year: 2026,
     videoCount: 4,
@@ -370,6 +384,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/momen-canggung-kencan-pertama.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
         releaseDate: '10 Feb 2026',
+        likesCount: 5100,
       },
       {
         id: 2,
@@ -382,6 +397,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/momen-canggung-kencan-pertama.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
         releaseDate: '14 Feb 2026',
+        likesCount: 4300,
       },
       {
         id: 3,
@@ -394,6 +410,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/momen-canggung-kencan-pertama.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4',
         releaseDate: '18 Feb 2026',
+        likesCount: 3800,
       },
       {
         id: 4,
@@ -406,6 +423,7 @@ export const SERIES_LIST: Series[] = [
         thumbnail: '/images/thumbnails/momen-canggung-kencan-pertama.jpg',
         videoSource: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
         releaseDate: '22 Feb 2026',
+        likesCount: 3500,
       },
     ],
   },

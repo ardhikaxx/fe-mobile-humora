@@ -11,6 +11,7 @@ export interface Episode {
   thumbnail: string;
   videoSource?: string;
   releaseDate?: string;
+  likesCount: number; // e.g. 4250 (4.2rb suka)
 }
 
 export interface Series {
@@ -22,7 +23,6 @@ export interface Series {
   thumbnail: string; // Unified single thumbnail (no poster needed)
   poster?: string; // Optional fallback
   cover?: string; // Optional fallback
-  rating?: number;
   likesCount: number; // e.g. 14200 (14.2rb suka)
   year: number;
   videoCount?: number;

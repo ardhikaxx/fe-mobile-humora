@@ -27,15 +27,21 @@ export default function WatchClient({ seriesSlug, episodeId }: WatchClientProps)
   const router = useRouter();
   const { canAccessEpisode, openSubscriptionSheet, showToast } = useHumora();
 
-  const [isLiked, setIsLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(1420);
-  const [isDescExpanded, setIsDescExpanded] = useState(false);
-
   const series = SERIES_LIST.find((s) => s.slug === seriesSlug) || SERIES_LIST[0];
   const episodeNum = parseInt(episodeId, 10) || 1;
   const currentEpisode =
     series.episodes.find((ep) => ep.id === episodeNum || ep.number === episodeNum) ||
     series.episodes[0];
+
+  const [isLiked, setIsLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(currentEpisode.likesCount || 1420);
+  const [isDescExpanded, setIsDescExpanded] = useState(false);
+
+  // Sync likes with current episode
+  useEffect(() => {
+    setIsLiked(false);
+    setLikeCount(currentEpisode.likesCount || 1420);
+  }, [currentEpisode.id, currentEpisode.likesCount]);
 
   // Access verification on mount
   useEffect(() => {

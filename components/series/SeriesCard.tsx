@@ -9,7 +9,7 @@ import { formatLikes } from '../../lib/utils/formatters';
 interface SeriesCardProps {
   series: Series;
   width?: string;
-  badgeType?: 'free' | 'premium' | 'new' | 'rating' | 'likes';
+  badgeType?: 'free' | 'premium' | 'new' | 'likes';
 }
 
 export function SeriesCard({

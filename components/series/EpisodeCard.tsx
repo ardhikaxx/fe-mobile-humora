@@ -2,9 +2,10 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { Lock, Play, CheckCircle2 } from 'lucide-react';
+import { Lock, Play, CheckCircle2, Heart } from 'lucide-react';
 import { Episode, Series } from '../../lib/types';
 import { useHumora } from '../../lib/context/HumoraContext';
+import { formatLikes } from '../../lib/utils/formatters';
 
 interface EpisodeCardProps {
   series: Series;
@@ -98,9 +99,17 @@ export function EpisodeCard({ series, episode, isCurrent = false }: EpisodeCardP
       <div className="flex-1 min-w-0 flex flex-col justify-between self-stretch py-0.5">
         <div>
           <div className="flex items-center justify-between gap-2 mb-1">
-            <span className="text-xs font-bold text-[#7028B8]">
-              Video {episode.number}
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-[#7028B8]">
+                Video {episode.number}
+              </span>
+              {episode.likesCount !== undefined && (
+                <span className="text-[10px] font-bold text-[#D94152] flex items-center gap-0.5">
+                  <Heart className="w-2.5 h-2.5 fill-[#D94152]" />
+                  <span>{formatLikes(episode.likesCount)}</span>
+                </span>
+              )}
+            </div>
 
             {/* Access Badges */}
             {episode.accessType === 'free' ? (
