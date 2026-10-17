@@ -64,9 +64,8 @@ const DEMO_USER: UserProfile = {
   name: 'Ardhika Pradana',
   email: 'ardhika@humora.id',
   phone: '0812-8899-7766',
-  avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
+  avatarUrl: '',
   joinedDate: '12 Januari 2026',
-  bio: 'Penikmat sketsa komedi garis keras 😂',
   gender: 'Laki-laki',
 };
 

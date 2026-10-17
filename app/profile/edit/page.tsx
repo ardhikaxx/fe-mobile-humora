@@ -17,12 +17,11 @@ export default function EditProfilePage() {
   const router = useRouter();
   const { user, updateProfile, showToast } = useHumora();
 
-  // Form State initialized with fallback to prevent empty string on initial render
+  // Form State initialized with user data
   const [name, setName] = useState(user?.name || '');
   const [email, setEmail] = useState(user?.email || '');
   const [phone, setPhone] = useState(user?.phone || '');
   const [gender, setGender] = useState(user?.gender === 'Perempuan' ? 'Perempuan' : 'Laki-laki');
-  const [avatarUrl, setAvatarUrl] = useState(user?.avatarUrl || '/icons/logo-humora.png');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
 
@@ -33,7 +32,6 @@ export default function EditProfilePage() {
       if (user.email) setEmail(user.email);
       if (user.phone) setPhone(user.phone);
       if (user.gender) setGender(user.gender === 'Perempuan' ? 'Perempuan' : 'Laki-laki');
-      if (user.avatarUrl) setAvatarUrl(user.avatarUrl);
     }
   }, [user]);
 
@@ -76,7 +74,6 @@ export default function EditProfilePage() {
         email: email.trim(),
         phone: phone.trim(),
         gender,
-        avatarUrl,
       });
 
       setIsSubmitting(false);
@@ -113,32 +110,16 @@ export default function EditProfilePage() {
       <AppHeader title="Edit Profil" showBack />
 
       <form onSubmit={handleSubmit} className="px-5 pt-3 space-y-5">
-        {/* AVATAR HERO CARD */}
-        <div className="p-6 bg-white rounded-3xl border border-[#EEE8F0] shadow-xs flex flex-col items-center text-center relative overflow-hidden">
-          <div className="w-24 h-24 rounded-3xl overflow-hidden border-2 border-[#FFD52E] shadow-md bg-[#F6F1F8] ring-4 ring-[#FFF9E0] flex items-center justify-center">
-            {avatarUrl ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={avatarUrl}
-                alt={name || 'Avatar Profil'}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <User className="w-10 h-10 text-[#7028B8]" />
-            )}
-          </div>
-
-          <div className="mt-3">
-            <h3 className="text-sm font-black text-[#24172B] tracking-tight">{name || 'Nama Pengguna'}</h3>
-            <p className="text-[11px] text-[#786F7D] mt-0.5">Member sejak {user.joinedDate}</p>
-          </div>
-        </div>
-
         {/* INPUT FIELDS SECTION */}
-        <div className="bg-white rounded-3xl border border-[#EEE8F0] p-5 shadow-xs space-y-4">
-          <h4 className="text-xs font-black text-[#21052F] uppercase tracking-wider">
-            Informasi Pribadi
-          </h4>
+        <div className="bg-white rounded-3xl border border-[#EEE8F0] p-5 sm:p-6 shadow-xs space-y-4">
+          <div className="pb-3 border-b border-[#EEE8F0]">
+            <h4 className="text-sm font-black text-[#21052F] tracking-tight">
+              Informasi Akun
+            </h4>
+            <p className="text-[11px] text-[#786F7D] mt-0.5">
+              Member sejak {user.joinedDate}
+            </p>
+          </div>
 
           {/* Nama Lengkap */}
           <div>
