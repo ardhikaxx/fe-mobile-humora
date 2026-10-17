@@ -8,7 +8,6 @@ import {
   Mail,
   Lock,
   ArrowRight,
-  Sparkles,
   Loader2,
 } from 'lucide-react';
 import { HumoraLogo } from '../../../components/brand/HumoraLogo';
@@ -64,26 +63,12 @@ export default function RegisterPage() {
     }, 550);
   };
 
-  const handleQuickDemoFill = () => {
-    setName('Ardhika Pradana');
-    setIdentifier('ardhika@humora.id');
-    setPassword('humora2026');
-    setConfirmPassword('humora2026');
-    setAgreeTerms(true);
-    setErrorMsg('');
-  };
-
   return (
     <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-6 select-none">
       {/* Floating Header Bar */}
       <AppHeader
         title="Daftar Akun"
         showBack
-        rightAction={
-          <Link href="/home" className="text-xs font-bold text-[#7028B8] hover:underline px-2 py-1">
-            Lewati
-          </Link>
-        }
       />
 
       {/* Main Form Content */}
@@ -97,18 +82,6 @@ export default function RegisterPage() {
           <p className="text-xs text-[#786F7D] mt-0.5">
             Daftar dalam 1 menit & nikmati ratusan episode seru.
           </p>
-        </div>
-
-        {/* Quick Demo Fill Pill */}
-        <div className="mb-3 flex justify-center">
-          <button
-            type="button"
-            onClick={handleQuickDemoFill}
-            className="text-[11px] font-bold text-[#4B0B7A] bg-[#FFF9E0] hover:bg-[#FFE57F] border border-[#FFD52E] px-3 py-1 rounded-full flex items-center gap-1.5 transition-all shadow-xs"
-          >
-            <Sparkles className="w-3 h-3 text-[#E58A16]" />
-            <span>Isi Otomatis Akun Demo</span>
-          </button>
         </div>
 
         {/* Error Alert if any */}

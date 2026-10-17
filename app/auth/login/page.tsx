@@ -11,7 +11,6 @@ import {
   Lock,
   ArrowRight,
   Sparkles,
-  Globe,
   Loader2,
 } from 'lucide-react';
 import { HumoraLogo } from '../../../components/brand/HumoraLogo';
@@ -69,28 +68,12 @@ export default function LoginPage() {
     setErrorMsg('');
   };
 
-  const handleGoogleDemo = () => {
-    setIsLoading(true);
-    setTimeout(async () => {
-      await login('ardhika.google@gmail.com', 'Ardhika Google');
-      setIsLoading(false);
-      const destination = pendingRedirectUrl || '/home';
-      setPendingRedirectUrl(null);
-      router.push(destination);
-    }, 600);
-  };
-
   return (
     <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-6 select-none">
       {/* Floating Header Bar */}
       <AppHeader
         title="Masuk Akun"
         showBack
-        rightAction={
-          <Link href="/home" className="text-xs font-bold text-[#7028B8] hover:underline px-2 py-1">
-            Lewati
-          </Link>
-        }
       />
 
       {/* Main Form Content */}
@@ -252,25 +235,6 @@ export default function LoginPage() {
             )}
           </button>
         </form>
-
-        {/* Divider */}
-        <div className="flex items-center my-4">
-          <div className="flex-1 border-t border-[#EEE8F0]" />
-          <span className="px-3 text-[11px] text-[#A39CA9] uppercase font-bold">
-            atau masuk dengan
-          </span>
-          <div className="flex-1 border-t border-[#EEE8F0]" />
-        </div>
-
-        {/* Demo Google Button */}
-        <button
-          type="button"
-          onClick={handleGoogleDemo}
-          className="w-full py-3 px-4 rounded-xl border border-[#EEE8F0] bg-white hover:bg-[#F6F1F8] active:scale-98 text-xs font-bold text-[#24172B] flex items-center justify-center gap-2 transition-all shadow-xs"
-        >
-          <Globe className="w-4 h-4 text-[#4285F4]" />
-          <span>Masuk Cepat Akun Demo (Google)</span>
-        </button>
       </div>
 
       {/* Footer Register Prompt */}
