@@ -69,6 +69,9 @@ export default function RegisterPage() {
       <AppHeader
         title="Daftar Akun"
         showBack
+        showLogo={false}
+        showNotification={false}
+        showProfile={false}
       />
 
       {/* Main Form Content */}

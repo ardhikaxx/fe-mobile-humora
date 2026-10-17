@@ -52,11 +52,13 @@ export function AppHeader({
   const isSubscription = pathname === '/subscription' || pathname?.startsWith('/subscription');
   const isPayment = pathname === '/payment' || pathname?.startsWith('/payment');
   const isNotifications = pathname === '/notifications' || pathname?.startsWith('/notifications');
+  const isAuth = pathname === '/auth' || pathname?.startsWith('/auth');
   const displayName = user?.name ? user.name.split(' ')[0] : 'Tamu';
   const isPremium = subscription?.status === 'active';
 
-  const isSubPageOrSpecial = isSearch || isProfile || isHistory || isSeriesDetail || isSubscription || isPayment || isNotifications;
+  const isSubPageOrSpecial = isSearch || isProfile || isHistory || isSeriesDetail || isSubscription || isPayment || isNotifications || isAuth;
 
+  const shouldShowLogo = isAuth ? false : showLogo;
   const shouldShowProfile = showProfile !== undefined ? showProfile : !isSubPageOrSpecial;
   const shouldShowNotification = showNotification !== undefined ? showNotification : !isSubPageOrSpecial;
   const shouldHaveTopSpacer = withTopSpacer !== undefined ? withTopSpacer : !isSeriesDetail;
@@ -175,7 +177,7 @@ export function AppHeader({
                 </button>
               )}
 
-              {showLogo && !title && (
+              {shouldShowLogo && !title && (
                 <Link href="/home" className="hover:opacity-95 transition-opacity shrink-0 flex items-center">
                   <HumoraLogo type="full" size="sm" className="rounded-xl overflow-hidden shadow-xs border border-[#21052F]/10" />
                 </Link>

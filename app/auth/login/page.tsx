@@ -62,6 +62,9 @@ export default function LoginPage() {
       <AppHeader
         title="Masuk Akun"
         showBack
+        showLogo={false}
+        showNotification={false}
+        showProfile={false}
       />
 
       {/* Main Form Content */}
