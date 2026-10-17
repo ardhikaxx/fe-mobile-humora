@@ -70,10 +70,6 @@ export function VideoPlayer({
       timer = setInterval(() => {
         setCurrentTime((prev) => {
           if (prev >= duration) {
-            setIsPlaying(false);
-            if (hasNextEpisode && onNextEpisode) {
-              onNextEpisode();
-            }
             return duration;
           }
           return prev + 1;
@@ -83,7 +79,20 @@ export function VideoPlayer({
     return () => {
       if (timer) clearInterval(timer);
     };
-  }, [useFallbackSimulation, isPlaying, duration, hasNextEpisode, onNextEpisode]);
+  }, [useFallbackSimulation, isPlaying, duration]);
+
+  // Safe handler when playback completes
+  useEffect(() => {
+    if (currentTime >= duration && isPlaying) {
+      setIsPlaying(false);
+      if (hasNextEpisode && onNextEpisode) {
+        const navTimer = setTimeout(() => {
+          onNextEpisode();
+        }, 400);
+        return () => clearTimeout(navTimer);
+      }
+    }
+  }, [currentTime, duration, isPlaying, hasNextEpisode, onNextEpisode]);
 
   // Sync watch progress to global context
   useEffect(() => {

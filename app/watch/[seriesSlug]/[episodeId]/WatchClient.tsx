@@ -70,7 +70,9 @@ export default function WatchClient({ seriesSlug, episodeId }: WatchClientProps)
       });
       return;
     }
-    router.push(`/watch/${series.slug}/${nextEpisode.id}`);
+    setTimeout(() => {
+      router.push(`/watch/${series.slug}/${nextEpisode.id}`);
+    }, 0);
   };
 
   const handleSelectEpisode = (epId: number) => {
@@ -85,7 +87,9 @@ export default function WatchClient({ seriesSlug, episodeId }: WatchClientProps)
       });
       return;
     }
-    router.push(`/watch/${series.slug}/${ep.id}`);
+    setTimeout(() => {
+      router.push(`/watch/${series.slug}/${ep.id}`);
+    }, 0);
   };
 
   const handleToggleLike = () => {
