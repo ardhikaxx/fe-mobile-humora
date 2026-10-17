@@ -7,48 +7,11 @@ import {
   User,
   Mail,
   Phone,
-  Camera,
-  Check,
   Save,
-  Sparkles,
   AlertCircle,
 } from 'lucide-react';
 import { AppHeader } from '../../../components/layout/AppHeader';
 import { useHumora } from '../../../lib/context/HumoraContext';
-
-// Preset avatar options for quick selection in prototype
-const PRESET_AVATARS = [
-  {
-    id: 'avatar-1',
-    label: 'Klasik',
-    url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
-  },
-  {
-    id: 'avatar-2',
-    label: 'Ceria',
-    url: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=200&q=80',
-  },
-  {
-    id: 'avatar-3',
-    label: 'Senyum',
-    url: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80',
-  },
-  {
-    id: 'avatar-4',
-    label: 'Santai',
-    url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-  },
-  {
-    id: 'avatar-5',
-    label: 'Semangat',
-    url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80',
-  },
-  {
-    id: 'avatar-6',
-    label: 'Keren',
-    url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
-  },
-];
 
 export default function EditProfilePage() {
   const router = useRouter();
@@ -59,9 +22,8 @@ export default function EditProfilePage() {
   const [email, setEmail] = useState(user?.email || '');
   const [phone, setPhone] = useState(user?.phone || '');
   const [gender, setGender] = useState(user?.gender === 'Perempuan' ? 'Perempuan' : 'Laki-laki');
-  const [avatarUrl, setAvatarUrl] = useState(user?.avatarUrl || PRESET_AVATARS[0].url);
+  const [avatarUrl, setAvatarUrl] = useState(user?.avatarUrl || '/icons/logo-humora.png');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showAvatarPicker, setShowAvatarPicker] = useState(false);
   const [errors, setErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
 
   // Sync if user data changes or loads asynchronously
@@ -153,86 +115,23 @@ export default function EditProfilePage() {
       <form onSubmit={handleSubmit} className="px-5 pt-3 space-y-5">
         {/* AVATAR HERO CARD */}
         <div className="p-6 bg-white rounded-3xl border border-[#EEE8F0] shadow-xs flex flex-col items-center text-center relative overflow-hidden">
-          <div className="relative group">
-            <div className="w-24 h-24 rounded-3xl overflow-hidden border-2 border-[#FFD52E] shadow-md bg-[#F6F1F8] ring-4 ring-[#FFF9E0] flex items-center justify-center">
-              {avatarUrl ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={avatarUrl}
-                  alt={name || 'Avatar Profil'}
-                  className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                />
-              ) : (
-                <User className="w-10 h-10 text-[#7028B8]" />
-              )}
-            </div>
-
-            {/* Quick Change Badge Button */}
-            <button
-              type="button"
-              onClick={() => setShowAvatarPicker(!showAvatarPicker)}
-              className="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-[#21052F] text-white border-2 border-white flex items-center justify-center shadow-md hover:bg-[#4B0B7A] active:scale-95 transition-all"
-              aria-label="Pilih Avatar"
-            >
-              <Camera className="w-4 h-4 text-[#FFD52E]" />
-            </button>
+          <div className="w-24 h-24 rounded-3xl overflow-hidden border-2 border-[#FFD52E] shadow-md bg-[#F6F1F8] ring-4 ring-[#FFF9E0] flex items-center justify-center">
+            {avatarUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={avatarUrl}
+                alt={name || 'Avatar Profil'}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <User className="w-10 h-10 text-[#7028B8]" />
+            )}
           </div>
 
           <div className="mt-3">
             <h3 className="text-sm font-black text-[#24172B] tracking-tight">{name || 'Nama Pengguna'}</h3>
             <p className="text-[11px] text-[#786F7D] mt-0.5">Member sejak {user.joinedDate}</p>
           </div>
-
-          <button
-            type="button"
-            onClick={() => setShowAvatarPicker(!showAvatarPicker)}
-            className="mt-3 text-xs font-bold text-[#7028B8] hover:text-[#4B0B7A] bg-[#F6F1F8] hover:bg-[#EEE8F0] px-3.5 py-1.5 rounded-full transition-all flex items-center gap-1.5"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-[#FFD52E] fill-[#FFD52E]" />
-            <span>{showAvatarPicker ? 'Tutup Pilihan Avatar' : 'Ganti Foto Avatar'}</span>
-          </button>
-
-          {/* AVATAR PICKER DRAWER / TRAY */}
-          {showAvatarPicker && (
-            <div className="w-full mt-4 pt-4 border-t border-[#EEE8F0] animate-fade-in">
-              <span className="text-[11px] font-bold text-[#786F7D] uppercase tracking-wider block mb-2.5">
-                Pilih Karakter Avatar
-              </span>
-              <div className="grid grid-cols-6 gap-2">
-                {PRESET_AVATARS.map((item) => {
-                  const isSelected = avatarUrl === item.url;
-                  return (
-                    <button
-                      key={item.id}
-                      type="button"
-                      onClick={() => {
-                        setAvatarUrl(item.url);
-                        showToast(`Avatar "${item.label}" dipilih!`);
-                      }}
-                      className={`relative aspect-square rounded-2xl overflow-hidden border-2 transition-all active:scale-95 ${
-                        isSelected
-                          ? 'border-[#21052F] ring-2 ring-[#FFD52E] scale-105'
-                          : 'border-[#EEE8F0] hover:border-[#7028B8] opacity-80 hover:opacity-100'
-                      }`}
-                      aria-label={`Pilih avatar ${item.label}`}
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={item.url}
-                        alt={item.label}
-                        className="w-full h-full object-cover"
-                      />
-                      {isSelected && (
-                        <div className="absolute inset-0 bg-[#21052F]/40 flex items-center justify-center">
-                          <Check className="w-4 h-4 text-white stroke-[3]" />
-                        </div>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          )}
         </div>
 
         {/* INPUT FIELDS SECTION */}
