@@ -46,13 +46,13 @@ export function VideoPlayer({
 
   const [isPlaying, setIsPlaying] = useState(true);
   const [currentTime, setCurrentTime] = useState(initialTime);
-  const [duration, setDuration] = useState(episode.durationSeconds || 600);
+  const [duration, setDuration] = useState(episode.durationSeconds || 130);
   const [isMuted, setIsMuted] = useState(false);
   const [showControls, setShowControls] = useState(true);
   const [useFallbackSimulation, setUseFallbackSimulation] = useState(false);
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Auto hide controls after 3.5s
+  // Auto-hide controls after 3 seconds of inactivity while playing
   const triggerShowControls = useCallback(() => {
     setShowControls(true);
     if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
@@ -60,10 +60,10 @@ export function VideoPlayer({
       if (isPlaying) {
         setShowControls(false);
       }
-    }, 3500);
+    }, 3000);
   }, [isPlaying]);
 
-  // Fallback simulation timer if real video fails or doesn't play
+  // Simulation timer if real video stream is not available or blocked
   useEffect(() => {
     let timer: NodeJS.Timeout | null = null;
     if (useFallbackSimulation && isPlaying) {
@@ -71,6 +71,9 @@ export function VideoPlayer({
         setCurrentTime((prev) => {
           if (prev >= duration) {
             setIsPlaying(false);
+            if (hasNextEpisode && onNextEpisode) {
+              onNextEpisode();
+            }
             return duration;
           }
           return prev + 1;
@@ -80,9 +83,9 @@ export function VideoPlayer({
     return () => {
       if (timer) clearInterval(timer);
     };
-  }, [useFallbackSimulation, isPlaying, duration]);
+  }, [useFallbackSimulation, isPlaying, duration, hasNextEpisode, onNextEpisode]);
 
-  // Sync progress with HumoraContext periodically
+  // Sync watch progress to global context
   useEffect(() => {
     if (currentTime > 0) {
       updateWatchProgress(series, episode, currentTime, duration);
@@ -142,18 +145,20 @@ export function VideoPlayer({
     triggerShowControls();
   };
 
+  const progressPercent = duration > 0 ? (currentTime / duration) * 100 : 0;
+
   return (
     <div
       ref={containerRef}
       onMouseMove={triggerShowControls}
       onClick={triggerShowControls}
-      className="relative aspect-16/9 w-full bg-[#15031F] overflow-hidden select-none group"
+      className="relative aspect-16/9 w-full bg-[#0D0214] overflow-hidden select-none group"
     >
-      {/* Real HTML5 Video element with fallback error handling */}
+      {/* 1. REAL VIDEO ELEMENT OR HIGH-DEFINITION POSTER STREAM */}
       {!useFallbackSimulation ? (
         <video
           ref={videoRef}
-          src={episode.videoSource || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'}
+          src={episode.videoSource || 'https://vjs.zencdn.net/v/oceans.mp4'}
           poster={episode.thumbnail}
           playsInline
           autoPlay
@@ -165,7 +170,7 @@ export function VideoPlayer({
           }}
           onLoadedMetadata={() => {
             if (videoRef.current) {
-              setDuration(videoRef.current.duration || episode.durationSeconds);
+              setDuration(videoRef.current.duration || episode.durationSeconds || 130);
               if (initialTime > 0) {
                 videoRef.current.currentTime = initialTime;
               }
@@ -183,63 +188,76 @@ export function VideoPlayer({
           className="w-full h-full object-cover"
         />
       ) : (
-        /* Fallback Simulation Canvas / Poster Player */
-        <div className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden">
+        /* HD Poster Display - Clean, 100% Brightness & Crystal Clear */
+        <div className="relative w-full h-full flex items-center justify-center overflow-hidden bg-black">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={episode.thumbnail}
             alt={episode.title}
-            className={`w-full h-full object-cover ${
-              isPlaying ? 'scale-105 filter brightness-85' : 'filter brightness-65'
-            } transition-all duration-700`}
+            className="w-full h-full object-cover transition-transform duration-700"
           />
-          {/* Ambient animated glow */}
-          <div className="absolute inset-0 bg-radial from-transparent to-[#21052F]/70 pointer-events-none" />
-
-          {/* Visual Simulation Badge */}
-          <div className="absolute top-12 left-4 px-2 py-0.5 rounded-full bg-black/50 backdrop-blur-md text-[10px] text-[#FFD52E] font-medium flex items-center gap-1">
-            <Sparkles className="w-2.5 h-2.5" />
-            <span>Simulasi Streaming HD</span>
-          </div>
         </div>
       )}
 
-      {/* OVERLAY CONTROLS */}
+      {/* 2. PERSISTENT SLENDER PROGRESS BAR WHEN CONTROLS ARE HIDDEN (LIKE YOUTUBE / NETFLIX) */}
+      {!showControls && (
+        <div className="absolute bottom-0 inset-x-0 h-1 bg-white/20 pointer-events-none transition-opacity">
+          <div
+            className="h-full bg-[#FFD52E] transition-all duration-300"
+            style={{ width: `${progressPercent}%` }}
+          />
+        </div>
+      )}
+
+      {/* 3. OVERLAY CONTROLS - REFINED, UNOBTRUSIVE & MODERN */}
       <div
-        className={`absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/70 flex flex-col justify-between p-3.5 sm:p-4 transition-opacity duration-300 ${
+        className={`absolute inset-0 flex flex-col justify-between transition-opacity duration-300 ${
           showControls ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
-        {/* Top Bar: Floating Capsule Pill */}
-        <div className="flex justify-center w-full">
-          <div className="bg-black/50 backdrop-blur-md border border-white/15 shadow-sm rounded-full px-3 py-1.5 flex items-center justify-between w-full max-w-[390px] text-white">
+        {/* Soft Vignette Gradient for Top Bar (Leaves center video crystal clear) */}
+        <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-black/80 via-black/35 to-transparent pointer-events-none" />
+
+        {/* Soft Vignette Gradient for Bottom Bar */}
+        <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
+
+        {/* TOP BAR: Clean Minimalist Navigation & Video Header */}
+        <div className="relative z-10 flex items-center justify-between px-3.5 pt-3 sm:px-4 sm:pt-3.5 text-white">
+          <div className="flex items-center gap-2.5 min-w-0">
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 onBack();
               }}
-              className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 active:scale-95 transition-all shrink-0"
+              className="w-9 h-9 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center hover:bg-black/60 active:scale-95 transition-all shrink-0"
               aria-label="Kembali"
             >
               <ChevronLeft className="w-5 h-5 stroke-[2.5] text-white -ml-0.5" />
             </button>
 
-            <div className="text-center px-2 truncate max-w-[190px] sm:max-w-[250px]">
-              <h4 className="text-xs font-bold text-white truncate drop-shadow-sm">
-                {series.title}
-              </h4>
-              <span className="text-[10px] text-white/80 truncate block">
-                Video {episode.number}: {episode.title}
-              </span>
+            <div className="min-w-0">
+              <h3 className="text-xs sm:text-sm font-bold text-white truncate drop-shadow-md">
+                {episode.title}
+              </h3>
+              <p className="text-[11px] text-white/75 truncate drop-shadow-sm">
+                {series.title} • Video {episode.number}
+              </p>
             </div>
+          </div>
+
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="hidden sm:inline-flex text-[10px] font-bold text-[#FFD52E] bg-black/40 backdrop-blur-md border border-white/10 px-2 py-1 rounded-full items-center gap-1">
+              <Sparkles className="w-2.5 h-2.5" />
+              <span>Full HD 1080p</span>
+            </span>
 
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 toggleMute();
               }}
-              className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 active:scale-95 transition-all shrink-0"
-              aria-label={isMuted ? 'Unmute' : 'Mute'}
+              className="w-9 h-9 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center hover:bg-black/60 active:scale-95 transition-all"
+              aria-label={isMuted ? 'Nyalakan Suara' : 'Bisukan'}
             >
               {isMuted ? (
                 <VolumeX className="w-4 h-4 text-white" />
@@ -250,27 +268,27 @@ export function VideoPlayer({
           </div>
         </div>
 
-        {/* Center Playback Controls */}
-        <div className="flex items-center justify-center gap-6 text-white my-auto">
+        {/* CENTER CONTROLS: Floating Translucent Round Buttons */}
+        <div className="relative z-10 flex items-center justify-center gap-6 sm:gap-8 text-white my-auto">
           {/* Rewind 10s */}
           <button
             onClick={(e) => {
               e.stopPropagation();
               handleSkip(-10);
             }}
-            className="w-10 h-10 rounded-full flex items-center justify-center bg-black/35 hover:bg-black/55 active:scale-90 transition-transform"
+            className="w-11 h-11 rounded-full flex items-center justify-center bg-black/40 backdrop-blur-md border border-white/10 hover:bg-black/60 active:scale-90 transition-all shadow-md group/rewind"
             aria-label="Mundur 10 detik"
           >
-            <RotateCcw className="w-5 h-5" />
+            <RotateCcw className="w-5 h-5 text-white group-hover/rewind:text-[#FFD52E] transition-colors" />
           </button>
 
-          {/* Big Play/Pause Button */}
+          {/* Big Signature Yellow Play / Pause Button */}
           <button
             onClick={(e) => {
               e.stopPropagation();
               togglePlay();
             }}
-            className="w-14 h-14 rounded-full bg-[#FFD52E] text-[#21052F] flex items-center justify-center shadow-lg active:scale-95 transition-transform"
+            className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#FFD52E] text-[#21052F] flex items-center justify-center shadow-xl shadow-[#FFD52E]/25 hover:scale-105 active:scale-95 transition-all"
             aria-label={isPlaying ? 'Jeda' : 'Putar'}
           >
             {isPlaying ? (
@@ -286,49 +304,55 @@ export function VideoPlayer({
               e.stopPropagation();
               handleSkip(10);
             }}
-            className="w-10 h-10 rounded-full flex items-center justify-center bg-black/35 hover:bg-black/55 active:scale-90 transition-transform"
+            className="w-11 h-11 rounded-full flex items-center justify-center bg-black/40 backdrop-blur-md border border-white/10 hover:bg-black/60 active:scale-90 transition-all shadow-md group/forward"
             aria-label="Maju 10 detik"
           >
-            <RotateCw className="w-5 h-5" />
+            <RotateCw className="w-5 h-5 text-white group-hover/forward:text-[#FFD52E] transition-colors" />
           </button>
         </div>
 
-        {/* Bottom Scrubber & Timers */}
-        <div className="flex flex-col gap-1.5" onClick={(e) => e.stopPropagation()}>
-          {/* Slider input */}
-          <input
-            type="range"
-            min={0}
-            max={duration || 100}
-            value={currentTime}
-            onChange={handleSeek}
-            className="w-full h-1.5 bg-white/30 rounded-lg appearance-none cursor-pointer accent-[#FFD52E] hover:h-2 transition-all"
-          />
+        {/* BOTTOM CONTROLS: Modern Clean Scrubber Bar & Timestamp Row */}
+        <div
+          className="relative z-10 flex flex-col gap-1.5 px-3.5 pb-3 sm:px-4 sm:pb-3.5"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Interactive Scrubber Slider */}
+          <div className="relative flex items-center">
+            <input
+              type="range"
+              min={0}
+              max={duration || 100}
+              value={currentTime}
+              onChange={handleSeek}
+              className="w-full h-1.5 bg-white/25 rounded-lg appearance-none cursor-pointer accent-[#FFD52E] hover:h-2 transition-all focus:outline-none"
+            />
+          </div>
 
-          <div className="flex items-center justify-between text-[11px] text-white/90 font-medium">
-            <div className="flex items-center gap-1.5">
+          {/* Bottom Timestamps & Next Action */}
+          <div className="flex items-center justify-between text-xs text-white/90 font-semibold pt-0.5">
+            <div className="flex items-center gap-1.5 font-mono text-[11px] sm:text-xs tracking-tight">
               <span>{formatSecondsToTime(currentTime)}</span>
-              <span>/</span>
-              <span>{formatSecondsToTime(duration)}</span>
+              <span className="text-white/50">/</span>
+              <span className="text-white/70">{formatSecondsToTime(duration)}</span>
             </div>
 
             <div className="flex items-center gap-3">
               {hasNextEpisode && (
                 <button
                   onClick={onNextEpisode}
-                  className="flex items-center gap-1 text-[11px] font-bold text-[#FFD52E] hover:underline"
+                  className="flex items-center gap-1.5 text-xs font-bold text-[#FFD52E] hover:text-white bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 active:scale-95 transition-all"
                 >
                   <span>Video Selanjutnya</span>
-                  <SkipForward className="w-3.5 h-3.5" />
+                  <SkipForward className="w-3.5 h-3.5 fill-current" />
                 </button>
               )}
 
               <button
                 onClick={toggleFullscreen}
-                className="p-1 hover:text-[#FFD52E] transition-colors"
+                className="w-7 h-7 rounded-full flex items-center justify-center hover:bg-white/20 active:scale-90 transition-all"
                 aria-label="Layar penuh"
               >
-                <Maximize2 className="w-4 h-4" />
+                <Maximize2 className="w-4 h-4 text-white" />
               </button>
             </div>
           </div>
