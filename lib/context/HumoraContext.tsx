@@ -165,7 +165,10 @@ export function HumoraProvider({ children }: { children: React.ReactNode }) {
       if (stored) {
         const parsed = JSON.parse(stored);
         setTimeout(() => {
-          if (parsed.user !== undefined) setUser(parsed.user);
+          if (parsed.user !== undefined) {
+            const cleanUser = parsed.user ? { ...parsed.user, avatarUrl: '' } : null;
+            setUser(cleanUser);
+          }
           if (parsed.subscription) setSubscription(parsed.subscription);
           if (parsed.history && Array.isArray(parsed.history)) {
             const validHistory = parsed.history

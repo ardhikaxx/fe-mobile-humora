@@ -55,7 +55,7 @@ export interface UserProfile {
   name: string;
   email: string;
   phone: string;
-  avatarUrl: string;
+  avatarUrl?: string;
   joinedDate: string;
   bio?: string;
   gender?: string;

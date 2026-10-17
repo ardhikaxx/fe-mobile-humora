@@ -98,28 +98,14 @@ export function AppHeader({
           {/* LEFT SIDE */}
           {isHome ? (
             user ? (
-              /* Layout Beranda ketika User Login: Foto profil di sebelah paling kiri diikuti dengan Hai, Nama pengguna & status */
+              /* Layout Beranda ketika User Login: Ikon profil di sebelah paling kiri diikuti dengan Hai, Nama pengguna & status */
               <div className="flex items-center gap-3 min-w-0">
                 <Link
                   href="/profile"
-                  className="w-12 h-12 sm:w-[50px] sm:h-[50px] rounded-full overflow-hidden border border-[#EEE8F0] shadow-xs flex items-center justify-center bg-[#F6F1F8] shrink-0 hover:ring-2 hover:ring-[#7028B8]/30 transition-all active:scale-95"
+                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-[#FFD52E]/50 shadow-xs flex items-center justify-center bg-[#FFF9E0] text-[#21052F] shrink-0 hover:ring-2 hover:ring-[#7028B8]/30 transition-all active:scale-95"
                   aria-label="Profil Saya"
                 >
-                  {user.avatarUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={user.avatarUrl}
-                      alt={user.name}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src="/icons/logo-humora.png"
-                      alt={user.name || 'HUMORA'}
-                      className="w-full h-full object-cover"
-                    />
-                  )}
+                  <User className="w-5.5 h-5.5 text-[#21052F]" />
                 </Link>
 
                 <div className="flex flex-col min-w-0 justify-center">
@@ -256,24 +242,10 @@ export function AppHeader({
                 {shouldShowProfile && (
                   <Link
                     href="/profile"
-                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border border-[#EEE8F0] flex items-center justify-center bg-[#F6F1F8] hover:ring-2 hover:ring-[#7028B8]/30 transition-all active:scale-95"
+                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-[#FFD52E]/50 flex items-center justify-center bg-[#FFF9E0] text-[#21052F] hover:ring-2 hover:ring-[#7028B8]/30 transition-all active:scale-95 shadow-2xs"
                     aria-label="Profil"
                   >
-                    {user?.avatarUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={user.avatarUrl}
-                        alt={user.name}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src="/icons/logo-humora.png"
-                        alt="Profil"
-                        className="w-full h-full object-cover"
-                      />
-                    )}
+                    <User className="w-4 h-4 text-[#21052F]" />
                   </Link>
                 )}
               </>
