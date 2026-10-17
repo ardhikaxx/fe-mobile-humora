@@ -8,13 +8,11 @@ import {
   Zap,
   ChevronRight,
 } from 'lucide-react';
+import Link from 'next/link';
 import { AppHeader } from '../../../components/layout/AppHeader';
 import { HumoraLogo } from '../../../components/brand/HumoraLogo';
-import { useHumora } from '../../../lib/context/HumoraContext';
 
 export default function AboutPage() {
-  const { showToast } = useHumora();
-
   return (
     <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-24">
       {/* Header Bar */}
@@ -113,32 +111,29 @@ export default function AboutPage() {
 
         {/* LEGAL & POLICIES */}
         <div className="bg-white rounded-3xl p-2 border border-[#EEE8F0] shadow-xs divide-y divide-[#EEE8F0]">
-          <button
-            type="button"
-            onClick={() => showToast('Syarat & Ketentuan: Seluruh konten dilindungi hak cipta HUMORA.')}
+          <Link
+            href="/profile/about/terms"
             className="w-full flex items-center justify-between p-3.5 hover:bg-[#F6F1F8] rounded-2xl transition-colors text-left"
           >
             <span className="text-xs font-bold text-[#24172B]">Syarat & Ketentuan Layanan</span>
             <ChevronRight className="w-4 h-4 text-[#A39CA9]" />
-          </button>
+          </Link>
 
-          <button
-            type="button"
-            onClick={() => showToast('Kebijakan Privasi: Data akun dan riwayat lokal tersimpan aman.')}
+          <Link
+            href="/profile/about/privacy"
             className="w-full flex items-center justify-between p-3.5 hover:bg-[#F6F1F8] rounded-2xl transition-colors text-left"
           >
             <span className="text-xs font-bold text-[#24172B]">Kebijakan Privasi</span>
             <ChevronRight className="w-4 h-4 text-[#A39CA9]" />
-          </button>
+          </Link>
 
-          <button
-            type="button"
-            onClick={() => showToast('Lisensi: Semua video dan audio berlisensi resmi orisinal.')}
+          <Link
+            href="/profile/about/copyright"
             className="w-full flex items-center justify-between p-3.5 hover:bg-[#F6F1F8] rounded-2xl transition-colors text-left"
           >
             <span className="text-xs font-bold text-[#24172B]">Hak Cipta & Lisensi Konten</span>
             <ChevronRight className="w-4 h-4 text-[#A39CA9]" />
-          </button>
+          </Link>
         </div>
 
         {/* FOOTER INFO */}
