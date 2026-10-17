@@ -91,7 +91,7 @@ export default function LoginPage() {
         <div className="flex flex-col items-center text-center mb-6">
           <HumoraLogo
             type="full"
-            size="md"
+            size="lg"
             className="rounded-2xl overflow-hidden shadow-xs border border-[#21052F]/10 mb-3.5"
           />
           <h2 className="text-xl sm:text-2xl font-black text-[#24172B] tracking-tight">
