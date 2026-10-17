@@ -40,7 +40,7 @@ export default function PaymentSuccessPage() {
             <CheckCircle2 className="w-10 h-10 stroke-[2.5]" />
           </div>
 
-          <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-[#FFD52E] flex items-center justify-center text-[#21052F] shadow-sm animate-bounce">
+          <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-[#FFD52E] flex items-center justify-center text-[#21052F] shadow-sm">
             <Crown className="w-4 h-4 fill-current" />
           </div>
         </div>
