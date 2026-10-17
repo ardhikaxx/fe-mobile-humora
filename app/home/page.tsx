@@ -27,34 +27,34 @@ export default function HomePage() {
       {/* Mobile App Header */}
       <AppHeader />
 
-      {/* Premium Promo Card (Clean, Simple, Modern) */}
+      {/* Premium Promo Card (Clean, Simple, Modern - Humora Brand Yellow & Purple) */}
       {subscription.status !== 'active' && (
         <section className="px-5 mt-2.5 mb-2">
           <Link
             href="/subscription"
-            className="group flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-white border border-[#EEE8F0] shadow-xs hover:border-[#D8D0DE] transition-all active:scale-[0.99]"
+            className="group flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-[#FFD52E] border border-[#F0C419] shadow-xs hover:brightness-[0.98] transition-all active:scale-[0.99]"
           >
             <div className="flex items-center gap-3 min-w-0">
-              <div className="w-10 h-10 rounded-xl bg-[#FFF9E0] text-[#D47E0E] border border-[#FFD52E]/50 flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-[#21052F] text-[#FFD52E] flex items-center justify-center shrink-0 shadow-xs">
                 <Crown className="w-5 h-5 fill-[#FFD52E]" />
               </div>
 
               <div className="min-w-0">
                 <div className="flex items-center gap-1.5">
-                  <h4 className="text-xs sm:text-sm font-bold text-[#24172B] tracking-tight truncate">
+                  <h4 className="text-xs sm:text-sm font-bold text-[#21052F] tracking-tight truncate">
                     Buka Akses Semua Video
                   </h4>
-                  <span className="text-[10px] font-bold text-[#B86800] bg-[#FFF9E0] px-1.5 py-0.5 rounded-md border border-[#FFD52E]/40">
+                  <span className="text-[9px] font-black text-[#FFD52E] bg-[#21052F] px-1.5 py-0.5 rounded-md tracking-wider">
                     VIP
                   </span>
                 </div>
-                <p className="text-[11px] sm:text-xs text-[#786F7D] mt-0.5 truncate">
-                  Mulai <span className="font-bold text-[#24172B]">Rp19.000</span> • Nonton bebas tanpa batas
+                <p className="text-[11px] sm:text-xs text-[#21052F]/80 mt-0.5 truncate">
+                  Mulai <span className="font-extrabold text-[#21052F]">Rp19.000</span> • Nonton bebas tanpa batas
                 </p>
               </div>
             </div>
 
-            <div className="shrink-0 flex items-center gap-1 text-xs font-bold text-[#21052F] bg-[#FFD52E] group-hover:bg-[#FFCA00] px-3.5 py-2 rounded-xl transition-colors shadow-xs">
+            <div className="shrink-0 flex items-center gap-1 text-xs font-bold text-white bg-[#21052F] group-hover:bg-[#320847] px-3.5 py-2 rounded-xl transition-colors shadow-xs">
               <span>Langganan</span>
               <ChevronRight className="w-3.5 h-3.5 stroke-[2.5] group-hover:translate-x-0.5 transition-transform" />
             </div>
