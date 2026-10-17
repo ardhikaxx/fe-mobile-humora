@@ -6,7 +6,6 @@ import {
   Heart,
   ShieldCheck,
   Zap,
-  ExternalLink,
   ChevronRight,
 } from 'lucide-react';
 import { AppHeader } from '../../../components/layout/AppHeader';
@@ -142,36 +141,12 @@ export default function AboutPage() {
           </button>
         </div>
 
-        {/* SOCIAL MEDIA & COMMUNITY */}
-        <div className="bg-white rounded-3xl p-5 border border-[#EEE8F0] shadow-xs text-center">
-          <h2 className="text-xs font-bold text-[#786F7D] uppercase tracking-wider mb-3">
-            Ikuti Keseruan Komedi Kami
-          </h2>
-
-          <div className="flex justify-center items-center gap-3">
-            {[
-              { label: 'Instagram', handle: '@humora.id' },
-              { label: 'TikTok', handle: '@humorashort' },
-              { label: 'YouTube', handle: 'Humora Series' },
-            ].map((soc) => (
-              <button
-                key={soc.label}
-                type="button"
-                onClick={() => showToast(`Membuka ${soc.label} ${soc.handle}...`)}
-                className="px-3.5 py-2 rounded-xl bg-[#F6F1F8] hover:bg-[#EAE0EE] text-xs font-bold text-[#4B0B7A] transition-all active:scale-95 flex items-center gap-1.5"
-              >
-                <span>{soc.label}</span>
-                <ExternalLink className="w-3 h-3 text-[#786F7D]" />
-              </button>
-            ))}
-          </div>
-
-          <div className="mt-5 pt-4 border-t border-[#EEE8F0] text-[11px] text-[#A39CA9] flex flex-col items-center gap-1">
-            <p>© 2026 PT Humora Digital Kreatif Indonesia.</p>
-            <p className="flex items-center gap-1 text-[10px]">
-              Dibuat dengan <Heart className="w-3 h-3 text-[#D94152] fill-current" /> untuk hiburan Indonesia
-            </p>
-          </div>
+        {/* FOOTER INFO */}
+        <div className="text-center pt-2 pb-4 text-[11px] text-[#A39CA9] flex flex-col items-center gap-1">
+          <p>© 2026 PT Humora Digital Kreatif Indonesia.</p>
+          <p className="flex items-center gap-1 text-[10px]">
+            Dibuat dengan <Heart className="w-3 h-3 text-[#D94152] fill-current" /> untuk hiburan Indonesia
+          </p>
         </div>
       </div>
     </div>
