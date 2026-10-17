@@ -27,54 +27,36 @@ export default function HomePage() {
       {/* Mobile App Header */}
       <AppHeader />
 
-      {/* Premium Promo Card (Displayed if user does not have active subscription) */}
+      {/* Premium Promo Card (Clean, Simple, Modern) */}
       {subscription.status !== 'active' && (
-        <section className="px-5 mt-3 mb-2">
+        <section className="px-5 mt-2.5 mb-2">
           <Link
             href="/subscription"
-            className="group relative block rounded-3xl overflow-hidden bg-gradient-to-r from-[#21052F] via-[#350A4E] to-[#21052F] p-3.5 sm:p-4 border border-[#FFD52E]/30 shadow-[0_4px_20px_rgba(33,5,47,0.15)] hover:border-[#FFD52E]/60 transition-all duration-300 active:scale-[0.99]"
+            className="group flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-white border border-[#EEE8F0] shadow-xs hover:border-[#D8D0DE] transition-all active:scale-[0.99]"
           >
-            {/* Ambient Glowing Orbs */}
-            <div className="absolute -right-6 -top-6 w-32 h-32 bg-[#FFD52E]/15 rounded-full blur-2xl pointer-events-none group-hover:bg-[#FFD52E]/25 transition-all duration-500" />
-            <div className="absolute -left-6 -bottom-6 w-28 h-28 bg-[#7028B8]/30 rounded-full blur-xl pointer-events-none" />
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-10 h-10 rounded-xl bg-[#FFF9E0] text-[#D47E0E] border border-[#FFD52E]/50 flex items-center justify-center shrink-0">
+                <Crown className="w-5 h-5 fill-[#FFD52E]" />
+              </div>
 
-            <div className="relative z-10 flex items-center justify-between gap-3">
-              {/* Left Side: Crown Badge & Copy */}
-              <div className="flex items-center gap-3 min-w-0">
-                {/* 3D Gold Crown Aura Icon */}
-                <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-[#FFE866] via-[#FFD52E] to-[#E58A16] p-[1.5px] shadow-[0_4px_14px_rgba(255,213,46,0.35)] shrink-0 group-hover:scale-105 transition-transform duration-300">
-                  <div className="w-full h-full rounded-[14px] bg-[#21052F]/15 flex items-center justify-center backdrop-blur-2xs">
-                    <Crown className="w-5.5 h-5.5 text-[#21052F] fill-[#21052F] stroke-[1.5] drop-shadow-xs" />
-                  </div>
-                  <Sparkles className="absolute -top-1 -right-1 w-3.5 h-3.5 text-[#FFD52E] fill-[#FFD52E] drop-shadow-xs animate-pulse" />
-                </div>
-
-                {/* Text Content */}
-                <div className="min-w-0">
-                  <div className="flex items-center gap-1.5 mb-0.5">
-                    <span className="bg-gradient-to-r from-[#FFD52E] to-[#FFA800] text-[#21052F] text-[9px] font-black px-2 py-0.5 rounded-full tracking-wider uppercase shadow-xs flex items-center gap-1">
-                      <Sparkles className="w-2.5 h-2.5 fill-current" />
-                      PROMO SPESIAL
-                    </span>
-                  </div>
-
-                  <h4 className="text-sm sm:text-[15px] font-black text-white tracking-tight leading-tight truncate">
-                    Buka Semua Video Komedi
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <h4 className="text-xs sm:text-sm font-bold text-[#24172B] tracking-tight truncate">
+                    Buka Akses Semua Video
                   </h4>
-
-                  <p className="text-[11px] sm:text-xs text-[#E4DDE9] mt-0.5 truncate">
-                    Mulai <span className="text-[#FFD52E] font-extrabold">Rp19rb</span> • Nonton bebas tanpa batas
-                  </p>
+                  <span className="text-[10px] font-bold text-[#B86800] bg-[#FFF9E0] px-1.5 py-0.5 rounded-md border border-[#FFD52E]/40">
+                    VIP
+                  </span>
                 </div>
+                <p className="text-[11px] sm:text-xs text-[#786F7D] mt-0.5 truncate">
+                  Mulai <span className="font-bold text-[#24172B]">Rp19.000</span> • Nonton bebas tanpa batas
+                </p>
               </div>
+            </div>
 
-              {/* Right Side: Sleek CTA Pill Button */}
-              <div className="shrink-0">
-                <div className="bg-gradient-to-r from-[#FFD52E] to-[#FFCA00] group-hover:from-[#FFE055] group-hover:to-[#FFB700] text-[#21052F] font-black text-xs px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full shadow-[0_2px_12px_rgba(255,213,46,0.35)] flex items-center gap-1 transition-all group-hover:translate-x-0.5">
-                  <span>Lihat VIP</span>
-                  <ChevronRight className="w-3.5 h-3.5 stroke-[3]" />
-                </div>
-              </div>
+            <div className="shrink-0 flex items-center gap-1 text-xs font-bold text-[#21052F] bg-[#FFD52E] group-hover:bg-[#FFCA00] px-3.5 py-2 rounded-xl transition-colors shadow-xs">
+              <span>Langganan</span>
+              <ChevronRight className="w-3.5 h-3.5 stroke-[2.5] group-hover:translate-x-0.5 transition-transform" />
             </div>
           </Link>
         </section>
