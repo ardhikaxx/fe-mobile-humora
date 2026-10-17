@@ -60,13 +60,17 @@ export default function ProfilePage() {
         {user ? (
           <div className="p-4 bg-white rounded-3xl border border-[#EEE8F0] shadow-xs flex items-center justify-between mb-4">
             <div className="flex items-center gap-3.5">
-              <div className="w-14 h-14 rounded-2xl overflow-hidden border border-[#EEE8F0] bg-[#F6F1F8] shrink-0">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={user.avatarUrl}
-                  alt={user.name}
-                  className="w-full h-full object-cover"
-                />
+              <div className="w-14 h-14 rounded-2xl overflow-hidden border border-[#EEE8F0] bg-[#F6F1F8] shrink-0 flex items-center justify-center">
+                {user.avatarUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={user.avatarUrl}
+                    alt={user.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <User className="w-7 h-7 text-[#7028B8]" />
+                )}
               </div>
 
               <div>

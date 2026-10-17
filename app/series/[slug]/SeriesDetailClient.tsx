@@ -71,7 +71,7 @@ export default function SeriesDetailClient({ slug }: SeriesDetailClientProps) {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={series.thumbnail || series.cover || series.poster || ''}
+            src={series.thumbnail || series.cover || series.poster || '/images/thumbnails/cara-deketin-cewek.jpg'}
             alt={series.title}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
           />

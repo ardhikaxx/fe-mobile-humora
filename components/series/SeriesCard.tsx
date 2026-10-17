@@ -28,10 +28,10 @@ export function SeriesCard({
       className={`group relative ${width} aspect-[3/4] rounded-[24px] overflow-hidden bg-[#21052F] border border-[#EEE8F0] shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between p-3.5 select-none shrink-0 active:scale-[0.98]`}
     >
       {/* Background Thumbnail Image (Single thumbnail, no poster) */}
-      {!imageError ? (
+      {!imageError && (series.thumbnail || series.poster) ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={series.thumbnail || series.poster || ''}
+          src={series.thumbnail || series.poster}
           alt={series.title}
           onError={() => setImageError(true)}
           className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-600 ease-out"

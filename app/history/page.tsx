@@ -148,7 +148,7 @@ export default function HistoryPage() {
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={episode?.thumbnail || series?.thumbnail || item.seriesThumbnail || item.seriesPoster}
+                      src={episode?.thumbnail || series?.thumbnail || item.seriesThumbnail || item.seriesPoster || '/images/thumbnails/cara-deketin-cewek.jpg'}
                       alt={item.episodeTitle}
                       className={`w-full h-full object-cover transition-transform group-hover:scale-105 ${
                         isLocked ? 'filter brightness-65' : ''

@@ -67,7 +67,7 @@ export default function HomePage() {
         <div className="relative w-full aspect-16/10 rounded-3xl overflow-hidden shadow-md bg-[#21052F] border border-[#EEE8F0]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={latestSeries.thumbnail || latestSeries.cover || latestSeries.poster || ''}
+            src={latestSeries.thumbnail || latestSeries.cover || latestSeries.poster || '/images/thumbnails/cara-deketin-cewek.jpg'}
             alt={latestSeries.title}
             className="w-full h-full object-cover"
           />

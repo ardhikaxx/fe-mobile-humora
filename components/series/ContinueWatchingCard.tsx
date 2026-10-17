@@ -15,7 +15,7 @@ export function ContinueWatchingCard({ item }: ContinueWatchingCardProps) {
   const remainingSeconds = Math.max(0, item.totalSeconds - item.progressSeconds);
   const series = SERIES_LIST.find((s) => s.slug === item.seriesSlug);
   const episode = series?.episodes.find((e) => e.id === item.episodeId);
-  const imageSrc = episode?.thumbnail || series?.thumbnail || item.seriesThumbnail || item.seriesPoster;
+  const imageSrc = episode?.thumbnail || series?.thumbnail || item.seriesThumbnail || item.seriesPoster || '/images/thumbnails/cara-deketin-cewek.jpg';
 
   return (
     <Link

@@ -57,26 +57,26 @@ export default function EditProfilePage() {
   const router = useRouter();
   const { user, updateProfile, showToast } = useHumora();
 
-  // Form State
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [bio, setBio] = useState('');
-  const [gender, setGender] = useState('Laki-laki');
-  const [avatarUrl, setAvatarUrl] = useState('');
+  // Form State initialized with fallback to prevent empty string on initial render
+  const [name, setName] = useState(user?.name || '');
+  const [email, setEmail] = useState(user?.email || '');
+  const [phone, setPhone] = useState(user?.phone || '');
+  const [bio, setBio] = useState(user?.bio || 'Penikmat sketsa komedi garis keras 😂');
+  const [gender, setGender] = useState(user?.gender || 'Laki-laki');
+  const [avatarUrl, setAvatarUrl] = useState(user?.avatarUrl || PRESET_AVATARS[0].url);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showAvatarPicker, setShowAvatarPicker] = useState(false);
   const [errors, setErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
 
-  // Initialize with current user data
+  // Sync if user data changes or loads asynchronously
   useEffect(() => {
     if (user) {
-      setName(user.name || '');
-      setEmail(user.email || '');
-      setPhone(user.phone || '');
-      setBio(user.bio || 'Penikmat sketsa komedi garis keras 😂');
-      setGender(user.gender || 'Laki-laki');
-      setAvatarUrl(user.avatarUrl || PRESET_AVATARS[0].url);
+      if (user.name) setName(user.name);
+      if (user.email) setEmail(user.email);
+      if (user.phone) setPhone(user.phone);
+      if (user.bio) setBio(user.bio);
+      if (user.gender) setGender(user.gender);
+      if (user.avatarUrl) setAvatarUrl(user.avatarUrl);
     }
   }, [user]);
 
@@ -160,13 +160,17 @@ export default function EditProfilePage() {
         {/* AVATAR HERO CARD */}
         <div className="p-6 bg-white rounded-3xl border border-[#EEE8F0] shadow-xs flex flex-col items-center text-center relative overflow-hidden">
           <div className="relative group">
-            <div className="w-24 h-24 rounded-3xl overflow-hidden border-2 border-[#FFD52E] shadow-md bg-[#F6F1F8] ring-4 ring-[#FFF9E0]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={avatarUrl}
-                alt={name}
-                className="w-full h-full object-cover transition-transform group-hover:scale-105"
-              />
+            <div className="w-24 h-24 rounded-3xl overflow-hidden border-2 border-[#FFD52E] shadow-md bg-[#F6F1F8] ring-4 ring-[#FFF9E0] flex items-center justify-center">
+              {avatarUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={avatarUrl}
+                  alt={name || 'Avatar Profil'}
+                  className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                />
+              ) : (
+                <User className="w-10 h-10 text-[#7028B8]" />
+              )}
             </div>
 
             {/* Quick Change Badge Button */}

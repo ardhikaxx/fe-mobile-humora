@@ -109,10 +109,10 @@ export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
       >
         {/* Left Thumbnail */}
         <div className="relative w-20 sm:w-24 aspect-[3/4] rounded-2xl overflow-hidden bg-[#21052F] shrink-0 border border-[#EEE8F0]">
-          {!imageError ? (
+          {!imageError && (series.thumbnail || series.poster) ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={series.thumbnail || series.poster || ''}
+              src={series.thumbnail || series.poster}
               alt={series.title}
               onError={() => setImageError(true)}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -174,10 +174,10 @@ export function BentoSeriesCard({ series, variant }: BentoSeriesCardProps) {
       className="group relative col-span-1 rounded-[22px] overflow-hidden aspect-[3/4] bg-[#21052F] border border-[#EEE8F0] shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between p-3 select-none active:scale-[0.98]"
     >
       {/* Background Thumbnail Image */}
-      {!imageError ? (
+      {!imageError && (series.thumbnail || series.poster) ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={series.thumbnail || series.poster || ''}
+          src={series.thumbnail || series.poster}
           alt={series.title}
           onError={() => setImageError(true)}
           className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-600 ease-out"

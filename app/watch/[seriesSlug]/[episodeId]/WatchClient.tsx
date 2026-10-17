@@ -263,7 +263,7 @@ export default function WatchClient({ seriesSlug, episodeId }: WatchClientProps)
                   <div className="relative aspect-16/9 w-28 sm:w-32 rounded-xl overflow-hidden bg-black shrink-0">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={ep.thumbnail}
+                      src={ep.thumbnail || '/images/thumbnails/cara-deketin-cewek.jpg'}
                       alt={ep.title}
                       className="w-full h-full object-cover"
                     />

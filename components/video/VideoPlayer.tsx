@@ -201,7 +201,7 @@ export function VideoPlayer({
         <div className="relative w-full h-full flex items-center justify-center overflow-hidden bg-black">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={episode.thumbnail}
+            src={episode.thumbnail || '/images/thumbnails/cara-deketin-cewek.jpg'}
             alt={episode.title}
             className="w-full h-full object-cover transition-transform duration-700"
           />

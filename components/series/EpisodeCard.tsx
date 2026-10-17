@@ -51,7 +51,7 @@ export function EpisodeCard({ series, episode, isCurrent = false }: EpisodeCardP
       <div className="relative aspect-16/9 w-28 sm:w-32 rounded-xl overflow-hidden shrink-0 bg-[#21052F]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={episode.thumbnail}
+          src={episode.thumbnail || '/images/thumbnails/cara-deketin-cewek.jpg'}
           alt={episode.title}
           className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${
             isLocked ? 'filter brightness-65 saturate-70' : ''
