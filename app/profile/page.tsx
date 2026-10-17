@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { AppHeader } from '../../components/layout/AppHeader';
 import { ConfirmationModal } from '../../components/ui/ConfirmationModal';
+import { HumoraLogo } from '../../components/brand/HumoraLogo';
 import { useHumora } from '../../lib/context/HumoraContext';
 import { formatDateIndo, getDaysRemaining } from '../../lib/utils/formatters';
 
@@ -90,9 +91,7 @@ export default function ProfilePage() {
         ) : (
           /* Guest State Banner */
           <div className="p-5 bg-gradient-to-br from-[#4B0B7A] to-[#21052F] rounded-3xl text-white shadow-md mb-4 flex flex-col items-center text-center">
-            <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-[#FFD52E] mb-2.5">
-              <User className="w-6 h-6" />
-            </div>
+            <HumoraLogo type="icon" size="md" className="rounded-2xl overflow-hidden shadow-md mb-2.5" />
 
             <h3 className="text-base font-black tracking-tight">
               Masuk ke Akun HUMORA

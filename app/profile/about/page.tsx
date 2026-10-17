@@ -25,7 +25,7 @@ export default function AboutPage() {
         {/* BRAND HERO CARD */}
         <div className="p-6 rounded-3xl bg-white border border-[#EEE8F0] shadow-xs flex flex-col items-center text-center">
           <div className="mb-3">
-            <HumoraLogo size="lg" />
+            <HumoraLogo type="full" size="lg" className="rounded-2xl overflow-hidden shadow-xs border border-[#21052F]/10" />
           </div>
 
           <span className="inline-block bg-[#FFF9E0] text-[#7028B8] border border-[#FFD52E] text-[10px] font-black px-3 py-0.5 rounded-full uppercase tracking-wider mb-2">
@@ -39,6 +39,16 @@ export default function AboutPage() {
           <p className="text-xs text-[#786F7D] mt-3 leading-relaxed max-w-xs">
             HUMORA adalah platform streaming digital karya anak bangsa yang didedikasikan untuk menghadirkan video sketsa komedi pendek berkualitas tinggi, dekat dengan keseharian, dan siap menghibur di sela-sela rutinitasmu.
           </p>
+        </div>
+
+        {/* MASCOT INTRO CARD */}
+        <div className="p-4 rounded-3xl bg-gradient-to-r from-[#FFFDF2] to-[#FFF6CD] border border-[#FFD52E]/40 shadow-xs flex items-center gap-4">
+          <HumoraLogo type="icon" size="md" className="rounded-2xl overflow-hidden shadow-xs border border-[#21052F]/10 shrink-0" />
+          <div className="flex-1 min-w-0">
+            <span className="text-[10px] font-black uppercase tracking-wider text-[#E58A16]">Maskot Resmi</span>
+            <h3 className="text-xs font-black text-[#21052F] tracking-tight">Si Humo — The Laughing Play Button</h3>
+            <p className="text-[11px] text-[#786F7D] mt-0.5 leading-snug">Simbol keceriaan dan tawa instan di setiap klik tombol putar.</p>
+          </div>
         </div>
 
         {/* METRICS & STATS */}

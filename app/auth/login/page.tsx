@@ -97,7 +97,7 @@ export default function LoginPage() {
       <div className="w-full max-w-sm mx-auto flex-1 flex flex-col justify-center py-2">
         {/* Brand Logo & Welcome Title */}
         <div className="flex flex-col items-center text-center mb-6">
-          <HumoraLogo size="md" />
+          <HumoraLogo type="full" size="md" className="rounded-2xl overflow-hidden shadow-xs border border-[#21052F]/10" />
           <h2 className="text-xl sm:text-2xl font-black text-[#24172B] tracking-tight mt-3">
             Selamat datang kembali!
           </h2>

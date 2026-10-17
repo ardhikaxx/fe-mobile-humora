@@ -15,7 +15,8 @@ export const metadata: Metadata = {
   description: "Platform streaming series pendek Indonesia penuh tawa dan cerita seru.",
   manifest: "/manifest.json",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/icons/logo-humora.png",
+    apple: "/icons/logo-humora.png",
   },
 };
 

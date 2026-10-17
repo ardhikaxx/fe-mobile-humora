@@ -59,7 +59,7 @@ export default function EntryPage() {
       {phase === 'splash' && (
         <div className="flex-1 flex flex-col items-center justify-center text-center animate-fade-in z-10 w-full cursor-pointer">
           <div className="transform transition-transform scale-110 sm:scale-125 mb-4 animate-pulse-glow">
-            <HumoraLogo size="lg" showTagline />
+            <HumoraLogo type="full" size="xl" />
           </div>
 
           <p className="text-xs text-[#21052F]/70 font-semibold mt-6 tracking-wide">
@@ -73,14 +73,16 @@ export default function EntryPage() {
         <div className="flex-1 flex flex-col justify-between items-center w-full max-w-xs text-center z-10 animate-fade-in py-6">
           {/* Top Brand Logo */}
           <div className="mt-4">
-            <HumoraLogo size="lg" showTagline />
+            <HumoraLogo type="full" size="lg" />
           </div>
 
-          {/* Middle Value Proposition Card */}
+          {/* Middle Value Proposition Card with Official Mascot Icon */}
           <div className="my-auto flex flex-col items-center">
-            <div className="w-20 h-20 rounded-3xl bg-white shadow-xl shadow-[#4B0B7A]/10 border-2 border-[#21052F] flex items-center justify-center text-[#4B0B7A] mb-5 transform -rotate-3 hover:rotate-0 transition-transform">
-              <Play className="w-10 h-10 fill-[#FFD52E] text-[#21052F] stroke-[2.5] ml-1" />
-            </div>
+            <HumoraLogo
+              type="icon"
+              size="lg"
+              className="rounded-3xl overflow-hidden shadow-xl shadow-[#4B0B7A]/15 border-2 border-[#21052F] mb-5 transform -rotate-3 hover:rotate-0 transition-transform"
+            />
 
             <h2 className="text-2xl font-black text-[#21052F] tracking-tight leading-tight">
               Cerita Seru, <br /> Tawa Tanpa Henti.

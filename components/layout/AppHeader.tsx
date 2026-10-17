@@ -110,7 +110,7 @@ export function AppHeader({
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <User className="w-6 h-6 text-[#4B0B7A]" />
+                  <HumoraLogo type="icon" size="sm" className="w-full h-full" />
                 )}
               </Link>
 
@@ -156,7 +156,7 @@ export function AppHeader({
 
               {showLogo && !title && (
                 <Link href="/home" className="hover:opacity-95 transition-opacity shrink-0 flex items-center">
-                  <HumoraLogo size="sm" />
+                  <HumoraLogo type="full" size="sm" className="rounded-xl overflow-hidden shadow-xs border border-[#21052F]/10" />
                 </Link>
               )}
 
