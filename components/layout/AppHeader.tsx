@@ -95,52 +95,67 @@ export function AppHeader({
             <>
           {/* LEFT SIDE */}
           {isHome ? (
-            /* Layout Beranda: Foto profil di sebelah paling kiri diikuti dengan Hai, Nama pengguna & status sub-header */
-            <div className="flex items-center gap-3 min-w-0">
-              <Link
-                href="/profile"
-                className="w-12 h-12 sm:w-[50px] sm:h-[50px] rounded-full overflow-hidden border border-[#EEE8F0] shadow-xs flex items-center justify-center bg-[#F6F1F8] shrink-0 hover:ring-2 hover:ring-[#7028B8]/30 transition-all active:scale-95"
-                aria-label="Profil Saya"
-              >
-                {user?.avatarUrl ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={user.avatarUrl}
-                    alt={user.name}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <HumoraLogo type="icon" size="sm" className="w-full h-full" />
-                )}
-              </Link>
-
-              <div className="flex flex-col min-w-0 justify-center">
+            user ? (
+              /* Layout Beranda ketika User Login: Foto profil di sebelah paling kiri diikuti dengan Hai, Nama pengguna & status */
+              <div className="flex items-center gap-3 min-w-0">
                 <Link
                   href="/profile"
-                  className="text-[15px] sm:text-base font-extrabold text-[#24172B] tracking-tight truncate max-w-[170px] sm:max-w-[210px] leading-tight hover:text-[#4B0B7A] transition-colors"
+                  className="w-12 h-12 sm:w-[50px] sm:h-[50px] rounded-full overflow-hidden border border-[#EEE8F0] shadow-xs flex items-center justify-center bg-[#F6F1F8] shrink-0 hover:ring-2 hover:ring-[#7028B8]/30 transition-all active:scale-95"
+                  aria-label="Profil Saya"
                 >
-                  Hai, {displayName}
+                  {user.avatarUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={user.avatarUrl}
+                      alt={user.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <HumoraLogo type="icon" size="sm" className="w-full h-full" />
+                  )}
                 </Link>
 
-                {isPremium ? (
+                <div className="flex flex-col min-w-0 justify-center">
                   <Link
-                    href="/profile/subscription"
-                    className="text-xs sm:text-[13px] font-bold text-[#7028B8] flex items-center gap-1.5 leading-tight mt-0.5 hover:opacity-85 transition-opacity"
+                    href="/profile"
+                    className="text-[15px] sm:text-base font-extrabold text-[#24172B] tracking-tight truncate max-w-[170px] sm:max-w-[210px] leading-tight hover:text-[#4B0B7A] transition-colors"
                   >
-                    <Crown className="w-3 h-3 text-[#FFB800] fill-[#FFB800]" />
-                    <span>Humora Premium</span>
+                    Hai, {displayName}
                   </Link>
-                ) : (
-                  <Link
-                    href="/subscription"
-                    className="text-xs sm:text-[13px] font-bold text-[#7028B8] hover:text-[#4B0B7A] flex items-center gap-0.5 leading-tight mt-0.5 group/vip transition-colors"
-                  >
-                    <span>Upgrade ke VIP</span>
-                    <ChevronRight className="w-3.5 h-3.5 stroke-[2.5] text-[#7028B8] group-hover/vip:translate-x-0.5 transition-transform" />
-                  </Link>
-                )}
+
+                  {isPremium ? (
+                    <Link
+                      href="/profile/subscription"
+                      className="text-xs sm:text-[13px] font-bold text-[#7028B8] flex items-center gap-1.5 leading-tight mt-0.5 hover:opacity-85 transition-opacity"
+                    >
+                      <Crown className="w-3 h-3 text-[#FFB800] fill-[#FFB800]" />
+                      <span>Humora Premium</span>
+                    </Link>
+                  ) : (
+                    <Link
+                      href="/subscription"
+                      className="text-xs sm:text-[13px] font-bold text-[#7028B8] hover:text-[#4B0B7A] flex items-center gap-0.5 leading-tight mt-0.5 group/vip transition-colors"
+                    >
+                      <span>Upgrade ke VIP</span>
+                      <ChevronRight className="w-3.5 h-3.5 stroke-[2.5] text-[#7028B8] group-hover/vip:translate-x-0.5 transition-transform" />
+                    </Link>
+                  )}
+                </div>
               </div>
-            </div>
+            ) : (
+              /* Layout Beranda ketika Belum Login: Tampilkan Logo Full Komersial HUMORA */
+              <Link
+                href="/home"
+                className="hover:opacity-95 transition-opacity shrink-0 flex items-center"
+                aria-label="HUMORA Beranda"
+              >
+                <HumoraLogo
+                  type="full"
+                  size="sm"
+                  className="rounded-xl overflow-hidden shadow-xs border border-[#21052F]/10"
+                />
+              </Link>
+            )
           ) : (
             /* Layout Halaman Lain: Back button, Logo, atau Judul */
             <div className="flex items-center gap-2.5 min-w-0">
@@ -177,19 +192,43 @@ export function AppHeader({
             {rightAction ? (
               rightAction
             ) : isHome ? (
-              /* Di beranda, di seberang kanan khusus icon bell notifikasi */
-              shouldShowNotification ? (
-                <Link
-                  href="/notifications"
-                  className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center text-[#24172B] hover:bg-[#F6F1F8] active:scale-95 transition-all"
-                  aria-label="Notifikasi"
-                >
-                  <Bell className="w-5.5 h-5.5 text-[#4B0B7A]" />
-                  {unreadCount > 0 && (
-                    <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#D94152] ring-2 ring-white"></span>
+              user ? (
+                /* Di beranda, untuk user login: icon bell notifikasi */
+                shouldShowNotification ? (
+                  <Link
+                    href="/notifications"
+                    className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center text-[#24172B] hover:bg-[#F6F1F8] active:scale-95 transition-all"
+                    aria-label="Notifikasi"
+                  >
+                    <Bell className="w-5.5 h-5.5 text-[#4B0B7A]" />
+                    {unreadCount > 0 && (
+                      <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#D94152] ring-2 ring-white"></span>
+                    )}
+                  </Link>
+                ) : null
+              ) : (
+                /* Di beranda, untuk user belum login: tombol Masuk & icon bell notifikasi */
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <Link
+                    href="/auth/login"
+                    className="px-3.5 py-1.5 rounded-full bg-[#FFD52E] hover:bg-[#FFCA00] text-[#21052F] font-bold text-xs shadow-xs active:scale-95 transition-all"
+                  >
+                    Masuk
+                  </Link>
+                  {shouldShowNotification && (
+                    <Link
+                      href="/notifications"
+                      className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-[#24172B] hover:bg-[#F6F1F8] active:scale-95 transition-all"
+                      aria-label="Notifikasi"
+                    >
+                      <Bell className="w-5 h-5 text-[#4B0B7A]" />
+                      {unreadCount > 0 && (
+                        <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#D94152] ring-2 ring-white"></span>
+                      )}
+                    </Link>
                   )}
-                </Link>
-              ) : null
+                </div>
+              )
             ) : (
               /* Di halaman lain: Bell + Avatar Quick Link (hanya tampil bila diizinkan) */
               <>
@@ -220,7 +259,7 @@ export function AppHeader({
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <User className="w-4 h-4 text-[#4B0B7A]" />
+                      <HumoraLogo type="icon" size="xs" className="w-full h-full" />
                     )}
                   </Link>
                 )}
