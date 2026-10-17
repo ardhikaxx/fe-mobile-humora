@@ -29,7 +29,7 @@ export default function AboutPage() {
           </div>
 
           <span className="inline-block bg-[#FFF9E0] text-[#7028B8] border border-[#FFD52E] text-[10px] font-black px-3 py-0.5 rounded-full uppercase tracking-wider mb-2">
-            Versi 1.0.0 (Prototype)
+            Versi 1.0.0
           </span>
 
           <p className="text-xs text-[#7028B8] font-bold tracking-wide italic">

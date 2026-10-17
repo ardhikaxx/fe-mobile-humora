@@ -369,7 +369,7 @@ export default function ProfilePage() {
                   Tentang HUMORA
                 </span>
                 <span className="text-[11px] text-[#786F7D]">
-                  Versi prototype v1.0.0
+                  Versi v1.0.0
                 </span>
               </div>
             </div>
