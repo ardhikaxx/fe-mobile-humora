@@ -10,10 +10,8 @@ import {
   Smile,
   Camera,
   Check,
-  ArrowLeft,
   Save,
   Sparkles,
-  CheckCircle2,
   AlertCircle,
 } from 'lucide-react';
 import { AppHeader } from '../../../components/layout/AppHeader';
@@ -62,7 +60,7 @@ export default function EditProfilePage() {
   const [email, setEmail] = useState(user?.email || '');
   const [phone, setPhone] = useState(user?.phone || '');
   const [bio, setBio] = useState(user?.bio || 'Penikmat sketsa komedi garis keras 😂');
-  const [gender, setGender] = useState(user?.gender || 'Laki-laki');
+  const [gender, setGender] = useState(user?.gender === 'Perempuan' ? 'Perempuan' : 'Laki-laki');
   const [avatarUrl, setAvatarUrl] = useState(user?.avatarUrl || PRESET_AVATARS[0].url);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showAvatarPicker, setShowAvatarPicker] = useState(false);
@@ -75,7 +73,7 @@ export default function EditProfilePage() {
       if (user.email) setEmail(user.email);
       if (user.phone) setPhone(user.phone);
       if (user.bio) setBio(user.bio);
-      if (user.gender) setGender(user.gender);
+      if (user.gender) setGender(user.gender === 'Perempuan' ? 'Perempuan' : 'Laki-laki');
       if (user.avatarUrl) setAvatarUrl(user.avatarUrl);
     }
   }, [user]);
@@ -281,15 +279,9 @@ export default function EditProfilePage() {
 
           {/* Email */}
           <div>
-            <div className="flex items-center justify-between mb-1.5">
-              <label className="text-xs font-bold text-[#24172B]">
-                Alamat Email
-              </label>
-              <span className="text-[10px] font-bold text-[#21865B] bg-[#EAF8F1] px-2 py-0.5 rounded-full flex items-center gap-1">
-                <CheckCircle2 className="w-3 h-3" />
-                Terverifikasi
-              </span>
-            </div>
+            <label className="text-xs font-bold text-[#24172B] block mb-1.5">
+              Alamat Email
+            </label>
             <div className="relative flex items-center">
               <div className="absolute left-3.5 text-[#786F7D] pointer-events-none">
                 <Mail className="w-4 h-4" />
@@ -373,15 +365,15 @@ export default function EditProfilePage() {
             <label className="text-xs font-bold text-[#24172B] block mb-2">
               Jenis Kelamin
             </label>
-            <div className="grid grid-cols-3 gap-2">
-              {['Laki-laki', 'Perempuan', 'Lainnya'].map((item) => {
+            <div className="grid grid-cols-2 gap-2.5">
+              {['Laki-laki', 'Perempuan'].map((item) => {
                 const isSelected = gender === item;
                 return (
                   <button
                     key={item}
                     type="button"
                     onClick={() => setGender(item)}
-                    className={`py-2 px-3 rounded-xl text-xs font-bold transition-all border ${
+                    className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all border ${
                       isSelected
                         ? 'bg-[#21052F] text-white border-[#21052F] shadow-xs'
                         : 'bg-[#FFFDF7] text-[#786F7D] border-[#EEE8F0] hover:bg-[#F6F1F8]'
