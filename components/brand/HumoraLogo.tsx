@@ -13,6 +13,7 @@ export interface HumoraLogoProps {
   showTagline?: boolean;
   className?: string;
   alt?: string;
+  circle?: boolean;
 }
 
 export function HumoraLogo({
@@ -20,8 +21,10 @@ export function HumoraLogo({
   size = 'md',
   className = '',
   alt = 'HUMORA Logo',
+  circle = false,
 }: HumoraLogoProps) {
   const isIcon = type === 'icon';
+  const isCircle = circle || className.includes('rounded-full');
 
   // Sizing definitions based on aspect ratio
   // 'full' has 2:1 aspect ratio (5016x2508)
@@ -46,7 +49,7 @@ export function HumoraLogo({
 
   return (
     <div
-      className={`inline-flex items-center justify-center select-none shrink-0 ${className}`}
+      className={`inline-flex items-center justify-center select-none shrink-0 ${isCircle ? 'rounded-full overflow-hidden' : ''} ${className}`}
       style={{ width: dimensions.width, height: dimensions.height }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -55,7 +58,7 @@ export function HumoraLogo({
         alt={alt}
         width={dimensions.width}
         height={dimensions.height}
-        className="w-full h-full object-contain pointer-events-none transition-transform hover:scale-102 active:scale-98"
+        className={`w-full h-full ${isCircle ? 'object-cover' : 'object-contain'} pointer-events-none transition-transform hover:scale-102 active:scale-98`}
         loading="eager"
       />
     </div>

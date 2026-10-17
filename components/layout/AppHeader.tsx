@@ -111,7 +111,12 @@ export function AppHeader({
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <HumoraLogo type="icon" size="sm" className="w-full h-full" />
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src="/icons/logo-humora.png"
+                      alt={user.name || 'HUMORA'}
+                      className="w-full h-full object-cover"
+                    />
                   )}
                 </Link>
 
@@ -143,16 +148,17 @@ export function AppHeader({
                 </div>
               </div>
             ) : (
-              /* Layout Beranda ketika Belum Login: Tampilkan Logo Full Komersial HUMORA */
+              /* Layout Beranda ketika Belum Login: Logo saja (maskot) full rounded seperti foto profile */
               <Link
                 href="/home"
-                className="hover:opacity-95 transition-opacity shrink-0 flex items-center"
+                className="w-12 h-12 sm:w-[50px] sm:h-[50px] rounded-full overflow-hidden border border-[#21052F]/10 shadow-xs flex items-center justify-center shrink-0 hover:ring-2 hover:ring-[#7028B8]/30 transition-all active:scale-95 bg-[#FFD52E]"
                 aria-label="HUMORA Beranda"
               >
-                <HumoraLogo
-                  type="full"
-                  size="sm"
-                  className="rounded-xl overflow-hidden shadow-xs border border-[#21052F]/10"
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/icons/logo-humora.png"
+                  alt="HUMORA Logo"
+                  className="w-full h-full object-cover"
                 />
               </Link>
             )
@@ -259,7 +265,12 @@ export function AppHeader({
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <HumoraLogo type="icon" size="xs" className="w-full h-full" />
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src="/icons/logo-humora.png"
+                        alt="Profil"
+                        className="w-full h-full object-cover"
+                      />
                     )}
                   </Link>
                 )}
