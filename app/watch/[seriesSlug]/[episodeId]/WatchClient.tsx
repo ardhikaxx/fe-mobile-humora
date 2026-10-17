@@ -8,12 +8,9 @@ import {
   ChevronRight,
   Sparkles,
   Lock,
-  Share2,
   Heart,
-  Bookmark,
   Check,
   Play,
-  Flame,
   ArrowRight,
 } from 'lucide-react';
 import { SERIES_LIST } from '../../../../lib/data/seriesData';
@@ -32,7 +29,6 @@ export default function WatchClient({ seriesSlug, episodeId }: WatchClientProps)
 
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(1420);
-  const [isSaved, setIsSaved] = useState(false);
   const [isDescExpanded, setIsDescExpanded] = useState(false);
 
   const series = SERIES_LIST.find((s) => s.slug === seriesSlug) || SERIES_LIST[0];
@@ -103,25 +99,6 @@ export default function WatchClient({ seriesSlug, episodeId }: WatchClientProps)
     }
   };
 
-  const handleToggleSave = () => {
-    setIsSaved(!isSaved);
-    showToast(!isSaved ? 'Disimpan ke Daftar Tontonan nanti.' : 'Dihapus dari Daftar Tontonan.');
-  };
-
-  const handleShare = () => {
-    if (typeof navigator !== 'undefined' && navigator.share) {
-      navigator.share({
-        title: `${series.title} - Video ${currentEpisode.number}`,
-        url: window.location.href,
-      }).catch(() => {});
-    } else {
-      if (typeof navigator !== 'undefined' && navigator.clipboard) {
-        navigator.clipboard.writeText(window.location.href);
-      }
-      showToast('Tautan video berhasil disalin ke clipboard!');
-    }
-  };
-
   return (
     <div className="flex-1 flex flex-col bg-[#FFFDF7] pb-20">
       {/* 1. CINEMATIC 16:9 VIDEO PLAYER AT TOP */}
@@ -153,16 +130,13 @@ export default function WatchClient({ seriesSlug, episodeId }: WatchClientProps)
             Video {currentEpisode.number}: {currentEpisode.title}
           </h1>
 
-          {/* Sub Metadata Row & Access Badge */}
+          {/* Sub Metadata Row & Access Badge (Tanpa Rating) */}
           <div className="flex flex-wrap items-center gap-2 mt-2 text-xs text-[#786F7D]">
             <span>Video {currentEpisode.number} dari {series.videoCount || series.episodes.length}</span>
             <span>•</span>
             <span>{currentEpisode.duration}</span>
             <span>•</span>
-            <span className="font-semibold text-[#24172B] flex items-center gap-1">
-              <Flame className="w-3.5 h-3.5 text-[#E58A16] fill-[#E58A16]" />
-              <span>{series.rating} Rating</span>
-            </span>
+            <span>{series.genres[0] || 'Komedi'}</span>
 
             {/* Access Pill */}
             {currentEpisode.accessType === 'free' ? (
@@ -178,53 +152,28 @@ export default function WatchClient({ seriesSlug, episodeId }: WatchClientProps)
           </div>
         </div>
 
-        {/* 3. MODERN QUICK ACTIONS BAR */}
-        <div className="flex items-center justify-between gap-2 py-1 border-y border-[#EEE8F0]">
-          {/* Suka / Like */}
+        {/* 3. SUKA / LIKE BAR (Hanya Suka Saja, Tanpa Simpan & Berbagi) */}
+        <div className="flex items-center justify-between py-2 border-y border-[#EEE8F0]">
           <button
             type="button"
             onClick={handleToggleLike}
-            className={`flex-1 py-2 px-2.5 rounded-2xl flex items-center justify-center gap-1.5 text-xs font-bold transition-all active:scale-95 ${
+            className={`py-2 px-4 rounded-full inline-flex items-center gap-2 text-xs font-bold transition-all active:scale-95 shadow-xs ${
               isLiked
-                ? 'bg-[#FEECEF] text-[#D94152]'
+                ? 'bg-[#FEECEF] text-[#D94152] border border-[#D94152]/30'
                 : 'bg-white hover:bg-[#F6F1F8] text-[#24172B] border border-[#EEE8F0]'
             }`}
           >
             <Heart
-              className={`w-4 h-4 ${
-                isLiked ? 'text-[#D94152] fill-[#D94152]' : 'text-[#786F7D]'
+              className={`w-4 h-4 transition-transform ${
+                isLiked ? 'text-[#D94152] fill-[#D94152] scale-110' : 'text-[#786F7D]'
               }`}
             />
-            <span>{likeCount}</span>
+            <span>{likeCount.toLocaleString('id-ID')} Suka</span>
           </button>
 
-          {/* Simpan / Bookmark */}
-          <button
-            type="button"
-            onClick={handleToggleSave}
-            className={`flex-1 py-2 px-2.5 rounded-2xl flex items-center justify-center gap-1.5 text-xs font-bold transition-all active:scale-95 ${
-              isSaved
-                ? 'bg-[#FFF9E0] text-[#7028B8] border border-[#FFD52E]'
-                : 'bg-white hover:bg-[#F6F1F8] text-[#24172B] border border-[#EEE8F0]'
-            }`}
-          >
-            <Bookmark
-              className={`w-4 h-4 ${
-                isSaved ? 'text-[#7028B8] fill-[#7028B8]' : 'text-[#786F7D]'
-              }`}
-            />
-            <span>{isSaved ? 'Tersimpan' : 'Simpan'}</span>
-          </button>
-
-          {/* Bagikan / Share */}
-          <button
-            type="button"
-            onClick={handleShare}
-            className="flex-1 py-2 px-2.5 rounded-2xl bg-white hover:bg-[#F6F1F8] border border-[#EEE8F0] text-[#24172B] flex items-center justify-center gap-1.5 text-xs font-bold transition-all active:scale-95"
-          >
-            <Share2 className="w-4 h-4 text-[#786F7D]" />
-            <span>Bagikan</span>
-          </button>
+          <span className="text-[11px] text-[#786F7D] font-medium">
+            Ketuk untuk menyukai video ini
+          </span>
         </div>
 
         {/* 4. CLEAN COLLAPSIBLE SYNOPSIS CARD */}
